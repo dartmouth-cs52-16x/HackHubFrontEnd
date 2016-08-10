@@ -4,3 +4,17 @@ body {
   background: darken(white, 10%);
   margin: 50px;
 }
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  margin-left: 50px;
+  margin-right: 50px;
+  margin-bottom: 50px;
+}
+
+.navitem {
+  font-size: 30px;
+  padding: 5px;
+  color: black;
+}
