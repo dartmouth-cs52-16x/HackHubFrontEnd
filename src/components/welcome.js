@@ -5,7 +5,6 @@ import React from 'react';
 const Welcome = () => {
   return (
     <div>
-      react+react-router+webpack+babel+eslint starter
     </div>
   );
 };
