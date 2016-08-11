@@ -1,38 +1,56 @@
 import React, { Component } from 'react';
-import { connect } from 'react-redux';
-import { Link } from 'react-router';
-// import { fetchPosts } from '../actions/index';
+// import { Link } from 'react-router';
+import NewAnnouncement from './new_announcement';
 
 class Announcement extends Component {
+  constructor(props) {
+    super(props);
 
-  // componentWillMount() {
-  //   this.props.fetchPosts();
-  // }
+    this.state = {
+      announcements: [],
+      test: null,
+    };
+
+    this.createAnnouncement = this.createAnnouncement.bind(this);
+    this.renderAnnouncements = this.renderAnnouncements.bind(this);
+  }
+
+  // create a new note
+  createAnnouncement(input) {
+    this.state.announcements.push(input);
+    const newTest = input;
+    this.setState({
+      test: newTest,
+    });
+  }
+
+  renderAnnouncements() {
+    const renderList = this.state.announcements.map(text => {
+      return (
+        <div key={text} className="announcementsingle">
+          <div className="announcetext">
+            {text}
+          </div>
+          <div className="announcedate">
+            DATE
+          </div>
+        </div>
+      );
+    });
+    return renderList;
+  }
+
 
   render() {
     return (
-      <div className="home">
-        <p>Announcements: </p>
-        <p>There will be an announcement spot here soon.</p>
+      <div className="announcementbox">
+        <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        <div className="allannouncements">
+          {this.renderAnnouncements()}
+        </div>
       </div>
-      // {
-      //   this.props.posts.map(post => {
-      //     return (
-      //       <div key={post.id} className="items">
-      //         <Link to={`/posts/${post.id}`}>
-      //           <div className="title">
-      //             <span>{post.title}</span>
-      //             // <span className="tags">{post.tags}</span>
-      //           </div>
-      //         </Link>
-      //       </div>
-      //     );
-      //   })
-      // }
     );
   }
 }
 
-
-// export default connect(mapStateToProps, { fetchPosts })(Announcement);
 export default Announcement;

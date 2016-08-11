@@ -17,7 +17,6 @@ class App extends Component {
       <div>
         <EventList />
         <NavBar />
-        <EventPage />
         {this.props.children}
       </div>
     );
