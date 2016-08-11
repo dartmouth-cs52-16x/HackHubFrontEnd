@@ -2,22 +2,25 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import NewCompany from './companyAdd';
-import { createCompany, fetchCompanies } from '../actions/index';
+import { createCompany, fetchCompany } from '../actions/index';
 
 class Company extends Component {
   constructor(props) {
     super(props);
-
+    // set state
     this.state = {
-
     };
 
     this.createCompany = this.createCompany.bind(this);
-    this.renderCompanies = this.renderCompanies.bind(this);
+    this.renderCompany = this.renderCompany.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchCompanies();
+    this.props.fetchCompany();
+  }
+
+  componentWillReceiveProps(nextProps) {
+    console.log('newState');
   }
 
   // create a new note
@@ -26,11 +29,12 @@ class Company extends Component {
     this.props.createCompany(newComp);
   }
 
-  renderCompanies() {
-    if (this.props.all.companies == null) {
+  renderCompany() {
+    console.log(this.props.all);
+    if (this.props.all == null) {
       return null;
     }
-    const renderList = this.props.all.companies.all.map((comp) => {
+    const renderList = this.props.all.map((comp) => {
       return (
         <div key={comp.id} className="companysingle">
           <div className="companytext">
@@ -47,21 +51,22 @@ class Company extends Component {
 
 
   render() {
+    console.log('rendering');
     return (
       <div className="companybox">
         <NewCompany createCompany={this.createCompany} />
         <div className="allcompanies">
-          {this.renderCompanies()}
+          {this.renderCompany()}
         </div>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (state, action) => (
+const mapStateToProps = (state, action) => (
   {
-    all: state,
+    all: state.companies.all,
   }
 );
 
-export default connect(mapDispatchToProps, { createCompany, fetchCompanies })(Company);
+export default connect(mapStateToProps, { createCompany, fetchCompany })(Company);
