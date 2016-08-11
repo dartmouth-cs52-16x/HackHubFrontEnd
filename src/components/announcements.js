@@ -1,7 +1,5 @@
-// navbar component -- home and new post buttons
-
 import React, { Component } from 'react';
-import { Link } from 'react-router';
+// import { Link } from 'react-router';
 import NewAnnouncement from './new_announcement';
 
 class Announcement extends Component {
@@ -27,12 +25,6 @@ class Announcement extends Component {
   }
 
   renderAnnouncements() {
-    // let renderList = '';
-    // let ann = '';
-    /* for (let i = 0; i < this.state.announcements.length; i++) {
-      ann = this.state.announcements[i];
-      renderList = renderList + ' ' + ann;
-    } */
     const renderList = this.state.announcements.map(text => {
       return (
         <div key={text} className="announcementsingle">
