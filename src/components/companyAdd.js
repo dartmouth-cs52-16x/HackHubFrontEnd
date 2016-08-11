@@ -3,7 +3,7 @@ import { Link } from 'react-router';
 
 
 // function based "dumb" component with no state
-const compnayAdd = () => {
+const companyAdd = () => {
   return (
     <div>
       <Link to="/posts/new">Add Company</Link>
