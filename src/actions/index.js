@@ -7,6 +7,8 @@ const ROOT_URL = 'http://localhost:9090/api';
 export const ActionTypes = {
   FETCH_ANNS: 'FETCH_ANNS',
   FETCH_POST: 'FETCH_POST',
+  CREATE_ANNS: 'CREATE_ANNS',
+  DELETE_ANNS: 'DELETE_ANNS',
 };
 
 // fetch all posts
@@ -36,7 +38,7 @@ export function createAnnouncement(ann) {
 export function deleteAnnouncement(id) {
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/announcement`).then(response => {
-      browserHistory.push('/');
+      browserHistory.push('/announcement');
     }).catch(error => {
       console.log('Error deleting post');
     });

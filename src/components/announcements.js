@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import NewAnnouncement from './new_announcement';
-import { createAnnouncement, fetchAnnouncements } from '../actions/index';
+import { createAnnouncement, fetchAnnouncements, deleteAnnouncement } from '../actions/index';
 
 class Announcement extends Component {
   constructor(props) {
@@ -14,6 +14,7 @@ class Announcement extends Component {
 
     this.createAnnouncement = this.createAnnouncement.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
+    this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
   }
 
   componentWillMount() {
@@ -24,6 +25,10 @@ class Announcement extends Component {
   createAnnouncement(input) {
     const newAnn = { text: input, date: 'DATE' };
     this.props.createAnnouncement(newAnn);
+  }
+
+  deleteAnnouncement(input) {
+    this.props.deleteAnnouncement(input);
   }
 
   renderAnnouncements() {
@@ -39,6 +44,9 @@ class Announcement extends Component {
           <div className="announcedate">
             {ann.date}
           </div>
+          <button className="delete" onClick={this.deleteAnnouncement(ann.id)}>
+            delete
+          </button>
         </div>
       );
     });
@@ -64,4 +72,4 @@ const mapDispatchToProps = (state, action) => (
   }
 );
 
-export default connect(mapDispatchToProps, { createAnnouncement, fetchAnnouncements })(Announcement);
+export default connect(mapDispatchToProps, { createAnnouncement, fetchAnnouncements, deleteAnnouncement })(Announcement);
