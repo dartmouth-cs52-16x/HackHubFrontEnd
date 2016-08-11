@@ -1,38 +1,43 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
+import { connect } from 'react-redux';
 import NewAnnouncement from './new_announcement';
+import { createAnnouncement, fetchAnnouncements } from '../actions/index';
 
 class Announcement extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      announcements: [],
-      test: null,
+
     };
 
     this.createAnnouncement = this.createAnnouncement.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
   }
 
+  componentWillMount() {
+    this.props.fetchAnnouncements();
+  }
+
   // create a new note
   createAnnouncement(input) {
-    this.state.announcements.push(input);
-    const newTest = input;
-    this.setState({
-      test: newTest,
-    });
+    const newAnn = { text: input, date: 'DATE' };
+    this.props.createAnnouncement(newAnn);
   }
 
   renderAnnouncements() {
-    const renderList = this.state.announcements.map(text => {
+    if (this.props.all.announcements == null) {
+      return null;
+    }
+    const renderList = this.props.all.announcements.all.map((ann) => {
       return (
-        <div key={text} className="announcementsingle">
+        <div key={ann.id} className="announcementsingle">
           <div className="announcetext">
-            {text}
+            {ann.text}
           </div>
           <div className="announcedate">
-            DATE
+            {ann.date}
           </div>
         </div>
       );
@@ -53,4 +58,10 @@ class Announcement extends Component {
   }
 }
 
-export default Announcement;
+const mapDispatchToProps = (state, action) => (
+  {
+    all: state,
+  }
+);
+
+export default connect(mapDispatchToProps, { createAnnouncement, fetchAnnouncements })(Announcement);
