@@ -1,10 +1,11 @@
 import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import { connect } from 'react-redux';
+import Announcement from './announcement';
 import NewAnnouncement from './new_announcement';
-import { createAnnouncement, fetchAnnouncements } from '../actions/index';
+import { createAnnouncement, deleteAnnouncement, fetchAnnouncements } from '../actions/index';
 
-class Announcement extends Component {
+class Announcements extends Component {
   constructor(props) {
     super(props);
 
@@ -12,6 +13,7 @@ class Announcement extends Component {
     };
 
     this.createAnnouncement = this.createAnnouncement.bind(this);
+    this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
   }
 
@@ -29,6 +31,10 @@ class Announcement extends Component {
     this.props.createAnnouncement(newAnn);
   }
 
+  deleteAnnouncement(id) {
+    this.props.deleteAnnouncement(id);
+  }
+
   renderAnnouncements() {
     if (this.props.all == null) {
       return null;
@@ -36,12 +42,7 @@ class Announcement extends Component {
     const renderList = this.props.all.map((ann) => {
       return (
         <div key={ann.id} className="announcementsingle">
-          <div className="announcetext">
-            {ann.text}
-          </div>
-          <div className="announcedate">
-            {ann.date}
-          </div>
+          <Announcement text={ann.text} date={ann.date} id={ann.id} delete={this.deleteAnnouncement} />
         </div>
       );
     });
@@ -68,4 +69,4 @@ const mapStateToProps = (state, action) => (
   }
 );
 
-export default connect(mapStateToProps, { createAnnouncement, fetchAnnouncements })(Announcement);
+export default connect(mapStateToProps, { createAnnouncement, deleteAnnouncement, fetchAnnouncements })(Announcements);

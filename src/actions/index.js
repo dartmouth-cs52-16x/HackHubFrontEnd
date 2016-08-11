@@ -15,10 +15,10 @@ export const ActionTypes = {
 export function fetchAnnouncements() {
   console.log('fetched');
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/announcement`).then(response => {
+    axios.get(`${ROOT_URL}/announcements`).then(response => {
       dispatch({ type: ActionTypes.FETCH_ANNS, payload: { all: response.data } });
     }).catch(error => {
-      console.log('Error getting posts');
+      console.log('Error getting announcements');
     });
   };
 }
@@ -28,11 +28,11 @@ export function createAnnouncement(ann) {
   console.log('created');
   return (dispatch) => {
     const fields = { text: ann.text, date: ann.date };
-    axios.post(`${ROOT_URL}/announcement`, fields).then(() => {
-      axios.get(`${ROOT_URL}/announcement`).then(response => {
+    axios.post(`${ROOT_URL}/announcements`, fields).then(() => {
+      axios.get(`${ROOT_URL}/announcements`).then(response => {
         dispatch({ type: ActionTypes.CREATE_ANNS, payload: { all: response.data } });
       }).catch(error => {
-        console.log('Error getting posts');
+        console.log('Error getting announcements');
       });
     }).catch(error => {
       console.log('Error creating post');
@@ -42,9 +42,14 @@ export function createAnnouncement(ann) {
 
 // delete post
 export function deleteAnnouncement(id) {
+  console.log('deleted');
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/announcement`).then(response => {
-      browserHistory.push('/');
+    axios.delete(`${ROOT_URL}/announcements`, id).then(() => {
+      axios.get(`${ROOT_URL}/announcements`).then(response => {
+        dispatch({ type: ActionTypes.CREATE_ANNS, payload: { all: response.data } });
+      }).catch(error => {
+        console.log('Error getting announcements');
+      });
     }).catch(error => {
       console.log('Error deleting post');
     });
