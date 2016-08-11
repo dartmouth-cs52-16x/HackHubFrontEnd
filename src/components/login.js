@@ -1,6 +1,6 @@
 import React from 'react';
-import {Form, Input} from 'react-form';
-import {Password, Text} from 'react-form-inputs';
+import { Form, Input } from 'react-form';
+import { Password, Text } from 'react-form-inputs';
 
 const LoginForm = React.createClass({
   render() {
@@ -12,12 +12,12 @@ const LoginForm = React.createClass({
         <input type="submit" value="Login" />
       </Form>
     );
-  }
+  },
 });
 
 var user = {
   username: null,
-  password: null
+  password: null,
 };
 
 React.render(<LoginForm object={user} />, document.getElementById('login'));
