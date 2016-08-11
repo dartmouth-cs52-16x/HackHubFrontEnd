@@ -9,7 +9,6 @@ class Announcement extends Component {
     super(props);
 
     this.state = {
-
     };
 
     this.createAnnouncement = this.createAnnouncement.bind(this);
@@ -20,6 +19,10 @@ class Announcement extends Component {
     this.props.fetchAnnouncements();
   }
 
+  componentWillReceiveProps(nextProps) {
+    console.log('newState');
+  }
+
   // create a new note
   createAnnouncement(input) {
     const newAnn = { text: input, date: 'DATE' };
@@ -27,10 +30,10 @@ class Announcement extends Component {
   }
 
   renderAnnouncements() {
-    if (this.props.all.announcements == null) {
+    if (this.props.all == null) {
       return null;
     }
-    const renderList = this.props.all.announcements.all.map((ann) => {
+    const renderList = this.props.all.map((ann) => {
       return (
         <div key={ann.id} className="announcementsingle">
           <div className="announcetext">
@@ -47,6 +50,7 @@ class Announcement extends Component {
 
 
   render() {
+    console.log('rendering');
     return (
       <div className="announcementbox">
         <NewAnnouncement createAnnouncement={this.createAnnouncement} />
@@ -58,10 +62,10 @@ class Announcement extends Component {
   }
 }
 
-const mapDispatchToProps = (state, action) => (
+const mapStateToProps = (state, action) => (
   {
-    all: state,
+    all: state.announcements.all,
   }
 );
 
-export default connect(mapDispatchToProps, { createAnnouncement, fetchAnnouncements })(Announcement);
+export default connect(mapStateToProps, { createAnnouncement, fetchAnnouncements })(Announcement);
