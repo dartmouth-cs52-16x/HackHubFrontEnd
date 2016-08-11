@@ -57,23 +57,28 @@ export function deleteAnnouncement(id) {
 }
 
 // fetch all posts
-export function fetchCompanies() {
+export function fetchCompany() {
+  console.log('fetched');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/company`).then(response => {
-      dispatch({ type: 'FETCH_COMP', payload: response.data });
+      dispatch({ type: ActionTypes.FETCH_COMP, payload: { all: response.data } });
     }).catch(error => {
-      console.log('Error getting companies');
+      console.log('Error getting posts');
     });
   };
 }
 
 // create a new post
-export function createCompany(company) {
+export function createCompany(ann) {
+  console.log('created');
   return (dispatch) => {
-    const fields = { text: company.text, date: company.date };
-    axios.post(`${ROOT_URL}/company`, fields).then(response => {
-      browserHistory.push('/');
-      browserHistory.push('/companies');
+    const fields = { text: ann.text, date: ann.date };
+    axios.post(`${ROOT_URL}/company`, fields).then(() => {
+      axios.get(`${ROOT_URL}/company`).then(response => {
+        dispatch({ type: ActionTypes.CREATE_COMP, payload: { all: response.data } });
+      }).catch(error => {
+        console.log('Error getting posts');
+      });
     }).catch(error => {
       console.log('Error creating post');
     });
@@ -83,7 +88,7 @@ export function createCompany(company) {
 // delete post
 export function deleteCompany(id) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/company`).then(response => {
+    axios.delete(`${ROOT_URL}/company/${id}`).then(response => {
       browserHistory.push('/');
     }).catch(error => {
       console.log('Error deleting company');
