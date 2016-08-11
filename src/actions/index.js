@@ -7,11 +7,12 @@ const ROOT_URL = 'http://localhost:9090/api';
 export const ActionTypes = {
   FETCH_ANNS: 'FETCH_ANNS',
   CREATE_ANNS: 'CREATE_ANNS',
+  DELETE_ANNS: 'DELETE_ANNS',
   FETCH_COMP: 'FETCH_COMP',
   CREATE_COMP: 'CREATE_COMP',
 };
 
-// fetch all posts
+// fetch all announcements
 export function fetchAnnouncements() {
   console.log('fetched');
   return (dispatch) => {
@@ -23,7 +24,7 @@ export function fetchAnnouncements() {
   };
 }
 
-// create a new post
+// create a new announcements
 export function createAnnouncement(ann) {
   console.log('created');
   return (dispatch) => {
@@ -40,13 +41,13 @@ export function createAnnouncement(ann) {
   };
 }
 
-// delete post
+// delete announcements
 export function deleteAnnouncement(id) {
-  console.log('deleted');
+  console.log(id);
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/announcements`, id).then(() => {
+    axios.delete(`${ROOT_URL}/announcements/${id}`).then(() => {
       axios.get(`${ROOT_URL}/announcements`).then(response => {
-        dispatch({ type: ActionTypes.CREATE_ANNS, payload: { all: response.data } });
+        dispatch({ type: ActionTypes.DELETE_ANNS, payload: { all: response.data } });
       }).catch(error => {
         console.log('Error getting announcements');
       });
