@@ -1,4 +1,4 @@
-// the entry bar to create a new note with a title
+// the entry bar to create a new note with a title...
 
 import React, { Component } from 'react';
 
