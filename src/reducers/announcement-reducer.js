@@ -6,6 +6,8 @@ const AnnouncementReducer = (state = { all: [] }, action) => {
       return { ...state, all: action.payload.all };
     case ActionTypes.CREATE_ANNS:
       return { ...state, all: action.payload.all };
+    case ActionTypes.DELETE_ANNS:
+      return { ...state, all: action.payload.all };
     default:
       return state;
   }
