@@ -83,7 +83,7 @@ export function createCompany(ann) {
 // delete post
 export function deleteCompany(id) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/company`).then(response => {
+    axios.delete(`${ROOT_URL}/company/${id}`).then(response => {
       browserHistory.push('/');
     }).catch(error => {
       console.log('Error deleting company');
