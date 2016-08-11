@@ -1,6 +1,6 @@
 import { ActionTypes } from '../actions';
 
-const CompanyReducer = (state = { all: [], currentPost: null }, action) => {
+const CompanyReducer = (state = { all: [], currentCompany: null }, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_COMP:
       return { ...state, all: action.payload, currentPost: state.currentPost };
