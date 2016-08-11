@@ -6,8 +6,10 @@ body {
 }
 
 .navbar {
-  position: relative;
+  position: fixed;
   display: flex;
+  border: solid black 1px;
+  padding: 5px;
   justify-content: space-between;
   margin-left: 20%;
   margin-right: 50px;
@@ -17,14 +19,14 @@ body {
 
 .navitem {
   font-size: 30px;
-  padding: 5px;
+  margin: 5px;
   color: black;
 }
 
 .eventlist {
   position: fixed;
   width: 10%;
-  height: 90%;
+  height: 95%;
   display: flex;
   justify-content: space-between;
   margin-right: 50px;
@@ -33,7 +35,7 @@ body {
 }
 
 .eventitem {
-  font-size: 30px;
+  font-size: 20px;
   padding: 5px;
   color: black;
 }
@@ -49,8 +51,52 @@ body {
   border: solid black 1px;
 }
 
-#schedule, #help, #chat {
+.announcementbox {
+  position: fixed;
+  margin-top: 70px;
+  margin-left: 20%;
+  width: 80%;
+  height: 80%;
+}
+
+.allannouncements {
+  border: solid black 1px;
+  width: 85%;
+  height: 80%;
+}
+
+.announcementsingle {
+  border: solid black 1px;
+  background-color: rgb(250, 250, 250);
+  margin: 10px;
+  padding: 5px;
+}
+
+.announcetext {
+  font-size: 15px;
+}
+
+.announcedate {
+  font-size: 10px;
+}
+
+#schedule, #help, #chat, #companies {
   border: solid black 1px;
   margin: 50px;
-  margin-left: 200px;
+  margin-top: 20%;
+  margin-left: 20%;
+  position: fixed;
+}
+
+#entry-bar {
+  padding-bottom: 10px;
+}
+
+#create-field {
+  width: 60%;
+  font-size: 30px;
+}
+
+#create-button {
+  font-size: 30px;
 }
