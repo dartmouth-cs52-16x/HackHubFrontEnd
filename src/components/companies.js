@@ -4,10 +4,12 @@ import CompanyAdd from './companyAdd';
 const Companies = React.createClass({
   render() {
     return (
-      <companyAdd />
-      {this.props.children}
+      <div>
+        <CompanyAdd />
+        {this.props.children}
+      </div>
     );
-  }
+  },
 });
 
-export default companies;
+export default Companies;
