@@ -1,24 +1,24 @@
-import React from 'react';
+import React, { Component } from 'react';
+// import EventThumbnail from './eventThumbnail';
+// import { Link } from 'react-router';
 
-// based off of video_detail from short assignment 4
 
-const EventPage = ({ video }) => {
-  if (!video) {
-    return <div>Loading...</div>;
+// based off of videoList in short assignment 4
+
+class EventPage extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {};
   }
-  const videoId = video.id.videoId;
-  const url = `https://www.youtube.com/embed/${videoId}`;
-  return (
-    <div className="video-detail">
-      <div className="embed-responsive embed-responsive-16by9">
-        <iframe className="embed-responsive-item" src={url}></iframe>
+
+  render() {
+    return (
+      <div className="eventpage">
+
       </div>
-      <div className="details">
-        <div>{video.snippet.title}</div>
-        <div>{video.snippet.description}</div>
-      </div>
-    </div>
-  );
-};
+    );
+  }
+}
 
 export default EventPage;
