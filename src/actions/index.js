@@ -13,9 +13,10 @@ export const ActionTypes = {
 
 // fetch all posts
 export function fetchAnnouncements() {
+  console.log('fetched');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/announcement`).then(response => {
-      dispatch({ type: 'FETCH_ANNS', payload: response.data });
+      dispatch({ type: ActionTypes.FETCH_ANNS, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting posts');
     });
@@ -24,6 +25,7 @@ export function fetchAnnouncements() {
 
 // create a new post
 export function createAnnouncement(ann) {
+  console.log('created');
   return (dispatch) => {
     const fields = { text: ann.text, date: ann.date };
     axios.post(`${ROOT_URL}/announcement`, fields).then(response => {
