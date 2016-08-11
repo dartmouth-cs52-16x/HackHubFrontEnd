@@ -30,6 +30,7 @@ class Company extends Component {
   }
 
   renderCompany() {
+    console.log(this.props.all);
     if (this.props.all == null) {
       return null;
     }
