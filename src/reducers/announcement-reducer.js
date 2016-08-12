@@ -1,13 +1,13 @@
 import { ActionTypes } from '../actions';
 
-const AnnouncementReducer = (state = { all: [], currentPost: null }, action) => {
+const AnnouncementReducer = (state = { all: [] }, action) => {
   switch (action.type) {
     case ActionTypes.FETCH_ANNS:
-      return { all: action.payload, currentPost: state.currentPost };
-    case ActionTypes.FETCH_POST:
-      return { all: [], currentPost: action.payload };
-    case ActionTypes.CREATE_ANN:
-      return { all: action.payload, currentPost: state.currentPost };
+      return { ...state, all: action.payload.all };
+    case ActionTypes.CREATE_ANNS:
+      return { ...state, all: action.payload.all };
+    case ActionTypes.DELETE_ANNS:
+      return { ...state, all: action.payload.all };
     default:
       return state;
   }
