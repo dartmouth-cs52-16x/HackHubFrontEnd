@@ -1,8 +1,8 @@
-// the entry bar to create a new note with a title...
+// the entry bar to create a new note with a title
 
 import React, { Component } from 'react';
 
-class NewAnnouncement extends Component {
+class NewCompany extends Component {
   constructor(props) {
     super(props);
     this.state = { titleterm: '' };
@@ -13,12 +13,12 @@ class NewAnnouncement extends Component {
     this.setState({ titleterm: event.target.value });
   }
   onButtonClick(event) {
-    this.props.createAnnouncement(this.state.titleterm);
+    this.props.createCompany(this.state.titleterm);
   }
   render() {
     return (
       <div id="entry-bar" >
-        <h1>Create a new announcement:</h1>
+        <h1>Create a new company:</h1>
         <input id="create-field" onChange={this.onInputChange} value={this.state.titleterm} />
         <button id="create-button" onClick={this.onButtonClick}>Submit</button>
       </div>
@@ -26,4 +26,4 @@ class NewAnnouncement extends Component {
   }
 }
 
-export default NewAnnouncement;
+export default NewCompany;

@@ -14,7 +14,7 @@ class NavBar extends Component {
     return (
       <div className="navbar">
         <Link to="/schedule" className="navitem">SCHEDULE </Link>
-        <Link to="/announcement" className="navitem">ANNOUNCEMENTS </Link>
+        <Link to="/announcements" className="navitem">ANNOUNCEMENTS </Link>
         <Link to="/companies" className="navitem">COMPANIES </Link>
         <Link to="/chat" className="navitem">CHAT </Link>
         <Link to="/help" className="navitem">HELP </Link>
