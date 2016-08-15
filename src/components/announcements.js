@@ -3,11 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Announcement from './announcement';
 import NewAnnouncement from './new_announcement';
-<<<<<<< HEAD
-import { createAnnouncement, fetchAnnouncements, deleteAnnouncement } from '../actions/index';
-=======
 import { createAnnouncement, deleteAnnouncement, fetchAnnouncements } from '../actions/index';
->>>>>>> 1f09277177559a9fe812fdaf2b932b72ca0cb799
 
 class Announcements extends Component {
   constructor(props) {
