@@ -1,9 +1,10 @@
 body {
   font-family: "Roboto", sans-serif;
-  color: rgb(10%, 10%, 10%);
+  color: rgb(10%, 10%, 10%); //#9ACD32
   background: url('http://www.intrawallpaper.com/static/images/White-Background-9B1.jpg') no-repeat center center fixed;
   background-size: cover;
   margin: 20px;
+  font-family: "freight-sans-pro", "Times New Roman", Times, serif;
 }
 
 .eventPage {
@@ -14,19 +15,53 @@ body {
   margin: auto;
 }
 
+.eventPage a:hover{
+  text-shadow: 1px 1px grey;
+}
+
 .navbar {
   display: flex;
   flex-wrap: wrap;
-  border: solid black 1px;
-  padding: 5px;
+  border-width:5px;
+  border-style:ridge;
+  padding: 7px;
   justify-content: center;
-  margin-left: 20%;
+  margin-left: 5%;
+  position: fixed;
 }
 
 .navitem {
-  font-size: 30px;
-  margin: 5px;
+  font-size: 27px;
+  margin: 8px;
   color: black;
+  color: #CCCCCC;
+  text-shadow: 1px 1px 0px rgba(110,110,110,0.2);
+}
+
+.navbutton {
+  background: #34d9d1;
+  background-image: -webkit-linear-gradient(top, #34d9d1, #2980b9);
+  background-image: -moz-linear-gradient(top, #34d9d1, #2980b9);
+  background-image: -ms-linear-gradient(top, #34d9d1, #2980b9);
+  background-image: -o-linear-gradient(top, #34d9d1, #2980b9);
+  background-image: linear-gradient(to bottom, #34d9d1, #2980b9);
+  -webkit-border-radius: 19;
+  -moz-border-radius: 19;
+  border-radius: 12px;
+  font-family: Arial;
+  color: #ffffff;
+  font-size: 20px;
+  text-decoration: none;
+}
+
+.navbutton:hover {
+  background: #bc3cfc;
+  background-image: -webkit-linear-gradient(top, #bc3cfc, #3498db);
+  background-image: -moz-linear-gradient(top, #bc3cfc, #3498db);
+  background-image: -ms-linear-gradient(top, #bc3cfc, #3498db);
+  background-image: -o-linear-gradient(top, #bc3cfc, #3498db);
+  background-image: linear-gradient(to bottom, #bc3cfc, #3498db);
+  text-decoration: none;
 }
 
 .eventlist {
@@ -38,13 +73,15 @@ body {
   justify-content: space-between;
   margin-right: 50px;
   margin-bottom: 50px;
-  border: solid black 1px;
+  border-width:5px;
+  border-style:ridge;
 }
 
 .eventitem {
-  font-size: 20px;
+  font-size: 18px;
   padding: 5px;
   color: black;
+
 }
 
 .eventpage {
@@ -146,4 +183,40 @@ body {
 
 #create-button {
   font-size: 30px;
+}
+
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  top:0;
+  padding-left:5px;
+  margin-bottom: 30px ! important;
+  width:100%;
+  height:20px;
+  background:rgba(0,0,0, 0.3);
+  display: flex;
+  flex-direction: row;
+  li, i {
+    color: black;
+    margin-right: 7px;
+  }
+  li:hover {
+    color: yellowgreen;
+  }
+  i:hover {
+    color: yellowgreen;
+  }
+}
+
+.signinbox {
+  margin: 50px;
+  padding: 5px;
+  margin-top: 10%;
+  margin-left: 20%;
+
+  p {
+    font-size: 30px;
+    font-weight: bold;
+  }
 }
