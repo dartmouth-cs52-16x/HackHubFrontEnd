@@ -11,6 +11,7 @@ export const ActionTypes = {
   FETCH_COMP: 'FETCH_COMP',
   CREATE_COMP: 'CREATE_COMP',
   DELETE_COMP: 'DELETE_COMP',
+  FETCH_USER: 'FETCH_USER',
 };
 
 // fetch all announcements
@@ -99,6 +100,16 @@ export function deleteCompany(id) {
       });
     }).catch(error => {
       console.log('Error deleting company');
+    });
+  };
+}
+
+export function fetchUser(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/users/${id}`).then(response => {
+      dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
+    }).catch(error => {
+      console.log('Error: could not fetch user');
     });
   };
 }
