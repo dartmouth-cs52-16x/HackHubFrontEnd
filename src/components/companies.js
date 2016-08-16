@@ -2,9 +2,10 @@ import React, { Component } from 'react';
 // import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import NewCompany from './companyAdd';
-import { createCompany, fetchCompany } from '../actions/index';
+import Company from './company';
+import { createCompany, fetchCompany, deleteCompany } from '../actions/index';
 
-class Company extends Component {
+class Companies extends Component {
   constructor(props) {
     super(props);
     // set state
@@ -12,6 +13,7 @@ class Company extends Component {
     };
 
     this.createCompany = this.createCompany.bind(this);
+    this.deleteCompany = this.deleteCompany.bind(this);
     this.renderCompany = this.renderCompany.bind(this);
   }
 
@@ -29,6 +31,10 @@ class Company extends Component {
     this.props.createCompany(newComp);
   }
 
+  deleteCompany(id) {
+    this.props.deleteCompany(id);
+  }
+
   renderCompany() {
     console.log(this.props.all);
     if (this.props.all == null) {
@@ -36,13 +42,8 @@ class Company extends Component {
     }
     const renderList = this.props.all.map((comp) => {
       return (
-        <div key={comp.id} className="companysingle">
-          <div className="companytext">
-            {comp.text}
-          </div>
-          <div className="companydate">
-            {comp.date}
-          </div>
+        <div key={comp.id} className="announcementsingle">
+          <Company text={comp.text} id={comp.id} delete={this.deleteCompany} />
         </div>
       );
     });
@@ -65,10 +66,10 @@ class Company extends Component {
   }
 }
 
-const mapStateToProps = (state, action) => (
+const mapStateToProps = (state) => (
   {
     all: state.companies.all,
   }
 );
 
-export default connect(mapStateToProps, { createCompany, fetchCompany })(Company);
+export default connect(mapStateToProps, { createCompany, fetchCompany, deleteCompany })(Companies);
