@@ -2,4 +2,4 @@ language: node_js
 node_js:
   - "0.12"
 after_success:
-  - surge --project . --domain hackhub.surge.sh
+  - npm run build; surge -p .
