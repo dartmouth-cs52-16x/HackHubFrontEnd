@@ -47,7 +47,7 @@ class SignIn extends Component {
           Password: <input value={this.state.password} onChange={this.onPasswordChange} />
         </div>
         <div>
-          <button className="btn" onClick={this.submitSignin}>Submit</button>
+          <button onClick={this.submitSignin}>Submit</button>
         </div>
         <Link to="/signup">Sign Up</Link>
       </div>
