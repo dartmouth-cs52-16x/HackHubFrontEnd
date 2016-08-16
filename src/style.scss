@@ -1,20 +1,26 @@
 body {
   font-family: "Roboto", sans-serif;
   color: rgb(10%, 10%, 10%);
-  background: darken(white, 10%);
+  background: url('http://www.intrawallpaper.com/static/images/White-Background-9B1.jpg') no-repeat center center fixed;
+  background-size: cover;
   margin: 20px;
 }
 
-.navbar {
-  position: fixed;
+.eventPage {
   display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+  align-items: center;
+  margin: auto;
+}
+
+.navbar {
+  display: flex;
+  flex-wrap: wrap;
   border: solid black 1px;
   padding: 5px;
-  justify-content: space-between;
+  justify-content: center;
   margin-left: 20%;
-  margin-right: 50px;
-  margin-bottom: 50px;
-  height: 5%;
 }
 
 .navitem {
@@ -25,9 +31,10 @@ body {
 
 .eventlist {
   position: fixed;
-  width: 10%;
+  width: auto;
   height: 95%;
   display: flex;
+  flex-direction: column;
   justify-content: space-between;
   margin-right: 50px;
   margin-bottom: 50px;
@@ -56,6 +63,11 @@ body {
   margin-left: 20%;
   width: 80%;
   height: 80%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
 }
 
 .allannouncements {
@@ -80,11 +92,15 @@ body {
 }
 
 .companybox {
-  position: fixed;
   margin-top: 70px;
   margin-left: 20%;
   width: 80%;
   height: 80%;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
 }
 
 .allcompanies {
@@ -98,10 +114,12 @@ body {
   background-color: rgb(250, 250, 250);
   margin: 10px;
   padding: 5px;
+  height: auto;
 }
 
 .companytext {
   font-size: 15px;
+  word-wrap: break-word;
 }
 
 .companydate {
@@ -111,9 +129,9 @@ body {
 #schedule, #help, #chat, #companies {
   border: solid black 1px;
   margin: 50px;
+  padding: 5px;
   margin-top: 20%;
   margin-left: 20%;
-  position: fixed;
 }
 
 #entry-bar {

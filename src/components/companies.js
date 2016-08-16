@@ -54,7 +54,9 @@ class Company extends Component {
     console.log('rendering');
     return (
       <div className="companybox">
-        <NewCompany createCompany={this.createCompany} />
+        <div>
+          <NewCompany createCompany={this.createCompany} />
+        </div>
         <div className="allcompanies">
           {this.renderCompany()}
         </div>

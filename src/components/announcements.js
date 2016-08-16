@@ -15,6 +15,7 @@ class Announcements extends Component {
     this.createAnnouncement = this.createAnnouncement.bind(this);
     this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
+    this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
   }
 
   componentWillMount() {
@@ -54,7 +55,9 @@ class Announcements extends Component {
     console.log('rendering');
     return (
       <div className="announcementbox">
-        <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        <div>
+          <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        </div>
         <div className="allannouncements">
           {this.renderAnnouncements()}
         </div>
@@ -68,5 +71,6 @@ const mapStateToProps = (state, action) => (
     all: state.announcements.all,
   }
 );
+
 
 export default connect(mapStateToProps, { createAnnouncement, deleteAnnouncement, fetchAnnouncements })(Announcements);
