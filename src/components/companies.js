@@ -22,7 +22,6 @@ class Companies extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('newState');
   }
 
   // create a new note
@@ -36,7 +35,6 @@ class Companies extends Component {
   }
 
   renderCompany() {
-    console.log(this.props.all);
     if (this.props.all == null) {
       return null;
     }
@@ -52,7 +50,6 @@ class Companies extends Component {
 
 
   render() {
-    console.log('rendering');
     return (
       <div className="companybox">
         <div>
