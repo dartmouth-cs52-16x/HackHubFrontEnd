@@ -23,7 +23,6 @@ class Announcements extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log('newState');
   }
 
   // create a new note
@@ -52,7 +51,6 @@ class Announcements extends Component {
 
 
   render() {
-    console.log('rendering');
     return (
       <div className="announcementbox">
         <div>
