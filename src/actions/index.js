@@ -10,6 +10,7 @@ export const ActionTypes = {
   DELETE_ANNS: 'DELETE_ANNS',
   FETCH_COMP: 'FETCH_COMP',
   CREATE_COMP: 'CREATE_COMP',
+  DELETE_COMP: 'DELETE_COMP',
 };
 
 // fetch all announcements
@@ -88,9 +89,14 @@ export function createCompany(ann) {
 
 // delete post
 export function deleteCompany(id) {
+  console.log(id);
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/company/${id}`).then(response => {
-      browserHistory.push('/');
+    axios.delete(`${ROOT_URL}/company/${id}`).then(() => {
+      axios.get(`${ROOT_URL}/company`).then(response => {
+        dispatch({ type: ActionTypes.DELETE_COMP, payload: { all: response.data } });
+      }).catch(error => {
+        console.log('Error getting companies');
+      });
     }).catch(error => {
       console.log('Error deleting company');
     });
