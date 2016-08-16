@@ -4,7 +4,7 @@ import React from 'react';
 export default function Schedule(props) {
   return (
     <div id="schedule">
-      <p>There will be a schedule here soon.</p>
+      <p>There will be a SCHEDULE here soon.</p>
     </div>
   );
 }
