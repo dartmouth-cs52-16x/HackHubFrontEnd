@@ -55,7 +55,9 @@ class Announcements extends Component {
     console.log('rendering');
     return (
       <div className="announcementbox">
-        <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        <div>
+          <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        </div>
         <div className="allannouncements">
           {this.renderAnnouncements()}
         </div>
