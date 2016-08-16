@@ -11,11 +11,13 @@ export const ActionTypes = {
   FETCH_COMP: 'FETCH_COMP',
   CREATE_COMP: 'CREATE_COMP',
   DELETE_COMP: 'DELETE_COMP',
+  AUTH_USER: 'AUTH_USER',
+  DEAUTH_USER: 'DEAUTH_USER',
+  AUTH_ERROR: 'AUTH_ERROR',
 };
 
 // fetch all announcements
 export function fetchAnnouncements() {
-  console.log('fetched');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/announcements`).then(response => {
       dispatch({ type: ActionTypes.FETCH_ANNS, payload: { all: response.data } });
@@ -27,7 +29,6 @@ export function fetchAnnouncements() {
 
 // create a new announcements
 export function createAnnouncement(ann) {
-  console.log('created');
   return (dispatch) => {
     const fields = { text: ann.text, date: ann.date };
     axios.post(`${ROOT_URL}/announcements`, fields).then(() => {
@@ -44,7 +45,6 @@ export function createAnnouncement(ann) {
 
 // delete announcements
 export function deleteAnnouncement(id) {
-  console.log(id);
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/announcements/${id}`).then(() => {
       axios.get(`${ROOT_URL}/announcements`).then(response => {
@@ -60,7 +60,6 @@ export function deleteAnnouncement(id) {
 
 // fetch all posts
 export function fetchCompany() {
-  console.log('fetched');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/company`).then(response => {
       dispatch({ type: ActionTypes.FETCH_COMP, payload: { all: response.data } });
@@ -72,7 +71,6 @@ export function fetchCompany() {
 
 // create a new post
 export function createCompany(ann) {
-  console.log('created');
   return (dispatch) => {
     const fields = { text: ann.text, date: ann.date };
     axios.post(`${ROOT_URL}/company`, fields).then(() => {
@@ -89,7 +87,6 @@ export function createCompany(ann) {
 
 // delete post
 export function deleteCompany(id) {
-  console.log(id);
   return (dispatch) => {
     axios.delete(`${ROOT_URL}/company/${id}`).then(() => {
       axios.get(`${ROOT_URL}/company`).then(response => {
@@ -100,5 +97,48 @@ export function deleteCompany(id) {
     }).catch(error => {
       console.log('Error deleting company');
     });
+  };
+}
+
+// trigger to deauth if there is error
+// can also use in your error reducer if you have one to display an error message
+export function authError(error) {
+  return {
+    type: ActionTypes.AUTH_ERROR,
+    message: error,
+  };
+}
+
+export function signinUser(email, password) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/signin`, { email, password }).then(response => {
+      dispatch({ type: ActionTypes.AUTH_USER });
+      localStorage.setItem('token', response.data.token);
+      browserHistory.push('/');
+    }).catch(error => {
+      dispatch(authError(`Sign In Failed: ${error.response.data}`));
+    });
+  };
+}
+
+export function signupUser(email, password) {
+  return (dispatch) => {
+    axios.post(`${ROOT_URL}/signup`, { email, password }).then(response => {
+      dispatch({ type: ActionTypes.AUTH_USER });
+      localStorage.setItem('token', response.data.token);
+      browserHistory.push('/');
+    }).catch(error => {
+      dispatch(authError(`Sign Up Failed: ${error.response.data}`));
+    });
+  };
+}
+
+// deletes token from localstorage
+// and deauths
+export function signoutUser() {
+  return (dispatch) => {
+    localStorage.removeItem('token');
+    dispatch({ type: ActionTypes.DEAUTH_USER });
+    browserHistory.push('/');
   };
 }
