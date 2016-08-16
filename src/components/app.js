@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import EventList from './eventList';
-import EventPage from './eventPage';
+// import EventPage from './eventPage';
 import NavBar from './navbar';
 // import debounce from 'lodash.debounce';
 import '../style.scss';
@@ -14,10 +14,14 @@ class App extends Component {
 
   render() {
     return (
-      <div>
-        <EventList />
-        <NavBar />
-        {this.props.children}
+      <div className="page">
+        <div>
+          <EventList />
+        </div>
+        <div className="eventPage">
+          <NavBar />
+          {this.props.children}
+        </div>
       </div>
     );
   }
