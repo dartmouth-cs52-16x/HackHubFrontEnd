@@ -22,12 +22,6 @@ class App extends Component {
           <NavBar />
           {this.props.children}
         </div>
-        <div className="footer">
-          <li>HackHub</li>
-          <li>Connect with us</li>
-          <i className="fa fa-twitter footer_item" aria-hidden="true"> </i>
-          <i className="fa fa-facebook-square footer_item" aria-hidden="true"> </i>
-        </div>
       </div>
     );
   }
