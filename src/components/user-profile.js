@@ -15,7 +15,8 @@ class UserProfile extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchUser(this.props.user.id);
+    console.log(this.props.user);
+    // this.props.fetchUser(this.props.user.id);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -48,7 +49,7 @@ class UserProfile extends Component {
 
 const mapDispatchToProps = (state) => (
   {
-    user: state.user,
+    user: state.users.user,
   }
 );
 
