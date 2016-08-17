@@ -9,19 +9,18 @@ class UserProfile extends Component {
 
     // init component state here
     this.state = {
-      user: null,
-      // can add more later
+      user: '',
     };
   }
 
   componentWillMount() {
-    console.log(this.props.user);
-    // this.props.fetchUser(this.props.user.id);
+    this.props.fetchUser(this.props.params.id);
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     this.setState({
-      user: this.nextProps.user,
+      user: nextProps.user.user,
     });
   }
 
@@ -41,16 +40,16 @@ class UserProfile extends Component {
   render() {
     return (
       <div id="userProfile">
-        {this.state.user._id}
+      {this.state.user.id}
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (state) => (
+const mapStateToProps = (state) => (
   {
     user: state.users.user,
   }
 );
 
-export default connect(mapDispatchToProps, { fetchUser })(UserProfile);
+export default connect(mapStateToProps, { fetchUser })(UserProfile);
