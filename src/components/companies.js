@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
+import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import NewCompany from './companyAdd';
 import Company from './company';
@@ -52,8 +52,8 @@ class Companies extends Component {
   render() {
     return (
       <div>
-        <div className="col-md-10 col-md-offset-1 mainpage">
-          <NewCompany createCompany={this.createCompany} />
+        <div className="col-md-2 col-md-offset-9 mainpage">
+          <Link to="new_company">Add Company</Link>
         </div>
         <div>
           {this.renderCompany()}

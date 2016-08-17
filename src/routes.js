@@ -4,6 +4,7 @@ import Schedule from './components/schedule';
 import App from './components/app';
 import Announcements from './components/announcements';
 import Companies from './components/companies';
+import NewCompanyProfile from './components/new_company';
 import Chat from './components/chat';
 import Help from './components/help';
 import SignIn from './components/signin';
@@ -17,6 +18,7 @@ export default(
     <Route path="/schedule" component={Schedule} />
     <Route path="/announcements" component={Announcements} />
     <Route path="/companies" component={Companies} />
+    <Route path="/new_company" component={NewCompanyProfile} />
     <Route path="/chat" component={Chat} />
     <Route path="/help" component={Help} />
     <Route path="/signin" component={SignIn} />
