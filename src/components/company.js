@@ -17,7 +17,7 @@ class Company extends Component {
   // render announcement
   render() {
     return (
-      <div className="companiesingle">
+      <div className="col-md-10 col-md-offset-1 companysingle">
         <div className="companyname">{this.props.text}</div>
         <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
       </div>
