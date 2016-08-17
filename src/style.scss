@@ -95,6 +95,8 @@ p {
 }
 
 .announcementsingle {
+  display: flex;
+  justify-content: space-between;
   border: solid grey 1px;
   border-radius: 5px;
   background-color: rgb(250, 250, 250);
@@ -147,6 +149,14 @@ p {
 
 .companydate {
   font-size: 10px;
+}
+
+.company-profile {
+  margin-top: 100px;
+
+  .form-control {
+    margin-bottom: 5px;
+  }
 }
 
 #schedule, #help, #chat, #companies {

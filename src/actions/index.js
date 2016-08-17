@@ -31,8 +31,12 @@ export function fetchAnnouncements() {
 
 // create a new announcements
 export function createAnnouncement(ann) {
+  const date = new Date;
+
+  const dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}
+  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
   return (dispatch) => {
-    const fields = { text: ann.text, date: ann.date };
+    const fields = { text: ann.text, date: dateString };
     axios.post(`${ROOT_URL}/announcements`, fields).then(() => {
       axios.get(`${ROOT_URL}/announcements`).then(response => {
         dispatch({ type: ActionTypes.CREATE_ANNS, payload: { all: response.data } });
@@ -74,10 +78,12 @@ export function fetchCompany() {
 // create a new post
 export function createCompany(ann) {
   return (dispatch) => {
-    const fields = { text: ann.text, date: ann.date };
+    console.log(ann);
+    const fields = { text: ann.name, date: ann.date };
     axios.post(`${ROOT_URL}/company`, fields).then(() => {
       axios.get(`${ROOT_URL}/company`).then(response => {
         dispatch({ type: ActionTypes.CREATE_COMP, payload: { all: response.data } });
+        browserHistory.push('companies');
       }).catch(error => {
         console.log('Error getting posts');
       });
