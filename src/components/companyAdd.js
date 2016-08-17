@@ -17,11 +17,14 @@ class NewCompany extends Component {
   }
   render() {
     return (
-      <div id="entry-bar" >
-        <h1>Create a new company:</h1>
-        <input id="create-field" onChange={this.onInputChange} value={this.state.titleterm} />
-        <button id="create-button" onClick={this.onButtonClick}>Submit</button>
-      </div>
+      <div className="input-group">
+          <input type="text" className="form-control" id="submit-bar" placeholder="Company Name"
+            onChange={this.onInputChange} value={this.state.titleterm}
+          ></input>
+          <span className="input-group-btn">
+            <button className="btn btn-primary" type="submit" onClick={this.onButtonClick} >New</button>
+          </span>
+        </div>
     );
   }
 }

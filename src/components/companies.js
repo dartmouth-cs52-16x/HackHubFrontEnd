@@ -40,7 +40,7 @@ class Companies extends Component {
     }
     const renderList = this.props.all.map((comp) => {
       return (
-        <div key={comp.id} className="announcementsingle">
+        <div key={comp.id} className="">
           <Company text={comp.text} id={comp.id} delete={this.deleteCompany} />
         </div>
       );
@@ -51,11 +51,11 @@ class Companies extends Component {
 
   render() {
     return (
-      <div className="companybox">
-        <div>
+      <div>
+        <div className="col-md-10 col-md-offset-1 mainpage">
           <NewCompany createCompany={this.createCompany} />
         </div>
-        <div className="allcompanies">
+        <div>
           {this.renderCompany()}
         </div>
       </div>
