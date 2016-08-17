@@ -19,9 +19,9 @@ export default(
     <Route path="/companies" component={Companies} />
     <Route path="/chat" component={Chat} />
     <Route path="/help" component={Help} />
-    <Route path="signin" component={SignIn} />
-    <Route path="signup" component={SignUp} />
-    <Route path="signout" component={SignOut} />
-    <Route path="users/:id" component={RequireAuth(UserProfile)} />
+    <Route path="/signin" component={SignIn} />
+    <Route path="/signup" component={SignUp} />
+    <Route path="/signout" component={SignOut} />
+    <Route path="/users/:id" component={RequireAuth(UserProfile)} />
   </Route>
 );

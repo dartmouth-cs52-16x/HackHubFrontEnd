@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -106,6 +106,7 @@ export function fetchUser(id) {
   return (dispatch) => {
     console.log(id);
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
+      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
       console.log('Error: could not fetch user');
@@ -132,7 +133,7 @@ export function signinUser(email, password) {
     }).catch(error => {
       // do we need to remove the item token?
       localStorage.removeItem('token');
-      dispatch(authError(`Sign In Failed: ${error.response.data}`));
+      dispatch(authError('Sign In Failed:'));
     });
   };
 }
@@ -146,7 +147,7 @@ export function signupUser(email, password) {
       browserHistory.push(`users/:${response.data.id}`);
     }).catch(error => {
       localStorage.removeItem('token');
-      dispatch(authError(`Sign Up Failed: ${error.response.data}`));
+      dispatch(authError('Sign Up Failed:'));
     });
   };
 }
