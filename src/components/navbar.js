@@ -21,14 +21,13 @@ class NavBar extends Component {
   renderSign() {
     if (this.props.authenticated) {
       return (
-        <Link to="/signout">
-          <button className="navbutton navitem" onClick={this.submitSignout}>Sign Out</button>
+        <Link to="/signout" className="navbutton navitem">
+          <p onClick={this.submitSignout}>Sign Out</p>
         </Link>
       );
     } else {
       return (
-        <Link to="/signin">Sign In
-        </Link>
+        <Link to="/signin">Sign In</Link>
       );
     }
   }
