@@ -1,64 +1,59 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { signinUser } from '../actions/index';
-import { Link } from 'react-router';
+import { browserHistory } from 'react-router';
 
-class SignIn extends Component {
+import { signinUser } from '../actions/index';
+
+// example class based component (smart component)
+class Signin extends Component {
   constructor(props) {
     super(props);
 
+    // init component state here
     this.state = {
-      username: '',
+      email: '',
       password: '',
     };
 
-    this.onUsernameChange = this.onUsernameChange.bind(this);
-    this.onPasswordChange = this.onPasswordChange.bind(this);
-    this.submitSignin = this.submitSignin.bind(this);
+    this.changeEmail = this.changeEmail.bind(this);
+    this.changePassword = this.changePassword.bind(this);
+    this.submitForm = this.submitForm.bind(this);
   }
 
-  // update username input
-  onUsernameChange(event) {
-    this.setState({ username: event.target.value });
+  changeEmail(event) {
+    this.setState({
+      email: event.target.value,
+    });
   }
 
-  // update password input
-  onPasswordChange(event) {
-    this.setState({ password: event.target.value });
+  changePassword(event) {
+    this.setState({
+      password: event.target.value,
+    });
   }
 
-  // submit signin
-  submitSignin() {
-    this.props.signinUser(this.state.username, this.state.password);
+  submitForm() {
+    this.props.signinUser(this.state.email, this.state.password);
+    browserHistory.push('/');
   }
 
-  // render function
+
   render() {
     return (
-      <div className="signinbox col-md-6 col-md-offset-3">
+      <div>
         <h1>
-          Sign In:
+          Login
         </h1>
-        <div className="usernamerow">
-          Username: <input value={this.state.username} onChange={this.onUsernameChange} />
-        </div>
-        <div className="passwordrow">
-          Password: <input value={this.state.password} onChange={this.onPasswordChange} />
-        </div>
-        <br />
         <div>
-          <button onClick={this.submitSignin}>Submit</button>
+          Email: <input value={this.state.email} onChange={this.changeEmail} />
         </div>
-        <Link to="/signup">Sign Up</Link>
+        <div>
+          Password: <input value={this.state.password} onChange={this.changePassword} />
+        </div>
+        <button onClick={this.submitForm}>Login</button>
       </div>
     );
   }
 }
 
-const mapDispatchToProps = (state, action) => (
-  {
-  }
-);
-
-export default connect(mapDispatchToProps, { signinUser })(SignIn);
+export default connect(null, { signinUser })(Signin);

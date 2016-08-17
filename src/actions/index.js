@@ -1,7 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -102,11 +103,12 @@ export function deleteCompany(id) {
 }
 
 export function fetchUser(id) {
+  console.log('fetch user');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
-      console.log('Error: could not fetch user');
+      console.log(error);
     });
   };
 }
@@ -121,28 +123,40 @@ export function authError(error) {
 }
 
 export function signinUser(email, password) {
+  // takes in an object with email and password (minimal user object)
+  // returns a thunk method that takes dispatch as an argument (just like our create post method really)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signin`, { email, password }).then(response => {
+    axios.post(`${ROOT_URL}/signin`, { email, password })
+    .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
       browserHistory.push('/');
-    }).catch(error => {
+    })
+    .catch(error => {
+      localStorage.removeItem('token');
       dispatch(authError(`Sign In Failed: ${error.response.data}`));
     });
   };
 }
 
-export function signupUser(email, password) {
+
+export function signupUser(email, password, username) {
+  // takes in an object with email and password (minimal user object)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, { email, password }).then(response => {
+    axios.post(`${ROOT_URL}/signup`, { email, password, username })
+    .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
-    }).catch(error => {
-      dispatch(authError(`Sign Up Failed: ${error.response.data}`));
+      browserHistory.push('/signin');
+      console.log(response);
+    })
+    .catch(error => {
+      localStorage.removeItem('token');
+      dispatch(authError(`Error with signup: ${error.response.data}`));
     });
   };
 }
+
 
 // deletes token from localstorage
 // and deauths
