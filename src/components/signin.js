@@ -36,9 +36,9 @@ class SignIn extends Component {
   // render function
   render() {
     return (
-      <div className="signinbox">
+      <div className="signinbox col-md-6 col-md-offset-3">
         <h1>
-          Signin Here:
+          Sign In:
         </h1>
         <div className="usernamerow">
           Username: <input value={this.state.username} onChange={this.onUsernameChange} />
@@ -46,6 +46,7 @@ class SignIn extends Component {
         <div className="passwordrow">
           Password: <input value={this.state.password} onChange={this.onPasswordChange} />
         </div>
+        <br />
         <div>
           <button onClick={this.submitSignin}>Submit</button>
         </div>

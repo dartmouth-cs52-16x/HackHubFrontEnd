@@ -36,9 +36,9 @@ class SignUp extends Component {
   // render function
   render() {
     return (
-      <div className="signupbox">
+      <div className="signupbox col-md-6 col-md-offset-3">
         <h1>
-          Signup Here:
+          Sign Up:
         </h1>
         <div className="usernamerow">
           Username: <input value={this.state.username} onChange={this.onUsernameChange} />
@@ -46,6 +46,7 @@ class SignUp extends Component {
         <div className="passwordrow">
           Password: <input value={this.state.password} onChange={this.onPasswordChange} />
         </div>
+        <br />
         <div>
           <button onClick={this.submitSignup}>Submit</button>
         </div>
