@@ -2,6 +2,7 @@ import axios from 'axios';
 import { browserHistory } from 'react-router';
 
 const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -103,6 +104,7 @@ export function deleteCompany(id) {
 
 export function fetchUser(id) {
   return (dispatch) => {
+    console.log(id);
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
@@ -125,8 +127,11 @@ export function signinUser(email, password) {
     axios.post(`${ROOT_URL}/signin`, { email, password }).then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+      console.log(response.data.id);
+      browserHistory.push(`users/:${response.data.id}`);
     }).catch(error => {
+      // do we need to remove the item token?
+      localStorage.removeItem('token');
       dispatch(authError(`Sign In Failed: ${error.response.data}`));
     });
   };
@@ -137,8 +142,10 @@ export function signupUser(email, password) {
     axios.post(`${ROOT_URL}/signup`, { email, password }).then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/');
+      console.log(response.data.id);
+      browserHistory.push(`users/:${response.data.id}`);
     }).catch(error => {
+      localStorage.removeItem('token');
       dispatch(authError(`Sign Up Failed: ${error.response.data}`));
     });
   };
