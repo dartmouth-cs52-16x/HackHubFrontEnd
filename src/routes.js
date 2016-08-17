@@ -9,7 +9,8 @@ import Help from './components/help';
 import SignIn from './components/signin';
 import SignUp from './components/signup';
 import SignOut from './components/signout';
-// import RequireAuth from './components/require-auth';
+import UserProfile from './components/user-profile';
+import RequireAuth from './components/require-auth';
 
 export default(
   <Route path="/" component={App}>
@@ -21,5 +22,6 @@ export default(
     <Route path="signin" component={SignIn} />
     <Route path="signup" component={SignUp} />
     <Route path="signout" component={SignOut} />
+    <Route path="users/:id" component={RequireAuth(UserProfile)} />
   </Route>
 );
