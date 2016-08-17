@@ -27,8 +27,7 @@ class NavBar extends Component {
       );
     } else {
       return (
-        <Link to="/signin">
-          <button className="navbutton navitem">Sign In</button>
+        <Link to="/signin">Sign In
         </Link>
       );
     }
@@ -52,7 +51,7 @@ class NavBar extends Component {
             <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
 
               <ul className="nav navbar-nav navbar-right">
-                <li><Link to="/signin">Sign In</Link></li>
+                <li>{this.renderSign()}</li>
                 <li><Link to="/signin">My Profile</Link></li>
                 <li><Link to="/signin">Hackathons</Link></li>
                 <li className="dropdown">
