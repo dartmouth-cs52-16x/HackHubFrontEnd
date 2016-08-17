@@ -15,11 +15,8 @@ class App extends Component {
   render() {
     return (
       <div className="page">
+        <NavBar />
         <div>
-          <EventList />
-        </div>
-        <div className="eventPage">
-          <NavBar />
           {this.props.children}
         </div>
       </div>
