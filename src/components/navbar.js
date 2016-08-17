@@ -27,8 +27,7 @@ class NavBar extends Component {
       );
     } else {
       return (
-        <Link to="/signin">
-          <button className="navbutton navitem">Sign In</button>
+        <Link to="/signin">Sign In
         </Link>
       );
     }
@@ -36,14 +35,41 @@ class NavBar extends Component {
 
   render() {
     return (
-      <div className="navbar">
-        <Link to="/schedule" className="navitem">SCHEDULE </Link>
-        <Link to="/announcements" className="navitem">ANNOUNCEMENTS </Link>
-        <Link to="/companies" className="navitem">COMPANIES </Link>
-        <Link to="/chat" className="navitem">CHAT </Link>
-        <Link to="/help" className="navitem">HELP </Link>
-        {this.renderSign()}
+      <div className="myNav">
+        <nav className="navbar navbar-default navbar-fixed-top">
+          <div className="container-fluid">
+            <div className="navbar-header">
+              <button type="button" className="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span className="sr-only">Toggle navigation</span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+                <span className="icon-bar"></span>
+              </button>
+              <a className="navbar-brand" href="#">HackHub</a>
+            </div>
+
+            <div className="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+
+              <ul className="nav navbar-nav navbar-right">
+                <li>{this.renderSign()}</li>
+                <li><Link to="/signin">My Profile</Link></li>
+                <li><Link to="/signin">Hackathons</Link></li>
+                <li className="dropdown">
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Name of Event<span className="caret"></span></a>
+                  <ul className="dropdown-menu">
+                    <li><Link to="/schedule">Schedule</Link></li>
+                    <li><Link to="/announcements">Anmouncements</Link></li>
+                    <li><Link to="/companies">Companies</Link></li>
+                    <li><Link to="/chat">Chat</Link></li>
+                    <li><Link to="/help">Help</Link></li>
+                  </ul>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </nav>
       </div>
+
     );
   }
 }
