@@ -41,7 +41,7 @@ class Announcements extends Component {
     }
     const renderList = this.props.all.map((ann) => {
       return (
-        <div key={ann.id} className="announcementsingle">
+        <div key={ann.id} className="">
           <Announcement text={ann.text} date={ann.date} id={ann.id} delete={this.deleteAnnouncement} />
         </div>
       );
@@ -52,11 +52,11 @@ class Announcements extends Component {
 
   render() {
     return (
-      <div className="announcementbox">
-        <div>
+      <div>
+        <div className="col-md-10 col-md-offset-1 mainpage">
           <NewAnnouncement createAnnouncement={this.createAnnouncement} />
         </div>
-        <div className="allannouncements">
+        <div>
           {this.renderAnnouncements()}
         </div>
       </div>
