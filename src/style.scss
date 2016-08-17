@@ -1,9 +1,13 @@
 body {
   font-family: "Roboto", sans-serif;
   color: rgb(10%, 10%, 10%);
-  background: url('http://www.intrawallpaper.com/static/images/White-Background-9B1.jpg') no-repeat center center fixed;
+  background-color:  rgb(90%, 90%, 90%);
   background-size: cover;
-  margin: 20px;
+  margin: 0px;
+}
+
+.content {
+  margin-top: 50px;
 }
 
 .eventPage {
@@ -12,21 +16,6 @@ body {
   flex-wrap: wrap;
   align-items: center;
   margin: auto;
-}
-
-.navbar {
-  display: flex;
-  flex-wrap: wrap;
-  border: solid black 1px;
-  padding: 5px;
-  justify-content: center;
-  margin-left: 20%;
-}
-
-.navitem {
-  font-size: 30px;
-  margin: 5px;
-  color: black;
 }
 
 .eventlist {
