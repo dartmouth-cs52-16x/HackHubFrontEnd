@@ -52,7 +52,6 @@ class NavBar extends Component {
               <ul className="nav navbar-nav navbar-right">
                 <li>{this.renderSign()}</li>
                 <li><Link to="/signin">My Profile</Link></li>
-                <li><Link to="/signin">Hackathons</Link></li>
                 <li className="dropdown">
                   <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HackDartmouth III<span className="caret"></span></a>
                   <ul className="dropdown-menu">
