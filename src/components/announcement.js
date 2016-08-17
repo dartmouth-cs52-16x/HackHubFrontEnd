@@ -18,8 +18,10 @@ class Announcement extends Component {
   render() {
     return (
       <div className="col-md-10 col-md-offset-1 announcementsingle">
-        <div className="announcetext">{this.props.text}</div>
-        <div className="announcedate">{this.props.date}</div>
+        <div>
+          <div className="announcetext">{this.props.text}</div>
+          <div className="announcedate">{this.props.date}</div>
+        </div>
         <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
       </div>
     );
