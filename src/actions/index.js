@@ -11,13 +11,10 @@ export const ActionTypes = {
   FETCH_COMP: 'FETCH_COMP',
   CREATE_COMP: 'CREATE_COMP',
   DELETE_COMP: 'DELETE_COMP',
-<<<<<<< HEAD
   FETCH_USER: 'FETCH_USER',
-=======
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
->>>>>>> 24eedcf15f92349b928add13da81687841b7c067
 };
 
 // fetch all announcements
