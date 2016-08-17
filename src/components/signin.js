@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory } from 'react-router';
+import { browserHistory, Link } from 'react-router';
 
 import { signinUser } from '../actions/index';
 
@@ -40,17 +40,20 @@ class Signin extends Component {
 
   render() {
     return (
-      <div>
+      <div className="signupbox col-md-6 col-md-offset-3">
         <h1>
           Login
         </h1>
-        <div>
+        <div className="usernamerow">
           Email: <input value={this.state.email} onChange={this.changeEmail} />
         </div>
-        <div>
+        <div className="passwordrow">
           Password: <input value={this.state.password} onChange={this.changePassword} />
         </div>
+        <div>
         <button onClick={this.submitForm}>Login</button>
+        </div>
+        <Link to="/signup">Sign Up</Link>
       </div>
     );
   }
