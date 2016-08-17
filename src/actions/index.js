@@ -103,13 +103,12 @@ export function deleteCompany(id) {
 }
 
 export function fetchUser(id) {
+  console.log('fetch user');
   return (dispatch) => {
-    console.log(id);
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
-      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
-      console.log('Error: could not fetch user');
+      console.log(error);
     });
   };
 }
@@ -124,33 +123,40 @@ export function authError(error) {
 }
 
 export function signinUser(email, password) {
+  // takes in an object with email and password (minimal user object)
+  // returns a thunk method that takes dispatch as an argument (just like our create post method really)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signin`, { email, password }).then(response => {
+    axios.post(`${ROOT_URL}/signin`, { email, password })
+    .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
-      console.log(response.data.id);
-      browserHistory.push(`users/:${response.data.id}`);
-    }).catch(error => {
-      // do we need to remove the item token?
+      browserHistory.push('/');
+    })
+    .catch(error => {
       localStorage.removeItem('token');
-      dispatch(authError('Sign In Failed:'));
+      dispatch(authError(`Sign In Failed: ${error.response.data}`));
     });
   };
 }
 
-export function signupUser(email, password) {
+
+export function signupUser(email, password, username) {
+  // takes in an object with email and password (minimal user object)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, { email, password }).then(response => {
+    axios.post(`${ROOT_URL}/signup`, { email, password, username })
+    .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
-      console.log(response.data.id);
-      browserHistory.push(`users/:${response.data.id}`);
-    }).catch(error => {
+      browserHistory.push('/signin');
+      console.log(response);
+    })
+    .catch(error => {
       localStorage.removeItem('token');
-      dispatch(authError('Sign Up Failed:'));
+      dispatch(authError(`Error with signup: ${error.response.data}`));
     });
   };
 }
+
 
 // deletes token from localstorage
 // and deauths
