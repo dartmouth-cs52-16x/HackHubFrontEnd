@@ -1,17 +1,11 @@
-
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { browserHistory } from 'react-router';
 
 
+// example class based component (smart component)
 export default function (ComposedComponent) {
   class RequireAuth extends Component {
-    constructor(props) {
-      super(props);
-
-      this.state = {};
-    }
-
     componentWillMount() {
       if (!this.props.authenticated) {
         browserHistory.push('/signin');
@@ -33,11 +27,13 @@ export default function (ComposedComponent) {
     }
   }
 
-  const mapDispatchToProps = (state, action) => (
+
+  const mapStateToProps = (state) => (
     {
       authenticated: state.auth.authenticated,
     }
   );
 
-  return connect(mapDispatchToProps, null)(RequireAuth);
+
+  return connect(mapStateToProps, null)(RequireAuth);
 }

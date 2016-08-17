@@ -24,6 +24,6 @@ export default(
     <Route path="/signin" component={SignIn} />
     <Route path="/signup" component={SignUp} />
     <Route path="/signout" component={SignOut} />
-    <Route path="/users/:id" component={RequireAuth(UserProfile)} />
+    <Route path="/users/:id" component={UserProfile} />
   </Route>
 );
