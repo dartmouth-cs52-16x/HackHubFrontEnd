@@ -54,10 +54,10 @@ class NavBar extends Component {
                 <li><Link to="/signin">My Profile</Link></li>
                 <li><Link to="/signin">Hackathons</Link></li>
                 <li className="dropdown">
-                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Name of Event<span className="caret"></span></a>
+                  <a href="#" className="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">HackDartmouth III<span className="caret"></span></a>
                   <ul className="dropdown-menu">
                     <li><Link to="/schedule">Schedule</Link></li>
-                    <li><Link to="/announcements">Anmouncements</Link></li>
+                    <li><Link to="/announcements">Announcements</Link></li>
                     <li><Link to="/companies">Companies</Link></li>
                     <li><Link to="/chat">Chat</Link></li>
                     <li><Link to="/help">Help</Link></li>
