@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route } from 'react-router';
+import { Route, IndexRoute } from 'react-router';
 import Schedule from './components/schedule';
 import App from './components/app';
 import Announcements from './components/announcements';
@@ -12,10 +12,13 @@ import SignOut from './components/signout';
 import UserProfile from './components/user-profile';
 import CompanyShow from './components/company_show';
 import Directory from './components/user-directory';
+import Home from './components/home';
+import Error from './components/error';
 // import RequireAuth from './components/require-auth';
 
 export default(
   <Route path="/" component={App}>
+    <IndexRoute component={Home} />
     <Route path="/schedule" component={Schedule} />
     <Route path="/announcements" component={Announcements} />
     <Route path="/companies" component={Companies} />
@@ -27,5 +30,6 @@ export default(
     <Route path="/signup" component={SignUp} />
     <Route path="/signout" component={SignOut} />
     <Route path="/users/:id" component={UserProfile} />
+    <Route path="/error" component={Error} />
   </Route>
 );
