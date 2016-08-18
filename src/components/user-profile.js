@@ -40,7 +40,7 @@ class UserProfile extends Component {
   render() {
     return (
       <div id="userProfile">
-      {this.state.user.id}
+      {this.state.user.email}
       </div>
     );
   }
