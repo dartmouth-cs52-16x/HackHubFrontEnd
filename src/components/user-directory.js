@@ -33,7 +33,7 @@ class UserDirectory extends Component {
       console.log(user);
       return (
         <div key={user.id} className="">
-          <User name={user.name} id={user.id} delete={this.deleteUser} />
+          <User name={user.name} id={user.id} fullname={user.fullname} delete={this.deleteUser} />
         </div>
       );
     });

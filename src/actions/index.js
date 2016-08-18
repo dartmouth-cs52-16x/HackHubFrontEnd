@@ -201,10 +201,10 @@ export function signinUser(email, password) {
 }
 
 
-export function signupUser(email, password) {
+export function signupUser(user) {
   // takes in an object with email and password (minimal user object)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, { email, password })
+    axios.post(`${ROOT_URL}/signup`, user)
     .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
