@@ -158,10 +158,10 @@ export function signinUser(email, password) {
 }
 
 
-export function signupUser(email, password, username) {
+export function signupUser(email, password) {
   // takes in an object with email and password (minimal user object)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, { email, password, username })
+    axios.post(`${ROOT_URL}/signup`, { email, password })
     .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
