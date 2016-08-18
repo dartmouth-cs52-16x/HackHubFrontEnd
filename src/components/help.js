@@ -23,6 +23,17 @@ class Help extends Component {
       <div>
         <div className="col-md-10 col-md-offset-1">
           <h1>Need Help?</h1>
+          <div className="dropdown">
+            <span>Category:</span>
+            <button className="dropbtn">Choose Your Category</button>
+            <div className="dropdown-content">
+              <a href="#">Traveling</a>
+              <a href="#">Financial issues</a>
+              <a href="#">Accomodation</a>
+              <a href="#">Others</a>
+            </div>
+          </div>
+
           <form>
             <textarea id="text" placeholder="Type in your questions..." rows="20" cols="80" />
           </form>
