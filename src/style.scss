@@ -151,12 +151,21 @@ p {
   font-size: 10px;
 }
 
-.company-profile {
+.companyprofile {
+  margin: 50px;
   margin-top: 100px;
+  border: solid black 1px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 25px;
+}
 
-  .form-control {
-    margin-bottom: 5px;
-  }
+#schedule, #help, #directory, #companies {
+  border: solid black 1px;
+  margin: 50px;
+  padding: 5px;
+  margin-top: 20%;
+  margin-left: 20%;
 }
 
 table {

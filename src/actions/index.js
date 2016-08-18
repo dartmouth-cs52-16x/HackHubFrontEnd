@@ -9,9 +9,10 @@ export const ActionTypes = {
   FETCH_ANNS: 'FETCH_ANNS',
   CREATE_ANNS: 'CREATE_ANNS',
   DELETE_ANNS: 'DELETE_ANNS',
-  FETCH_COMP: 'FETCH_COMP',
+  FETCH_COMPS: 'FETCH_COMPS',
   CREATE_COMP: 'CREATE_COMP',
   DELETE_COMP: 'DELETE_COMP',
+  FETCH_COMP: 'FETH_COMP',
   FETCH_USER: 'FETCH_USER',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
@@ -65,10 +66,10 @@ export function deleteAnnouncement(id) {
 }
 
 // fetch all posts
-export function fetchCompany() {
+export function fetchCompanies() {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/company`).then(response => {
-      dispatch({ type: ActionTypes.FETCH_COMP, payload: { all: response.data } });
+      dispatch({ type: ActionTypes.FETCH_COMPS, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting posts');
     });
@@ -76,10 +77,9 @@ export function fetchCompany() {
 }
 
 // create a new post
-export function createCompany(ann) {
+export function createCompany(comp) {
   return (dispatch) => {
-    console.log(ann);
-    const fields = { text: ann.name, date: ann.date };
+    const fields = { name: comp.name, image: comp.image, website: comp.website, recruiter: comp.recruiter };
     axios.post(`${ROOT_URL}/company`, fields).then(() => {
       axios.get(`${ROOT_URL}/company`).then(response => {
         dispatch({ type: ActionTypes.CREATE_COMP, payload: { all: response.data } });
@@ -104,6 +104,18 @@ export function deleteCompany(id) {
       });
     }).catch(error => {
       console.log('Error deleting company');
+    });
+  };
+}
+
+// fetch a single company
+export function fetchCompany(id) {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/company/${id}`).then(response => {
+      dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
+    }).catch(error => {
+      console.log('Error getting posts');
+      browserHistory.push('/error');
     });
   };
 }

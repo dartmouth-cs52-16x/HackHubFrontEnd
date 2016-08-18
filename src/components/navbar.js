@@ -58,7 +58,7 @@ class NavBar extends Component {
                     <li><Link to="/schedule">Schedule</Link></li>
                     <li><Link to="/announcements">Announcements</Link></li>
                     <li><Link to="/companies">Companies</Link></li>
-                    <li><Link to="/chat">Chat</Link></li>
+                    <li><Link to="/directory">Directory</Link></li>
                     <li><Link to="/help">Help</Link></li>
                   </ul>
                 </li>

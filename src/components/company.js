@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router';
 
 class Company extends Component {
 
@@ -18,16 +19,13 @@ class Company extends Component {
   render() {
     return (
       <div className="col-md-10 col-md-offset-1 companysingle">
-        <div className="companyname">{this.props.text}</div>
+        <Link to={`companies/${this.props.id}`} key={this.props.id}>
+          <div className="companyname">{this.props.name}</div>
+        </Link>
         <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
       </div>
     );
   }
 }
-
-Company.propTypes = {
-  text: React.PropTypes.string,
-  id: React.PropTypes.string,
-};
 
 export default Company;

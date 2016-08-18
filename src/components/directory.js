@@ -3,10 +3,10 @@
 
 import React from 'react';
 
-export default function Chat(props) {
+export default function Directory(props) {
   return (
-    <div id="chat">
-      <p>There will be a chat spot here soon.</p>
+    <div id="directory">
+      <p>There will be a directory here soon.</p>
     </div>
   );
 }
