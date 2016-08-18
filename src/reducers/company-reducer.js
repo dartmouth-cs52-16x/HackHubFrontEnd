@@ -10,6 +10,8 @@ const CompanyReducer = (state = { all: [], comp: null }, action) => {
       return { ...state, all: action.payload.all };
     case ActionTypes.FETCH_COMP:
       return { ...state, comp: action.payload.comp };
+    case ActionTypes.UPDATE_COMP:
+      return { ...state, comp: action.payload.comp };
     default:
       return state;
   }

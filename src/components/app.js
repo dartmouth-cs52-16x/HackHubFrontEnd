@@ -1,5 +1,5 @@
 import React, { Component } from 'react';
-import EventList from './eventList';
+// import EventList from './eventList';
 // import EventPage from './eventPage';
 import NavBar from './navbar';
 // import debounce from 'lodash.debounce';

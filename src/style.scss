@@ -10,6 +10,24 @@ body {
   margin-top: 50px;
 }
 
+.home {
+  margin: 100px;
+  text-align: center;
+  animation-name: homeanimate;
+  animation-duration: 2s;
+  animation-timing-function: ease-in;
+  animation-iteration-count: 1;
+}
+
+@keyframes homeanimate {
+  0% {
+    opacity: 0;
+  }
+  100%  {
+    opacity: 1;
+  }
+}
+
 p {
   margin: 0 0 0 0px;
 }
@@ -158,6 +176,44 @@ p {
   text-align: center;
   border-radius: 5px;
   padding: 25px;
+}
+
+.compimg {
+  width: 80%;
+}
+
+.compname {
+  font-size: 40px;
+}
+
+.jobsingle {
+  border: solid grey 1px;
+  border-radius: 5px;
+  background-color: rgb(250, 250, 250);
+  margin-top: 5px;
+  margin-bottom: 5px;
+  padding: 5px;
+  height: auto;
+  text-align: left;
+}
+
+.addjob {
+  font-size: 20px;
+  text-align: left;
+  margin-top: 10px;
+}
+
+.submitjob {
+  background-color: #3EB489;
+  border: none;
+  color: white;
+  padding: 15px 32px;
+  text-align: left;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  margin: 10px;
+  border-radius: 5px;
 }
 
 table {
