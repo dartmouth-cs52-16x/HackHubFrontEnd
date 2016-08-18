@@ -45,6 +45,7 @@
   },
   "dependencies": {
     "axios": "^0.13.1",
+    "d3": "^4.2.2",
     "react": "^15.2.1",
     "react-dom": "^15.2.1",
     "react-form": "0.0.2",
