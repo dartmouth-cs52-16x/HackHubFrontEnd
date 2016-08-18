@@ -11,13 +11,21 @@ class Signin extends Component {
 
     // init component state here
     this.state = {
+      fullname: '',
       email: '',
       password: '',
     };
 
+    this.changeFullName = this.changeFullName.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.submitForm = this.submitForm.bind(this);
+  }
+
+  changeFullName(event) {
+    this.setState({
+      fullname: event.target.value,
+    });
   }
 
   changeEmail(event) {
@@ -33,7 +41,12 @@ class Signin extends Component {
   }
 
   submitForm() {
-    this.props.signupUser(this.state.email, this.state.password);
+    const user = {
+      fullname: this.state.fullname,
+      email: this.state.email,
+      password: this.state.password,
+    };
+    this.props.signupUser(user);
     browserHistory.push('/signin');
   }
 
@@ -44,6 +57,9 @@ class Signin extends Component {
         <h1>
           Sign Up:
         </h1>
+        <div className="fullnamerow">
+          Full Name: <input value={this.state.fullname} onChange={this.changeFullName} />
+        </div>
         <div className="emailrow">
           Email: <input value={this.state.email} onChange={this.changeEmail} />
         </div>
