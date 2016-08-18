@@ -151,15 +151,16 @@ p {
   font-size: 10px;
 }
 
-.company-profile {
+.companyprofile {
+  margin: 50px;
   margin-top: 100px;
-
-  .form-control {
-    margin-bottom: 5px;
-  }
+  border: solid black 1px;
+  text-align: center;
+  border-radius: 5px;
+  padding: 25px;
 }
 
-#schedule, #help, #chat, #companies {
+#schedule, #help, #directory, #companies {
   border: solid black 1px;
   margin: 50px;
   padding: 5px;
