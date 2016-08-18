@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -14,6 +14,8 @@ export const ActionTypes = {
   DELETE_COMP: 'DELETE_COMP',
   FETCH_COMP: 'FETH_COMP',
   FETCH_USER: 'FETCH_USER',
+  FETCH_USERS: 'FETCH_USERS',
+  DELETE_USER: 'DELETE_USER',
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
@@ -127,6 +129,32 @@ export function fetchUser(id) {
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
       console.log(error);
+    });
+  };
+}
+
+// fetch all posts
+export function fetchUsers() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/users`).then(response => {
+      dispatch({ type: ActionTypes.FETCH_USERS, payload: { all: response.data } });
+    }).catch(error => {
+      console.log('Error getting users');
+    });
+  };
+}
+
+// delete post
+export function deleteUser(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/users/${id}`).then(() => {
+      axios.get(`${ROOT_URL}/users`).then(response => {
+        dispatch({ type: ActionTypes.DELETE_USER, payload: { all: response.data } });
+      }).catch(error => {
+        console.log('Error getting users');
+      });
+    }).catch(error => {
+      console.log('Error deleting user');
     });
   };
 }
