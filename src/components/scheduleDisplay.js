@@ -51,14 +51,49 @@ class ScheduleDisplay extends Component {
       },
     ],
    });
+
+    this.setUpSchedule({ day_of_week: 'Sunday', month: 'September', day: '25',
+   range: {
+     start: 10,
+     end: 20,
+   },
+   events: [
+     {
+       time_range: '10-11am',
+       name: 'Sample Event 1',
+       location: 'A Place',
+       color: '#8BB9B6',
+       start: 10.0,
+       end: 11.0,
+     },
+     {
+       time_range: '1pm-3pm',
+       name: 'Sample Event 2',
+       location: 'Another Place',
+       color: '#E0CC5C',
+       start: 13.0,
+       end: 15.0,
+     },
+     {
+       time_range: '7pm-8pm',
+       name: 'Sample Event 2',
+       location: 'Another Place',
+       color: '#8BB9B6',
+       start: 19.0,
+       end: 20.0,
+     },
+   ],
+  });
   }
 
   // refactored code courtesy of Daniel Chen - danielchen.com
   // GitHub : github.com/cheniel/pine-schedule.js
   setUpSchedule(data) {
     const container = d3.select('#schedule');
-    const table = container.append('table');
-    table.style('margin', '15%');
+    const div = container.append('div');
+    div.attr('class', 'col-md-6');
+    const table = div.append('table');
+    table.style('margin', '10px;');
 
     const header = table.append('thead');
     header.append('td');
