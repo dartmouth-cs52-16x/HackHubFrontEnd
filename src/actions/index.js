@@ -13,6 +13,7 @@ export const ActionTypes = {
   CREATE_COMP: 'CREATE_COMP',
   DELETE_COMP: 'DELETE_COMP',
   FETCH_COMP: 'FETH_COMP',
+  UPDATE_COMP: 'UPDATE_COMP',
   FETCH_USER: 'FETCH_USER',
   FETCH_USERS: 'FETCH_USERS',
   DELETE_USER: 'DELETE_USER',
@@ -117,6 +118,20 @@ export function fetchCompany(id) {
       dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
     }).catch(error => {
       console.log('Error getting posts');
+      browserHistory.push('/error');
+    });
+  };
+}
+
+// update a company
+export function updateCompany(comp) {
+  return (dispatch) => {
+    const fields = { name: comp.name, image: comp.image, website: comp.website, recruiter: comp.recruiter,
+      jobs: comp.jobs };
+    axios.put(`${ROOT_URL}/company/${comp.id}`, fields).then(response => {
+      dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
+    }).catch(error => {
+      console.log('Error updating company');
       browserHistory.push('/error');
     });
   };
