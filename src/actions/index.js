@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -158,10 +158,10 @@ export function signinUser(email, password) {
 }
 
 
-export function signupUser(email, password, username) {
+export function signupUser(email, password) {
   // takes in an object with email and password (minimal user object)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, { email, password, username })
+    axios.post(`${ROOT_URL}/signup`, { email, password })
     .then(response => {
       dispatch({ type: ActionTypes.AUTH_USER });
       localStorage.setItem('token', response.data.token);
