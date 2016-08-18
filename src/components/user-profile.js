@@ -18,11 +18,12 @@ class UserProfile extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
+    console.log(nextProps.user.user);
     this.setState({
       user: nextProps.user.user,
     });
   }
+
 
   // render() {
   //   return (
@@ -38,11 +39,53 @@ class UserProfile extends Component {
   //   );
   // }
   render() {
+    if (this.state.user == null) {
+      // if company not yet fetched
+      return (
+        <div>Loading...</div>
+      );
+    }
+
     return (
-      <div id="userProfile">
-      {this.state.user.email}
-      </div>
-    );
+        <div className="companyprofile" >
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
+              <div className="compname">
+                <b>{this.state.user.fullname}</b>
+              </div>
+              <div className="col-lg-12 col-md-12 col-xs-12 thumb">
+                <div className="imagerow">
+                  <img className="compimg" src={'http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg'} alt="?" />
+                </div>
+              </div>
+              <div className="compsite">
+                <b>Website:</b> {}
+              </div>
+              <div className="comprecruiter">
+                <b>LinkedIn:</b> {}
+              </div>
+              <div className="comprecruiter">
+                <b>Facebook:</b> {}
+              </div>
+            </div>
+          </div>
+          <br />
+          <div className="comprecruiter">
+            <b>About:</b> {}
+          </div>
+          <br />
+          <div className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+            <b>Add a skill:</b>
+            <div className="input-group">
+              <input type="text" className="form-control" id="submit-bar" placeholder="javascript"></input>
+              <span className="input-group-btn">
+                <button className="btn btn-primary" type="submit" onClick={this.onButtonClick} >New</button>
+              </span>
+            </div>
+          </div>
+          <button className="submitjob" onClick={this.submitSkill}>Submit</button>
+        </div>
+      );
   }
 }
 
