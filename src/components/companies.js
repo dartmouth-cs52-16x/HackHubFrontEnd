@@ -1,9 +1,8 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
-import NewCompany from './companyAdd';
 import Company from './company';
-import { createCompany, fetchCompany, deleteCompany } from '../actions/index';
+import { fetchCompanies, deleteCompany } from '../actions/index';
 
 class Companies extends Component {
   constructor(props) {
@@ -12,22 +11,15 @@ class Companies extends Component {
     this.state = {
     };
 
-    this.createCompany = this.createCompany.bind(this);
     this.deleteCompany = this.deleteCompany.bind(this);
     this.renderCompany = this.renderCompany.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchCompany();
+    this.props.fetchCompanies();
   }
 
   componentWillReceiveProps(nextProps) {
-  }
-
-  // create a new note
-  createCompany(input) {
-    const newComp = { text: input, date: 'DATE' };
-    this.props.createCompany(newComp);
   }
 
   deleteCompany(id) {
@@ -39,9 +31,10 @@ class Companies extends Component {
       return null;
     }
     const renderList = this.props.all.map((comp) => {
+      console.log(comp);
       return (
         <div key={comp.id} className="">
-          <Company text={comp.text} id={comp.id} delete={this.deleteCompany} />
+          <Company name={comp.name} id={comp.id} delete={this.deleteCompany} />
         </div>
       );
     });
@@ -69,4 +62,4 @@ const mapStateToProps = (state) => (
   }
 );
 
-export default connect(mapStateToProps, { createCompany, fetchCompany, deleteCompany })(Companies);
+export default connect(mapStateToProps, { fetchCompanies, deleteCompany })(Companies);

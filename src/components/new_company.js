@@ -9,15 +9,19 @@ class NewCompanyProfile extends Component {
     this.onButtonClick = this.onButtonClick.bind(this);
   }
   onButtonClick(event) {
-    const fields = { name: document.getElementById('compname').value };
+    const fields = { name: document.getElementById('compname').value,
+      image: document.getElementById('complink').value,
+      website: document.getElementById('compsite').value,
+      recruiter: document.getElementById('comprecruiter').value,
+    };
     this.props.createCompany(fields);
   }
   render() {
     return (
       <div>
-      <div className="col-md-10 col-md-offset-1">
-      <h1>New Company Profile</h1>
-      </div>
+        <div className="col-md-10 col-md-offset-1">
+          <h1>New Company Profile</h1>
+        </div>
         <div className="input-group col-md-10 col-md-offset-1 company-profile">
           <input type="text" className="form-control" id="compname" placeholder="Company Name"></input>
           <input type="text" className="form-control" id="complink" placeholder="Image Link"></input>
