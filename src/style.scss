@@ -194,3 +194,8 @@ table {
   background-color: rgba(75%, 75%, 75%, .5);
   padding: 25px;
 }
+
+textarea {
+  resize: none;
+  border: 2px solid #888;
+}
