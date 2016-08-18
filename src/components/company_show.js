@@ -28,7 +28,6 @@ class CompanyShow extends Component {
         <div>Loading...</div>
       );
     }
-    console.log(this.props.thisCompany);
     // state not initialized, use this.props.currentPost
     return (
       <div className="companyprofile" >
