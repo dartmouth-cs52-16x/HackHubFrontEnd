@@ -56,33 +56,33 @@ class MyProfile extends Component {
     }
 
     return (
-        <div className="companyprofile" >
-          <div className="row">
-            <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
-              <div className="compname">
-                <b>{this.state.user.fullname}</b>
-              </div>
-              <div className="input-group col-md-10 col-md-offset-1 company-profile">
-                <input type="text" className="form-control" id="userlink" placeholder="Image Link"></input>
-                <input type="text" className="form-control" id="usersite" placeholder="www.yourwebsite.com"></input>
-                <input type="text" className="form-control" id="userfb" placeholder="facebook profile"></input>
-                <input type="text" className="form-control" id="userli" placeholder="Linkedin profile"></input>
-                <input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>
-                <input type="text" className="form-control" id="userabout" placeholder="About"></input>
-              </div>
-              <div className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
-                <b>Add a skill:</b>
-                <div className="input-group">
-                  <input type="text" className="form-control" id="skill" placeholder="javascript"></input>
-                  <span className="input-group-btn">
-                    <button className="btn btn-primary" type="submit" onClick={this.addSkill} >New</button>
-                  </span>
-                </div>
-              </div>
-              <button className="submitjob" onClick={this.updateUser}>Update</button>
+      <div className="companyprofile" >
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
+            <div className="compname">
+              <b>{this.state.user.fullname}</b>
             </div>
+            <div className="input-group col-md-10 col-md-offset-1 company-profile">
+              <input type="text" className="form-control" id="userlink" placeholder="Image Link"></input>
+              <input type="text" className="form-control" id="usersite" placeholder="www.yourwebsite.com"></input>
+              <input type="text" className="form-control" id="userfb" placeholder="facebook profile"></input>
+              <input type="text" className="form-control" id="userli" placeholder="Linkedin profile"></input>
+              <input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>
+              <input type="text" className="form-control" id="userabout" placeholder="About"></input>
+            </div>
+            <div className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+              <b>Add a skill:</b>
+              <div className="input-group">
+                <input type="text" className="form-control" id="skill" placeholder="javascript"></input>
+                <span className="input-group-btn">
+                  <button className="btn btn-primary" type="submit" onClick={this.addSkill} >New</button>
+                </span>
+              </div>
+            </div>
+            <button className="submitjob" onClick={this.updateUser}>Update</button>
           </div>
         </div>
+      </div>
       );
   }
 }

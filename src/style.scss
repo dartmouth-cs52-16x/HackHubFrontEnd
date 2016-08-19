@@ -216,6 +216,10 @@ p {
   border-radius: 5px;
 }
 
+.help {
+  text-align: left;
+}
+
 #schedule {
   margin-top: 100px;
 }
@@ -263,6 +267,7 @@ textarea {
 
 .dropdown {
     position: relative;
+    z-index: 1;
     display: inline-block;
 }
 
