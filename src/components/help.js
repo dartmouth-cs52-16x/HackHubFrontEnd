@@ -2,15 +2,15 @@
 // use an api for scheduling
 
 import React, { Component } from 'react';
-import Textarea from 'react-textarea-autosize';
 // import { createCompany } from '../actions/index';
+import { browserHistory } from 'react-router';
 
 class Help extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      category: 'Choose Your Category',
+      category: '',
       text: '',
     };
 
@@ -73,9 +73,10 @@ class Help extends Component {
   }
 
   onButtonClick(event) {
-    const fields = {
-      // message: document.getElementById('compname').value,
-    };
+    browserHistory.push('/helpdone');
+    // const fields = {
+    //   // message: document.getElementById('compname').value,
+    // };
     // this.props.sendHelpMessage(fields);
   }
   render() {
@@ -87,32 +88,29 @@ class Help extends Component {
               <b>Questions? Comments? Need Help?</b>
               <p>Contact your Hackathon organizers through the form below.</p>
             </div>
-            <div className="dropdown">
-              <div>
-                Category:
-              </div>
-              <button className="dropbtn">{this.state.category}</button>
-              <div className="dropdown-content">
-                <a onClick={this.onTravelChange}>Travel</a>
-                <a onClick={this.onScheduleChange}>Schedule</a>
-                <a onClick={this.onFoodChange}>Food</a>
-                <a onClick={this.onFinancialChange}>Financial</a>
-                <a onClick={this.onAccomodationChange}>Accomodation</a>
-                <a onClick={this.onGeneralChange}>General</a>
-              </div>
-            </div>
             <form className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-1 help">
-              <b>Message:</b>
-              <div className="input-group">
-                <Textarea id="text" placeholder="Type in your questions/concerns here" rows="10" cols="80" />
+              <div className="form-group">
+                <b>Message:</b>
+                <textarea className="form-control" id="exampleTextarea"></textarea>
               </div>
-              <b>Note: a response will be sent to the email address on your profile. If necessary, indicate a separate address where you would like to be contacted in response to this message.</b>
-              <br></br>
-              <div className="input-group col-md-10 col-md-offset-1">
+              <div className="form-group">
+                <label htmlFor="exampleSelect1">Category</label>
+                <select className="form-control" id="exampleSelect1">
+                  <option onClick={this.onGeneralChange}>General</option>
+                  <option onClick={this.onTravelChange}>Travel</option>
+                  <option onClick={this.onScheduleChange}>Schedule</option>
+                  <option onClick={this.onFoodChange}>Food</option>
+                  <option onClick={this.onFinancialChange}>Financial</option>
+                  <option onClick={this.onAccomodationChange}>Accomodation</option>
+                </select>
+              </div>
+              <div className="form-group">
+                <b>Note: a response will be sent to the email address on your profile. If necessary, indicate a separate address where you would like to be contacted in response to this message.</b>
+                <br></br>
                 <input type="text" className="form-control" id="emailhelp"></input>
               </div>
             </form>
-            <button className="submitjob" onClick={this.updateUser}>Update</button>
+            <button className="submitjob" onClick={this.onButtonClick}>Submit</button>
           </div>
         </div>
       </div>
