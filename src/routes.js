@@ -6,6 +6,7 @@ import Announcements from './components/announcements';
 import Companies from './components/companies';
 import NewCompanyProfile from './components/new_company';
 import Help from './components/help';
+import HelpDone from './components/helpdone';
 import SignIn from './components/signin';
 import SignUp from './components/signup';
 import SignOut from './components/signout';
@@ -27,6 +28,7 @@ export default(
     <Route path="/companies/:id" component={RequireAuth(CompanyShow)} />
     <Route path="/directory" component={RequireAuth(Directory)} />
     <Route path="/help" component={RequireAuth(Help)} />
+    <Route path="/helpdone" component={RequireAuth(HelpDone)} />
     <Route path="/signin" component={SignIn} />
     <Route path="/signup" component={SignUp} />
     <Route path="/signout" component={SignOut} />
