@@ -14,19 +14,37 @@ class Help extends Component {
       text: '',
     };
 
-    this.onTravelingChange = this.onTravelingChange.bind(this);
+    this.onTravelChange = this.onTravelChange.bind(this);
+    this.onScheduleChange = this.onScheduleChange.bind(this);
+    this.onFoodChange = this.onFoodChange.bind(this);
     this.onFinancialChange = this.onFinancialChange.bind(this);
     this.onAccomodationChange = this.onAccomodationChange.bind(this);
-    this.onOthersChange = this.onOthersChange.bind(this);
+    this.onGeneralChange = this.onGeneralChange.bind(this);
 
     this.onButtonClick = this.onButtonClick.bind(this);
   }
 
-  onTravelingChange(event) {
+  onTravelChange(event) {
     // change the button text
     event.preventDefault();
     this.setState({
-      category: 'Traveling',
+      category: 'Travel',
+    });
+  }
+
+  onScheduleChange(event) {
+    // change the button text
+    event.preventDefault();
+    this.setState({
+      category: 'Schedule',
+    });
+  }
+
+  onFoodChange(event) {
+    // change the button text
+    event.preventDefault();
+    this.setState({
+      category: 'Food',
     });
   }
 
@@ -34,7 +52,7 @@ class Help extends Component {
     // change the button text
     event.preventDefault();
     this.setState({
-      category: 'Financial Issues',
+      category: 'Financial',
     });
   }
 
@@ -46,11 +64,11 @@ class Help extends Component {
     });
   }
 
-  onOthersChange(event) {
+  onGeneralChange(event) {
     // change the button text
     event.preventDefault();
     this.setState({
-      category: 'Others',
+      category: 'General',
     });
   }
 
@@ -62,25 +80,39 @@ class Help extends Component {
   }
   render() {
     return (
-      <div>
-        <div className="col-md-10 col-md-offset-1">
-          <h1>Need Help?</h1>
-          <div className="dropdown">
-            <span>Category:</span>
-            <button className="dropbtn">{this.state.category}</button>
-            <div className="dropdown-content">
-              <a onClick={this.onTravelingChange}>Traveling</a>
-              <a onClick={this.onFinancialChange}>Financial Issues</a>
-              <a onClick={this.onAccomodationChange}>Accomodation</a>
-              <a onClick={this.onOthersChange}>Others</a>
+      <div className="companyprofile" >
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
+            <div className="compname">
+              <b>Questions? Comments? Need Help?</b>
+              <p>Contact your Hackathon organizers through the form below.</p>
             </div>
+            <div className="input-group col-md-10 col-md-offset-1 dropdown">
+              <span>Category:</span>
+              <button className="dropbtn">{this.state.category}</button>
+              <div className="dropdown-content">
+                <a onClick={this.onTravelChange}>Travel</a>
+                <a onClick={this.onScheduleChange}>Schedule</a>
+                <a onClick={this.onFoodChange}>Food</a>
+                <a onClick={this.onFinancialChange}>Financial</a>
+                <a onClick={this.onAccomodationChange}>Accomodation</a>
+                <a onClick={this.onGeneralChange}>General</a>
+              </div>
+            </div>
+            <form className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-1 help">
+              <b>Message:</b>
+              <div className="input-group">
+                <textarea id="text" placeholder="Type in your questions/concerns here" rows="10" cols="80" />
+              </div>
+              <b>Note: a response will be sent to the email address on your profile. If necessary, indicate a separate address where you would like to be contacted in response to this message.</b>
+              <br></br>
+              <div className="input-group col-md-10 col-md-offset-1">
+                <input type="text" className="form-control" id="emailhelp"></input>
+              </div>
+            </form>
+            <button className="submitjob" onClick={this.updateUser}>Update</button>
           </div>
-          <form>
-            <textarea id="text" placeholder="Type in your questions..." rows="20" cols="80" />
-          </form>
         </div>
-
-        <button className="btn btn-primary col-md-2 col-md-offset-9" onClick={this.onButtonClick}>Send</button>
       </div>
     );
   }
