@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import { signupUser } from '../actions/index';
 
@@ -47,7 +47,6 @@ class Signin extends Component {
       password: this.state.password,
     };
     this.props.signupUser(user);
-    browserHistory.push('/signin');
   }
 
 
