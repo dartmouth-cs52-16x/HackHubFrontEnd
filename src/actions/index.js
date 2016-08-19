@@ -174,6 +174,21 @@ export function deleteUser(id) {
   };
 }
 
+// update a company
+export function updateUser(user) {
+  return (dispatch) => {
+    axios.put(`${ROOT_URL}/users/${user.id}`, user).then(response => {
+      console.log(response.data);
+      dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
+      browserHistory.push(`users/${user.id}`);
+    }).catch(error => {
+      console.log('Error updating user');
+      browserHistory.push('/error');
+    });
+  };
+}
+
+
 // trigger to deauth if there is error
 // can also use in your error reducer if you have one to display an error message
 export function authError(error) {
@@ -189,11 +204,14 @@ export function signinUser(email, password) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signin`, { email, password })
     .then(response => {
-      dispatch({ type: ActionTypes.AUTH_USER });
+      console.log(response);
+      dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('user', response.data.user);
       browserHistory.push('/');
     })
     .catch(error => {
+      localStorage.removeItem('user');
       localStorage.removeItem('token');
       dispatch(authError(`Sign In Failed: ${error.response.data}`));
     });
@@ -204,16 +222,17 @@ export function signinUser(email, password) {
 export function signupUser(user) {
   // takes in an object with email and password (minimal user object)
   return (dispatch) => {
-    axios.post(`${ROOT_URL}/signup`, user)
-    .then(response => {
-      dispatch({ type: ActionTypes.AUTH_USER });
+    axios.post(`${ROOT_URL}/signup/`, user).
+    then(response => {
+      dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      browserHistory.push('/signin');
+      localStorage.setItem('user', response.data.user);
+      browserHistory.push('/');
       console.log(response);
-    })
-    .catch(error => {
+    }).catch(error => {
       localStorage.removeItem('token');
-      dispatch(authError(`Error with signup: ${error.response.data}`));
+      localStorage.removeItem('user');
+      dispatch(authError(`Sign Up Failed: ${error.response.data}`));
     });
   };
 }
