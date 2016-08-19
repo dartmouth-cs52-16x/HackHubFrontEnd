@@ -34,7 +34,6 @@ class Signin extends Component {
 
   submitForm() {
     this.props.signinUser(this.state.email, this.state.password);
-    browserHistory.push('/');
   }
 
 
