@@ -55,23 +55,23 @@ class UserProfile extends Component {
               </div>
               <div className="col-lg-12 col-md-12 col-xs-12 thumb">
                 <div className="imagerow">
-                  <img className="compimg" src={'http://d39kbiy71leyho.cloudfront.net/wp-content/uploads/2016/05/09170020/cats-politics-TN.jpg'} alt="?" />
+                  <img className="profimg" src={this.state.user.image} alt="?" />
                 </div>
               </div>
               <div className="compsite">
-                <b>Website:</b> {}
+                <b>Website:</b> {this.state.user.website}
               </div>
               <div className="comprecruiter">
-                <b>LinkedIn:</b> {}
+                <b>LinkedIn:</b> {this.state.user.linkedin}
               </div>
               <div className="comprecruiter">
-                <b>Facebook:</b> {}
+                <b>Facebook:</b> {this.state.user.facebook}
               </div>
             </div>
           </div>
           <br />
           <div className="comprecruiter">
-            <b>About:</b> {}
+            <b>About:</b> {this.state.user.about}
           </div>
           <br />
           <div className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
