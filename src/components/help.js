@@ -87,8 +87,10 @@ class Help extends Component {
               <b>Questions? Comments? Need Help?</b>
               <p>Contact your Hackathon organizers through the form below.</p>
             </div>
-            <div className="input-group col-md-10 col-md-offset-1 dropdown">
-              <span>Category:</span>
+            <div className="dropdown">
+              <div>
+                Category:
+              </div>
               <button className="dropbtn">{this.state.category}</button>
               <div className="dropdown-content">
                 <a onClick={this.onTravelChange}>Travel</a>
@@ -102,7 +104,7 @@ class Help extends Component {
             <form className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-1 help">
               <b>Message:</b>
               <div className="input-group">
-                <textarea id="text" placeholder="Type in your questions/concerns here" rows="10" cols="80" />
+                <Textarea id="text" placeholder="Type in your questions/concerns here" rows="10" cols="80" />
               </div>
               <b>Note: a response will be sent to the email address on your profile. If necessary, indicate a separate address where you would like to be contacted in response to this message.</b>
               <br></br>
