@@ -13,17 +13,25 @@ class MyProfile extends Component {
 
     this.addSkill = this.addSkill.bind(this);
     this.updateUser = this.updateUser.bind(this);
+    this.renderImage = this.renderImage.bind(this);
+    this.renderWebsite = this.renderWebsite.bind(this);
+    this.renderFB = this.renderFB.bind(this);
+    this.renderLI = this.renderLI.bind(this);
+    this.renderPhone = this.renderPhone.bind(this);
+    this.renderAbout = this.renderAbout.bind(this);
   }
 
   componentWillMount() {
-    this.props.fetchUser(localStorage.getItem('user'));
+    this.props.fetchUser(this.state.userToFetch);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.user.user);
+    console.log(nextProps.userToFetch);
     this.setState({
+      userToFetch: nextProps.userToFetch,
       user: nextProps.user.user,
     });
+    this.props.fetchUser(nextProps.userToFetch);
   }
 
   addSkill(e) {
@@ -47,6 +55,48 @@ class MyProfile extends Component {
     this.props.updateUser(user);
   }
 
+  renderImage() {
+    if (this.state.user.image) {
+      return (<input type="text" className="form-control" id="userlink" defaultValue={this.state.user.image}></input>);
+    }
+    return (<input type="text" className="form-control" id="userlink" placeholder="Image Link"></input>);
+  }
+
+  renderWebsite() {
+    if (this.state.user.website) {
+      return (<input type="text" className="form-control" id="usersite" defaultValue={this.state.user.website}></input>);
+    }
+    return (<input type="text" className="form-control" id="usersite" placeholder="www.yourwebsite.com"></input>);
+  }
+
+  renderFB() {
+    if (this.state.user.facebook) {
+      return (<input type="text" className="form-control" id="userfb" defaultValue={this.state.user.facebook}></input>);
+    }
+    return (<input type="text" className="form-control" id="userfb" placeholder="facebook profile"></input>);
+  }
+
+  renderLI() {
+    if (this.state.user.linkedin) {
+      return (<input type="text" className="form-control" id="userli" defaultValue={this.state.user.linkedin}></input>);
+    }
+    return (<input type="text" className="form-control" id="userli" placeholder="linkedin profile"></input>);
+  }
+
+  renderPhone() {
+    if (this.state.user.phone) {
+      return (<input type="text" className="form-control" id="userphone" defaultValue={this.state.user.phone}></input>);
+    }
+    return (<input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>);
+  }
+
+  renderAbout() {
+    if (this.state.user.about) {
+      return (<input type="text" className="form-control" id="userabout" defaultValue={this.state.user.about}></input>);
+    }
+    return (<input type="text" className="form-control" id="userabout" placeholder="About"></input>);
+  }
+
   render() {
     if (this.state.user == null) {
       // if company not yet fetched
@@ -63,12 +113,12 @@ class MyProfile extends Component {
               <b>{this.state.user.fullname}</b>
             </div>
             <div className="input-group col-md-10 col-md-offset-1 company-profile">
-              <input type="text" className="form-control" id="userlink" placeholder="Image Link"></input>
-              <input type="text" className="form-control" id="usersite" placeholder="www.yourwebsite.com"></input>
-              <input type="text" className="form-control" id="userfb" placeholder="facebook profile"></input>
-              <input type="text" className="form-control" id="userli" placeholder="Linkedin profile"></input>
-              <input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>
-              <input type="text" className="form-control" id="userabout" placeholder="About"></input>
+              {this.renderImage()}
+              {this.renderWebsite()}
+              {this.renderFB()}
+              {this.renderLI()}
+              {this.renderPhone()}
+              {this.renderAbout()}
             </div>
             <div className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
               <b>Add a skill:</b>
@@ -89,6 +139,7 @@ class MyProfile extends Component {
 
 const mapStateToProps = (state) => (
   {
+    userToFetch: state.auth.user,
     user: state.users.user,
   }
 );
