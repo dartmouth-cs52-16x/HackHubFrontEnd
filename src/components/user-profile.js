@@ -24,20 +24,6 @@ class UserProfile extends Component {
     });
   }
 
-
-  // render() {
-  //   return (
-  //     <div id="userProfile">
-  //       <h1>this.props.fullname</h1>
-  //       <img alt="profile" />
-  //       <h3>this.props.email</h3>
-  //       <h3>this.props.website</h3>
-  //       <h3>this.props.linkedin</h3>
-  //       <h4>this.props.about</h4>
-  //       <h4>this.props.skills</h4>
-  //     </div>
-  //   );
-  // }
   render() {
     if (this.state.user == null) {
       // if company not yet fetched
