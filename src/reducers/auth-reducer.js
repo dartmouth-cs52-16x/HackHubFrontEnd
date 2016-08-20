@@ -1,6 +1,6 @@
 import { ActionTypes } from '../actions';
 
-const AuthReducer = (state = { authenticated: false, user: null }, action) => {
+const AuthReducer = (state = { authenticated: false, user: 0 }, action) => {
   switch (action.type) {
     case ActionTypes.AUTH_USER:
       return { ...state, authenticated: true, user: action.payload };
