@@ -204,14 +204,12 @@ export function signinUser(email, password) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signin`, { email, password })
     .then(response => {
-      console.log(response);
+      console.log(response.data.user);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', response.data.user);
       browserHistory.push('/');
     })
     .catch(error => {
-      localStorage.removeItem('user');
       localStorage.removeItem('token');
       dispatch(authError(`Sign In Failed: ${error.response.data}`));
     });
@@ -224,14 +222,13 @@ export function signupUser(user) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signup/`, user).
     then(response => {
+      console.log(response.data);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('user', response.data.user);
       browserHistory.push('/');
       console.log(response);
     }).catch(error => {
       localStorage.removeItem('token');
-      localStorage.removeItem('user');
       dispatch(authError(`Sign Up Failed: ${error.response.data}`));
     });
   };
