@@ -5,7 +5,7 @@ import { Link } from 'react-router';
 import { signupUser } from '../actions/index';
 
 // example class based component (smart component)
-class Signin extends Component {
+class Signup extends Component {
   constructor(props) {
     super(props);
 
@@ -14,11 +14,13 @@ class Signin extends Component {
       fullname: '',
       email: '',
       password: '',
+      role: '',
     };
 
     this.changeFullName = this.changeFullName.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
     this.changePassword = this.changePassword.bind(this);
+    this.changeRole = this.changeRole.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
 
@@ -34,6 +36,12 @@ class Signin extends Component {
     });
   }
 
+  changeRole(event) {
+    this.setState({
+      role: event.target.value,
+    });
+  }
+
   changePassword(event) {
     this.setState({
       password: event.target.value,
@@ -45,6 +53,7 @@ class Signin extends Component {
       fullname: this.state.fullname,
       email: this.state.email,
       password: this.state.password,
+      role: this.state.role,
     };
     this.props.signupUser(user);
   }
@@ -65,6 +74,10 @@ class Signin extends Component {
         <div className="passwordrow">
           Password: <input value={this.state.password} onChange={this.changePassword} />
         </div>
+        <div className="organizerrow">
+          <input type="radio" name="organizer" value="organizer" onChange={this.changeRole} /> Organizer <br />
+          <input type="radio" name="organizer" value="hacker" onChange={this.changeRole} /> Hacker <br />
+        </div>
         <br />
         <div>
           <button onClick={this.submitForm}>Submit</button>
@@ -75,4 +88,4 @@ class Signin extends Component {
   }
 }
 
-export default connect(null, { signupUser })(Signin);
+export default connect(null, { signupUser })(Signup);
