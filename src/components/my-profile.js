@@ -42,6 +42,7 @@ class MyProfile extends Component {
     e.preventDefault();
     const user = {
       id: this.state.user.id,
+      email: this.state.user.email,
       skills: this.state.user.skills,
       image: document.getElementById('userlink').value,
       website: document.getElementById('usersite').value,
