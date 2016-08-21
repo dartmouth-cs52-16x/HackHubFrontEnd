@@ -207,6 +207,7 @@ export function signinUser(email, password) {
       console.log(response.data.user);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('id', response.data.user);
       browserHistory.push('/');
     })
     .catch(error => {
@@ -225,6 +226,7 @@ export function signupUser(user) {
       console.log(response.data);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
+      localStorage.setItem('id', response.data.user);
       browserHistory.push('/');
       console.log(response);
     }).catch(error => {
