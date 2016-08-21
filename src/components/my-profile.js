@@ -22,16 +22,14 @@ class MyProfile extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchUser(this.state.userToFetch);
+    this.props.fetchUser(localStorage.getItem('id'));
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps.userToFetch);
+    console.log(nextProps);
     this.setState({
-      userToFetch: nextProps.userToFetch,
       user: nextProps.user.user,
     });
-    this.props.fetchUser(nextProps.userToFetch);
   }
 
   addSkill(e) {
@@ -137,11 +135,11 @@ class MyProfile extends Component {
   }
 }
 
-const mapStateToProps = (state) => (
+const mapDispatchToProps = (state) => (
   {
     userToFetch: state.auth.user,
     user: state.users.user,
   }
 );
 
-export default connect(mapStateToProps, { fetchUser, updateUser })(MyProfile);
+export default connect(mapDispatchToProps, { fetchUser, updateUser })(MyProfile);
