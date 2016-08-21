@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -127,7 +127,7 @@ export function fetchCompany(id) {
 export function updateCompany(comp) {
   return (dispatch) => {
     const fields = { name: comp.name, image: comp.image, website: comp.website, recruiter: comp.recruiter,
-      jobs: comp.jobs };
+      jobs: comp.jobs, about: comp.about };
     axios.put(`${ROOT_URL}/company/${comp.id}`, fields).then(response => {
       dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
     }).catch(error => {
