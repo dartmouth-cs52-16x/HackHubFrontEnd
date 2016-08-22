@@ -217,7 +217,7 @@ p {
 }
 
 .editinfo {
-  font-size: 13px;  
+  font-size: 13px;
 }
 
 .help {
@@ -304,4 +304,8 @@ textarea {
 .profimg {
   height: 300px;
   width: auto;
+}
+
+#error {
+  display: none;
 }

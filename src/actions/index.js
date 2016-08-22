@@ -20,6 +20,8 @@ export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
+  CREATE_HELP: 'CREATE_HELP',
+  FETCH_HELP: 'FETCH_HELP',
 };
 
 // fetch all announcements
@@ -137,10 +139,34 @@ export function updateCompany(comp) {
   };
 }
 
+// create a new post
+export function createHelp(help) {
+  return (dispatch) => {
+    const fields = { message: help.message, category: help.category, email: help.email, id: help.id };
+    axios.post(`${ROOT_URL}/help`, fields).then(browserHistory.push('helpdone'))
+      .catch(error => {
+        console.log('Error creating help');
+      });
+  };
+}
+
+// fetch all posts
+export function fetchHelp() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/help`).then(response => {
+      dispatch({ type: ActionTypes.FETCH_HELP, payload: { all: response.data } });
+    }).catch(error => {
+      console.log('Error getting help');
+    });
+  };
+}
+
 export function fetchUser(id) {
   console.log('fetch user');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
+      console.log('data');
+      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
       console.log(error);
