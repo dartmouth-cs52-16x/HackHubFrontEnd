@@ -105,7 +105,7 @@ class Help extends Component {
   }
 
   render() {
-    if (this.props.all == null) {
+    if (this.props.all === null) {
       return null;
     }
     if (this.props.user === null) {
