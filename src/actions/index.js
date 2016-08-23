@@ -24,6 +24,9 @@ export const ActionTypes = {
   CREATE_HELP: 'CREATE_HELP',
   FETCH_HELP: 'FETCH_HELP',
   DELETE_HELP: 'DELETE_HELP',
+  CREATE_SCHED: 'CREATE_SCHED',
+  FETCH_SCHED: 'FETCH_SCHED',
+  UPDATE_SCHED: 'UPDATE_SCHED',
 };
 
 // fetch all announcements
@@ -313,5 +316,90 @@ export function signoutUser() {
     localStorage.removeItem('token');
     dispatch({ type: ActionTypes.DEAUTH_USER });
     browserHistory.push('/');
+  };
+}
+
+// fetch all posts
+export function fetchSchedule() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/schedule`).then(response => {
+      dispatch({ type: ActionTypes.FETCH_SCHED, payload: { all: response.data } });
+    }).catch(error => {
+      console.log('Error getting scheudle');
+    });
+  };
+}
+
+// create a new post
+export function createEvent(input) {
+  return (dispatch) => {
+    const fields = {
+      id: input._id,
+      day1: {
+        day_of_week: input.day1.day_of_week,
+        month: input.day1.month,
+        day: input.day1.day,
+        range: {
+          start: input.day1.range.start,
+          end: input.day1.range.end,
+        },
+        events: input.day1.events,
+      },
+      day2: {
+        day_of_week: input.day2.day_of_week,
+        month: input.day2.month,
+        day: input.day2.day,
+        range: {
+          start: input.day2.range.start,
+          end: input.day2.range.end,
+        },
+        events: input.day2.events,
+      },
+    };
+    axios.post(`${ROOT_URL}/schedule`, fields).then(() => {
+      axios.get(`${ROOT_URL}/schedule`).then(response => {
+        dispatch({ type: ActionTypes.CREATE_EVENT, payload: { all: response.data } });
+        browserHistory.push('schedule');
+      }).catch(error => {
+        console.log('Error getting schedule');
+      });
+    }).catch(error => {
+      console.log('Error creating schedule');
+    });
+  };
+}
+
+// update a company
+export function updateSchedule(input) {
+  return (dispatch) => {
+    const fields = {
+      id: input._id,
+      day1: {
+        day_of_week: input.day1.day_of_week,
+        month: input.day1.month,
+        day: input.day1.day,
+        range: {
+          start: input.day1.range.start,
+          end: input.day1.range.end,
+        },
+        events: input.day1.events,
+      },
+      day2: {
+        day_of_week: input.day2.day_of_week,
+        month: input.day2.month,
+        day: input.day2.day,
+        range: {
+          start: input.day2.range.start,
+          end: input.day2.range.end,
+        },
+        events: input.day2.events,
+      },
+    };
+    axios.put(`${ROOT_URL}/schedule/${input.id}`, fields).then(response => {
+      dispatch({ type: ActionTypes.UPDATE_COMP, payload: { schedule: response.data } });
+    }).catch(error => {
+      console.log('Error updating schedule');
+      browserHistory.push('/error');
+    });
   };
 }
