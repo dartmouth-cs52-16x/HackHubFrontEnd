@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { Link } from 'react-router';
+import { connect } from 'react-redux';
 
 class Company extends Component {
 
@@ -17,15 +18,33 @@ class Company extends Component {
 
   // render announcement
   render() {
-    return (
-      <div className="col-md-10 col-md-offset-1 companysingle">
-        <Link to={`companies/${this.props.id}`} key={this.props.id}>
-          <div className="companyname">{this.props.name}</div>
-        </Link>
-        <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
-      </div>
-    );
+    if (this.props.user && this.props.user.role === 'hacker') {
+      return (
+        <div className="col-md-10 col-md-offset-1 companysingle">
+          <Link to={`companies/${this.props.id}`} key={this.props.id}>
+            <div className="companyname">{this.props.name}</div>
+          </Link>
+        </div>
+      );
+    } else {
+      return (
+        <div className="col-md-10 col-md-offset-1 companysingle">
+          <Link to={`companies/${this.props.id}`} key={this.props.id}>
+            <div className="companyname">{this.props.name}</div>
+          </Link>
+          <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
+        </div>
+      );
+    }
   }
 }
 
-export default Company;
+const mapStateToProps = (state, action) => (
+  {
+    all: state.companies.all,
+    user: state.auth.user,
+  }
+);
+
+// export default Company;
+export default connect(mapStateToProps, {})(Company);
