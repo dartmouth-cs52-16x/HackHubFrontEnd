@@ -23,6 +23,7 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   CREATE_HELP: 'CREATE_HELP',
   FETCH_HELP: 'FETCH_HELP',
+  DELETE_HELP: 'DELETE_HELP',
   CREATE_SCHED: 'CREATE_SCHED',
   FETCH_SCHED: 'FETCH_SCHED',
   UPDATE_SCHED: 'UPDATE_SCHED',
@@ -173,6 +174,21 @@ export function fetchHelp() {
   };
 }
 
+// delete help
+export function deleteHelp(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/help/${id}`).then(() => {
+      axios.get(`${ROOT_URL}/help`).then(response => {
+        dispatch({ type: ActionTypes.DELETE_HELP, payload: { all: response.data } });
+      }).catch(error => {
+        console.log('Error getting help');
+      });
+    }).catch(error => {
+      console.log('Error deleting help');
+    });
+  };
+}
+
 export function fetchUser(id) {
   console.log(`fetch user ${id}`);
   return (dispatch) => {
@@ -217,7 +233,6 @@ export function updateUser(user) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/users/${user.id}`, user).then(response => {
       console.log(response.data);
-      dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
       browserHistory.push(`users/${user.id}`);
     }).catch(error => {
       console.log('Error updating user');

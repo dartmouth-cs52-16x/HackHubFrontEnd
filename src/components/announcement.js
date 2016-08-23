@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Announcement extends Component {
 
@@ -6,12 +7,22 @@ class Announcement extends Component {
     super(props);
 
     this.render = this.render.bind(this);
+    this.renderDelete = this.renderDelete.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
   // calllback to app
   onDeleteClick(event) {
     this.props.delete(this.props.id);
+  }
+
+  renderDelete() {
+    if (this.props.role !== 'organizer') {
+      return null;
+    }
+    return (
+      <p onClick={this.onDeleteClick}>x</p>
+    );
   }
 
   // render announcement
@@ -22,16 +33,18 @@ class Announcement extends Component {
           <div className="announcetext">{this.props.text}</div>
           <div className="announcedate">{this.props.date}</div>
         </div>
-        <p onClick={this.onDeleteClick}>x</p>
+        {this.renderDelete()}
       </div>
     );
   }
 }
 
-Announcement.propTypes = {
-  text: React.PropTypes.string,
-  date: React.PropTypes.string,
-  id: React.PropTypes.string,
-};
+const mapStateToProps = (state, action) => (
+  {
+    all: state.companies.all,
+    user: state.auth.user,
+    role: state.auth.role,
+  }
+);
 
-export default Announcement;
+export default connect(mapStateToProps, {})(Announcement);
