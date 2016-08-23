@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // import { createCompany } from '../actions/index';
 // import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { createHelp, fetchHelp } from '../actions';
+import { createHelp, fetchHelp, deleteHelp } from '../actions';
 import HelpSingle from './helpsingle';
 
 class Help extends Component {
@@ -25,6 +25,7 @@ class Help extends Component {
     this.onFinancialChange = this.onFinancialChange.bind(this);
     this.onAccomodationChange = this.onAccomodationChange.bind(this);
     this.onGeneralChange = this.onGeneralChange.bind(this);
+    this.deleteHelp = this.deleteHelp.bind(this);
 
     this.onButtonClick = this.onButtonClick.bind(this);
   }
@@ -103,6 +104,10 @@ class Help extends Component {
     }
   }
 
+  deleteHelp(id) {
+    this.props.deleteHelp(id);
+  }
+
   render() {
     if (this.props.all === null) {
       return null;
@@ -110,14 +115,13 @@ class Help extends Component {
     if (this.props.id === null) {
       return null;
     }
-    console.log(this.props.role);
-    // TODO change so that companies can do this too
+
+    // user's id is id, help's id is helpid
     if (this.props.role === 'organizer') {
       const renderList = this.props.all.map((help) => {
-        console.log(help);
         return (
-          <div key={help.message} className="">
-            <HelpSingle message={help.message} category={help.category} id={help.id} />
+          <div key={help.helpid} className="">
+            <HelpSingle message={help.message} category={help.category} helpid={help.helpid} id={help.id} delete={this.deleteHelp} />
           </div>
         );
       }); // need to change key???
@@ -179,4 +183,4 @@ const mapStateToProps = (state, action) => (
   }
 );
 
-export default connect(mapStateToProps, { createHelp, fetchHelp })(Help);
+export default connect(mapStateToProps, { createHelp, fetchHelp, deleteHelp })(Help);
