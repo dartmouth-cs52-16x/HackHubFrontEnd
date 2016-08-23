@@ -96,7 +96,7 @@ class Help extends Component {
     } else {
       const fields = {
         message,
-        category: this.state.category,
+        category: document.getElementById('exampleSelect1').value,
         email: this.props.user.email,
         id: this.props.user.id,
       };
@@ -113,7 +113,24 @@ class Help extends Component {
     }
     console.log(this.props.user);
     // TODO change so that companies can do this too
-    if (this.props.user && this.props.user.role === 'hacker') {
+    if (this.props.user && this.props.user.role === 'organizer') {
+      const renderList = this.props.all.map((help) => {
+        console.log(help);
+        return (
+          <div key={help.message} className="">
+            <HelpSingle message={help.message} category={help.category} email={help.email} id={help.id} />
+          </div>
+        );
+      }); // need to change key???
+      return (
+        <div>
+          <h1>Help Messages:</h1>
+          <div>
+            {renderList}
+          </div>
+        </div>
+      );
+    } else {
       return (
         <div className="companyprofile" >
           <div className="row">
@@ -148,23 +165,6 @@ class Help extends Component {
                 <button className="submitjob" onClick={this.onButtonClick}>Submit</button>
               </form>
             </div>
-          </div>
-        </div>
-      );
-    } else {
-      const renderList = this.props.all.map((help) => {
-        console.log(help);
-        return (
-          <div key={help.message} className="">
-            <HelpSingle message={help.message} category={help.category} email={help.email} id={help.id} />
-          </div>
-        );
-      }); // need to change key???
-      return (
-        <div>
-          <h1>Help Messages:</h1>
-          <div>
-            {renderList}
           </div>
         </div>
       );
