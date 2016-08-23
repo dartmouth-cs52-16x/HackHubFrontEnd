@@ -45,6 +45,9 @@ class UserProfile extends Component {
                 </div>
               </div>
               <div className="compsite">
+                <b>Email:</b> {this.state.user.email}
+              </div>
+              <div className="compsite">
                 <b>Website:</b> {this.state.user.website}
               </div>
               <div className="comprecruiter">

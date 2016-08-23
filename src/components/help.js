@@ -97,8 +97,8 @@ class Help extends Component {
       const fields = {
         message,
         category: document.getElementById('exampleSelect1').value,
-        email: this.props.user.email,
-        id: this.props.user.id,
+        // email: this.props.user.email,
+        id: this.props.id,
       };
       this.props.createHelp(fields);
     }
@@ -108,12 +108,12 @@ class Help extends Component {
     if (this.props.all === null) {
       return null;
     }
-    if (this.props.user === null) {
+    if (this.props.id === null) {
       return null;
     }
-    console.log(this.props.user);
+    console.log(this.props.role);
     // TODO change so that companies can do this too
-    if (this.props.user && this.props.user.role === 'organizer') {
+    if (this.props.role === 'organizer') {
       const renderList = this.props.all.map((help) => {
         console.log(help);
         return (
@@ -175,7 +175,8 @@ class Help extends Component {
 const mapStateToProps = (state, action) => (
   {
     all: state.help.all,
-    user: state.auth.user,
+    id: state.auth.id,
+    role: state.auth.role,
   }
 );
 
