@@ -23,6 +23,7 @@ export const ActionTypes = {
   AUTH_ERROR: 'AUTH_ERROR',
   CREATE_HELP: 'CREATE_HELP',
   FETCH_HELP: 'FETCH_HELP',
+  DELETE_HELP: 'DELETE_HELP',
 };
 
 // fetch all announcements
@@ -166,6 +167,21 @@ export function fetchHelp() {
       dispatch({ type: ActionTypes.FETCH_HELP, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting help');
+    });
+  };
+}
+
+// delete help
+export function deleteHelp(id) {
+  return (dispatch) => {
+    axios.delete(`${ROOT_URL}/help/${id}`).then(() => {
+      axios.get(`${ROOT_URL}/help`).then(response => {
+        dispatch({ type: ActionTypes.DELETE_HELP, payload: { all: response.data } });
+      }).catch(error => {
+        console.log('Error getting help');
+      });
+    }).catch(error => {
+      console.log('Error deleting help');
     });
   };
 }
