@@ -42,22 +42,35 @@ class Companies extends Component {
 
 
   render() {
-    return (
-      <div>
-        <div className="col-md-2 col-md-offset-9 mainpage">
-          <Link to="new_company">Add Company</Link>
-        </div>
+    if (this.props.user && this.props.user.role === 'hacker') {
+      return (
         <div>
-          {this.renderCompany()}
+          <div className="col-md-2 col-md-offset-9 mainpage">
+          </div>
+          <div>
+            {this.renderCompany()}
+          </div>
         </div>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div>
+          <div className="col-md-2 col-md-offset-9 mainpage">
+            <Link to="new_company">Add Company</Link>
+          </div>
+          <div>
+            {this.renderCompany()}
+          </div>
+        </div>
+      );
+    }
   }
 }
 
-const mapStateToProps = (state) => (
+const mapStateToProps = (state, action) => (
   {
     all: state.companies.all,
+    user: state.auth.user,
   }
 );
 
