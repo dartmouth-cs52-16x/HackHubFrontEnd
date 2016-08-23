@@ -18,7 +18,7 @@ class Company extends Component {
 
   // render announcement
   render() {
-    if (this.props.user && this.props.user.role === 'hacker') {
+    if (this.props.role === 'hacker') {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
           <Link to={`companies/${this.props.id}`} key={this.props.id}>
@@ -43,6 +43,7 @@ const mapStateToProps = (state, action) => (
   {
     all: state.companies.all,
     user: state.auth.user,
+    role: state.auth.role,
   }
 );
 

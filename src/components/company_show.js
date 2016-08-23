@@ -219,7 +219,7 @@ class CompanyShow extends Component {
       );
     }
 
-    if (this.props.user && this.props.user.role === 'recruiter') {
+    if (this.props.company === this.props.thisCompany.name || this.props.role === 'organizer') {
       return (
         <div className="companyprofile" >
           {companyInfo}
@@ -249,6 +249,8 @@ const mapDispatchToProps = (state, action) => (
   {
     thisCompany: state.companies.comp,
     user: state.auth.user,
+    role: state.auth.role,
+    company: state.auth.company,
   }
 );
 
