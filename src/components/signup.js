@@ -77,6 +77,7 @@ class Signup extends Component {
         <div className="organizerrow">
           <input type="radio" name="organizer" value="organizer" onChange={this.changeRole} /> Organizer <br />
           <input type="radio" name="organizer" value="hacker" onChange={this.changeRole} /> Hacker <br />
+          <input type="radio" name="organizer" value="recruiter" onChange={this.changeRole} /> Recruiter <br />
         </div>
         <br />
         <div>
