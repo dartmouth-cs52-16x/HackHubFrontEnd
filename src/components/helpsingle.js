@@ -15,7 +15,6 @@ class HelpSingle extends Component {
         <div>
           <div className="announcetext">Message: {this.props.message}</div>
           <div className="category">Category: {this.props.category}</div>
-          <div className="useremail">Email: {this.props.email}</div>
           <div className="userid">User ID: {this.props.id}</div>
         </div>
       </div>
@@ -26,7 +25,6 @@ class HelpSingle extends Component {
 HelpSingle.propTypes = {
   message: React.PropTypes.string,
   category: React.PropTypes.string,
-  email: React.PropTypes.string,
   id: React.PropTypes.string,
 };
 

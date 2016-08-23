@@ -97,7 +97,6 @@ class Help extends Component {
       const fields = {
         message,
         category: document.getElementById('exampleSelect1').value,
-        // email: this.props.user.email,
         id: this.props.id,
       };
       this.props.createHelp(fields);
@@ -118,7 +117,7 @@ class Help extends Component {
         console.log(help);
         return (
           <div key={help.message} className="">
-            <HelpSingle message={help.message} category={help.category} email={help.email} id={help.id} />
+            <HelpSingle message={help.message} category={help.category} id={help.id} />
           </div>
         );
       }); // need to change key???

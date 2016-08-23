@@ -143,7 +143,7 @@ export function updateCompany(comp) {
 // create a new post
 export function createHelp(help) {
   return (dispatch) => {
-    const fields = { message: help.message, category: help.category, email: help.email, id: help.id };
+    const fields = { message: help.message, category: help.category, id: help.id };
     axios.post(`${ROOT_URL}/help`, fields).then(() => {
       axios.get(`${ROOT_URL}/help`).then(response => {
         dispatch({ type: ActionTypes.CREATE_HELP, payload: { all: response.data } });
