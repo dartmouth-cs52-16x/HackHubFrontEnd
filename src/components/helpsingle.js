@@ -13,8 +13,8 @@ class HelpSingle extends Component {
     return (
       <div className="col-md-10 col-md-offset-1 announcementsingle">
         <div>
-          <div className="announcetext">{this.props.message}</div>
-          <div className="announcedate">{this.props.category}</div>
+          <div className="announcetext">Message: {this.props.message}</div>
+          <div className="category">Category: {this.props.category}</div>
           <div className="useremail">Email: {this.props.email}</div>
           <div className="userid">User ID: {this.props.id}</div>
         </div>

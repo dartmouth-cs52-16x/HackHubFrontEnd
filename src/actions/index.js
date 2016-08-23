@@ -143,10 +143,16 @@ export function updateCompany(comp) {
 export function createHelp(help) {
   return (dispatch) => {
     const fields = { message: help.message, category: help.category, email: help.email, id: help.id };
-    axios.post(`${ROOT_URL}/help`, fields).then(browserHistory.push('helpdone'))
-      .catch(error => {
-        console.log('Error creating help');
+    axios.post(`${ROOT_URL}/help`, fields).then(() => {
+      axios.get(`${ROOT_URL}/help`).then(response => {
+        dispatch({ type: ActionTypes.CREATE_HELP, payload: { all: response.data } });
+        browserHistory.push('helpdone');
+      }).catch(error => {
+        console.log('Error getting help');
       });
+    }).catch(error => {
+      console.log('Error creating help');
+    });
   };
 }
 
@@ -154,6 +160,8 @@ export function createHelp(help) {
 export function fetchHelp() {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/help`).then(response => {
+      console.log('help data');
+      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_HELP, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting help');
@@ -230,7 +238,9 @@ export function signinUser(email, password) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signin`, { email, password })
     .then(response => {
+      console.log('user is here');
       console.log(response.data.user);
+      console.log(response.data.role);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.user);
