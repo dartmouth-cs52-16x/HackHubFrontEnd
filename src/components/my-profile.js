@@ -22,7 +22,8 @@ class MyProfile extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchUser(localStorage.getItem('id'));
+    console.log(this.props.userToFetch);
+    this.props.fetchUser(this.props.userToFetch);
   }
 
   componentWillReceiveProps(nextProps) {
@@ -138,7 +139,7 @@ class MyProfile extends Component {
 
 const mapDispatchToProps = (state) => (
   {
-    userToFetch: state.auth.user,
+    userToFetch: state.auth.id,
     user: state.users.user,
   }
 );

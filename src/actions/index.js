@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-const ROOT_URL = 'http://localhost:9090/api';
+const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+// const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -18,6 +18,7 @@ export const ActionTypes = {
   FETCH_USERS: 'FETCH_USERS',
   DELETE_USER: 'DELETE_USER',
   AUTH_USER: 'AUTH_USER',
+  AUTH_USER_UPDATE: 'AUTH_USER_UPDATE',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
   CREATE_HELP: 'CREATE_HELP',
@@ -170,7 +171,7 @@ export function fetchHelp() {
 }
 
 export function fetchUser(id) {
-  console.log('fetch user');
+  console.log(`fetch user ${id}`);
   return (dispatch) => {
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
       console.log('data');
@@ -243,7 +244,8 @@ export function signinUser(email, password) {
       console.log(response.data.role);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('id', response.data.user);
+      localStorage.setItem('id', response.data.user.id);
+      localStorage.setItem('role', response.data.user.role);
       browserHistory.push('/');
     })
     .catch(error => {
@@ -262,12 +264,26 @@ export function signupUser(user) {
       console.log(response.data);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
-      localStorage.setItem('id', response.data.user);
+      localStorage.setItem('id', response.data.user.id);
+      localStorage.setItem('role', response.data.user.role);
       browserHistory.push('/');
       console.log(response);
     }).catch(error => {
       localStorage.removeItem('token');
       dispatch(authError(`Sign Up Failed: ${error.response.data}`));
+    });
+  };
+}
+
+export function fetchAuthUser(id) {
+  console.log(id);
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/users/${id}`).then(response => {
+      console.log('data');
+      console.log(response.data);
+      dispatch({ type: ActionTypes.AUTH_USER_UPDATE, payload: response.data });
+    }).catch(error => {
+      console.log(error);
     });
   };
 }
