@@ -246,6 +246,7 @@ export function signinUser(email, password) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.user.id);
       localStorage.setItem('role', response.data.user.role);
+      localStorage.setItem('company', response.data.user.company);
       browserHistory.push('/');
     })
     .catch(error => {
@@ -266,6 +267,7 @@ export function signupUser(user) {
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.user.id);
       localStorage.setItem('role', response.data.user.role);
+      localStorage.setItem('company', response.data.user.company);
       browserHistory.push('/');
       console.log(response);
     }).catch(error => {
