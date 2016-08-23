@@ -122,6 +122,10 @@ p {
   margin-bottom: 5px;
   padding: 5px;
   height: auto;
+
+  p:hover {
+    cursor: pointer;
+  }
 }
 
 .announcetext {
@@ -158,6 +162,13 @@ p {
   margin-bottom: 5px;
   padding: 5px;
   height: auto;
+
+  display: flex;
+  justify-content: space-between;
+
+  p:hover {
+    cursor: pointer;
+  }
 }
 
 .companytext {

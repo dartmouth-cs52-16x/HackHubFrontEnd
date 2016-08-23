@@ -22,7 +22,7 @@ class Announcement extends Component {
           <div className="announcetext">{this.props.text}</div>
           <div className="announcedate">{this.props.date}</div>
         </div>
-        <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
+        <p onClick={this.onDeleteClick}>x</p>
       </div>
     );
   }
