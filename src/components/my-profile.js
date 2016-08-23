@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, updateUser } from '../actions';
+import Skill from './skill';
 
 // example class based component (smart component)
 class MyProfile extends Component {
@@ -9,9 +10,11 @@ class MyProfile extends Component {
 
     // init component state here
     this.state = {
+      refresh: 0,
     };
 
     this.addSkill = this.addSkill.bind(this);
+    this.deleteSkill = this.deleteSkill.bind(this);
     this.updateUser = this.updateUser.bind(this);
     this.renderImage = this.renderImage.bind(this);
     this.renderWebsite = this.renderWebsite.bind(this);
@@ -35,8 +38,31 @@ class MyProfile extends Component {
 
   addSkill(e) {
     e.preventDefault();
-    this.state.user.skills.push(document.getElementById('skill').value);
+    const currSkills = this.state.user.skills;
+    let thisId = 1;
+    if (currSkills.length > 0) {
+      thisId = currSkills[currSkills.length - 1].id + 1;
+    }
+    const newSkill = { id: thisId,
+      name: document.getElementById('skill').value,
+    };
+    currSkills.push(newSkill);
+    this.setState({
+      refresh: this.state.refresh + 1,
+    });
     console.log(this.state.user.skills);
+  }
+
+  deleteSkill(id) {
+    const currSkills = this.state.user.skills;
+    for (let i = 0; i < currSkills.length; i++) {
+      if (currSkills[i].id === id) {
+        currSkills.splice(i, 1);
+      }
+    }
+    this.setState({
+      refresh: this.state.refresh + 1,
+    });
   }
 
   updateUser(e) {
@@ -97,6 +123,18 @@ class MyProfile extends Component {
     return (<input type="text" className="form-control" id="userabout" placeholder="About"></input>);
   }
 
+  renderSkills() {
+    if (this.state.user.skills == null) {
+      return null;
+    }
+    const renderList = this.state.user.skills.map((skill) => {
+      return (
+        <Skill key={skill.id} id={skill.id} name={skill.name} delete={this.deleteSkill} />
+      );
+    });
+    return renderList;
+  }
+
   render() {
     if (this.state.user == null) {
       // if company not yet fetched
@@ -129,8 +167,13 @@ class MyProfile extends Component {
                 </span>
               </div>
             </div>
-            <button className="submitjob" onClick={this.updateUser}>Update</button>
           </div>
+        </div>
+        <div className="skilllist">
+          {this.renderSkills()}
+        </div>
+        <div>
+          <button className="submitjob" onClick={this.updateUser}>Update</button>
         </div>
       </div>
       );

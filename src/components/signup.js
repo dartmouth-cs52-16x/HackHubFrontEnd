@@ -67,6 +67,16 @@ class Signup extends Component {
     this.props.signupUser(user);
   }
 
+  renderCompany() {
+    if (this.state.role !== 'recruiter') {
+      return null;
+    }
+    return (
+      <div className="companyrow">
+        Company: <input value={this.state.company} onChange={this.changeCompany} />
+      </div>
+    );
+  }
 
   render() {
     return (
@@ -83,11 +93,11 @@ class Signup extends Component {
         <div className="passwordrow">
           Password: <input value={this.state.password} onChange={this.changePassword} />
         </div>
+        {this.renderCompany()}
         <div className="organizerrow">
           <input type="radio" name="organizer" value="organizer" onChange={this.changeRole} /> Organizer <br />
           <input type="radio" name="organizer" value="hacker" onChange={this.changeRole} /> Hacker <br />
-          <input type="radio" name="organizer" value="recruiter" onChange={this.changeRole} /> Recruiter /
-            Company: <input value={this.state.company} onChange={this.changeCompany} />
+          <input type="radio" name="organizer" value="recruiter" onChange={this.changeRole} /> Recruiter
           <br />
         </div>
         <br />
