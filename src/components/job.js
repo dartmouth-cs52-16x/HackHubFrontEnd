@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 class Job extends Component {
 
@@ -16,7 +17,15 @@ class Job extends Component {
 
   // render announcement
   render() {
+    let deleteButton = '';
+    if (this.props.user && this.props.user.role === 'recruiter') {
+      deleteButton = (
+        <i className="fa fa-times" aria-hidden="true" onClick={this.onDeleteClick}></i>
+      );
+    }
+
     return (
+
       <div className="col-md-10 col-md-offset-1 jobsingle">
         <div>
           <b>Job:</b> {this.props.name}
@@ -27,10 +36,19 @@ class Job extends Component {
         <div>
           <b>Link:</b> {this.props.link}
         </div>
-        <i className="fa fa-times" aria-hidden="true" onClick={this.onDeleteClick}></i>
+        {deleteButton}
       </div>
     );
   }
 }
 
-export default Job;
+const mapStateToProps = (state, action) => (
+  {
+    all: state.companies.all,
+    user: state.auth.user,
+  }
+);
+
+export default connect(mapStateToProps, {})(Job);
+
+// export default Job;

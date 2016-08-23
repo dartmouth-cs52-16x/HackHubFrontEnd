@@ -155,6 +155,15 @@ class CompanyShow extends Component {
       errorText = 'Please fill out all fields!';
     }
     let companyInfo = '';
+
+
+    let buttons = '';
+    if (this.props.user && this.props.user.role === 'recruiter') {
+      buttons = (
+        <button className="editinfo" onClick={this.editInfo}>Edit</button>
+      );
+    }
+
     if (this.state.editing === false) {
       companyInfo = (
         <div className="row">
@@ -171,7 +180,7 @@ class CompanyShow extends Component {
             <div className="compabout">
               <b>About:</b> {this.props.thisCompany.about}
             </div>
-            <button className="editinfo" onClick={this.editInfo}>Edit</button>
+            {buttons}
           </div>
           <div className="col-lg-6 col-md-6 col-xs-12 thumb">
             <div className="imagerow">
@@ -196,7 +205,7 @@ class CompanyShow extends Component {
             <div className="compabout">
               <b>About:</b> <textarea value={this.state.about} onChange={this.onAboutChange} />
             </div>
-            <button className="editinfo" onClick={this.submitInfo}>Done</button>
+            {buttons}
           </div>
           <div>
             {errorText}
@@ -209,25 +218,37 @@ class CompanyShow extends Component {
         </div>
       );
     }
-    return (
-      <div className="companyprofile" >
-        {companyInfo}
-        {this.renderJobs()}
-        <div className="input-group col-md-10 col-md-offset-1 addjob">
-          <b>Add a job/internship listing:</b>
-          <input type="text" className="form-control" id="jobname" placeholder="Job Title"></input>
-          <textarea className="form-control" id="jobdesc" placeholder="Description here..." rows="5" cols="80" />
-          <input type="text" className="form-control" id="joblink" placeholder="Job Link"></input>
+
+    if (this.props.user && this.props.user.role === 'recruiter') {
+      return (
+        <div className="companyprofile" >
+          {companyInfo}
+          {this.renderJobs()}
+          <div className="input-group col-md-10 col-md-offset-1 addjob">
+            <b>Add a job/internship listing:</b>
+            <input type="text" className="form-control" id="jobname" placeholder="Job Title"></input>
+            <textarea className="form-control" id="jobdesc" placeholder="Description here..." rows="5" cols="80" />
+            <input type="text" className="form-control" id="joblink" placeholder="Job Link"></input>
+          </div>
+          <button className="submitjob" onClick={this.submitJob}>Submit</button>
         </div>
-        <button className="submitjob" onClick={this.submitJob}>Submit</button>
-      </div>
-    );
+      );
+    } else {
+      return (
+        <div className="companyprofile" >
+          {companyInfo}
+          {this.renderJobs()}
+          <div className="input-group col-md-10 col-md-offset-1 addjob"></div>
+        </div>
+      );
+    }
   }
 }
 
 const mapDispatchToProps = (state, action) => (
   {
     thisCompany: state.companies.comp,
+    user: state.auth.user,
   }
 );
 
