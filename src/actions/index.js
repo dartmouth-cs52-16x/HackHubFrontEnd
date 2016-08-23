@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -214,7 +214,6 @@ export function updateUser(user) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/users/${user.id}`, user).then(response => {
       console.log(response.data);
-      dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
       browserHistory.push(`users/${user.id}`);
     }).catch(error => {
       console.log('Error updating user');
