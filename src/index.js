@@ -17,9 +17,10 @@ const store = createStore(reducers, {}, compose(
 const token = localStorage.getItem('token');
 const id = localStorage.getItem('id');
 const role = localStorage.getItem('role');
+const company = localStorage.getItem('company');
 
 if (token) {
-  store.dispatch({ type: ActionTypes.AUTH_USER, payload: { id, role } });
+  store.dispatch({ type: ActionTypes.AUTH_USER, payload: { id, role, company } });
 }
 
 // entry point that just renders app
