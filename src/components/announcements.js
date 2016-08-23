@@ -14,6 +14,7 @@ class Announcements extends Component {
 
     this.createAnnouncement = this.createAnnouncement.bind(this);
     this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
+    this.renderAnnouncementBar = this.renderAnnouncementBar.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
     this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
   }
@@ -49,13 +50,21 @@ class Announcements extends Component {
     return renderList;
   }
 
+  renderAnnouncementBar() {
+    if (this.props.role === 'organizer') {
+      return (<div className="col-md-10 col-md-offset-1 mainpage">
+          <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        </div>
+      );
+    }
+    return;
+  }
+
 
   render() {
     return (
       <div>
-        <div className="col-md-10 col-md-offset-1 mainpage">
-          <NewAnnouncement createAnnouncement={this.createAnnouncement} />
-        </div>
+        {this.renderAnnouncementBar()}
         <div>
           {this.renderAnnouncements()}
         </div>
@@ -67,6 +76,7 @@ class Announcements extends Component {
 const mapStateToProps = (state, action) => (
   {
     all: state.announcements.all,
+    role: state.auth.role,
   }
 );
 
