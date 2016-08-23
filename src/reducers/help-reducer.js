@@ -6,8 +6,8 @@ const HelpReducer = (state = { all: [], id: null }, action) => {
       return { ...state, all: action.payload.all };
     case ActionTypes.FETCH_HELP:
       return { ...state, all: action.payload.all };
-    // case ActionTypes.DEAUTH_USER:
-    //   return { ...state, authenticated: false };
+    case ActionTypes.DELETE_HELP:
+      return { ...state, all: action.payload.all };
     // case ActionTypes.AUTH_ERROR:
     //   return { ...state, authenticated: false };
     default:
