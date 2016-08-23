@@ -5,7 +5,7 @@ import React, { Component } from 'react';
 // import { createCompany } from '../actions/index';
 // import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
-import { createHelp, fetchHelp, fetchUser } from '../actions';
+import { createHelp, fetchHelp } from '../actions';
 import HelpSingle from './helpsingle';
 
 class Help extends Component {
@@ -13,8 +13,10 @@ class Help extends Component {
     super(props);
 
     this.state = {
-      category: '',
+      category: 'General',
       text: '',
+      user: null,
+      all: [],
     };
 
     this.onTravelChange = this.onTravelChange.bind(this);
@@ -29,15 +31,14 @@ class Help extends Component {
 
   componentWillMount() {
     this.props.fetchHelp();
-    this.props.fetchUser(localStorage.getItem('id'));
+    // this.props.fetchUser(localStorage.getItem('id'));
   }
 
-  componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
-    this.setState({
-      user: nextProps.user.user,
-    });
-  }
+  // componentWillReceiveProps(nextProps) {
+  //   this.setState({
+  //     user: nextProps.user.user,
+  //   });
+  // }
 
   onTravelChange(event) {
     // change the button text
@@ -88,18 +89,17 @@ class Help extends Component {
   }
 
   onButtonClick(event) {
+    event.preventDefault();
     const message = document.getElementById('messageTextarea').value;
     if (message.length === 0) {
       document.getElementById('error').style.display = 'block';
     } else {
-      // browserHistory.push('/helpdone');
       const fields = {
         message,
         category: this.state.category,
-        email: this.state.user.email,
-        id: this.state.user.id,
+        email: this.props.user.email,
+        id: this.props.user.id,
       };
-
       this.props.createHelp(fields);
     }
   }
@@ -111,7 +111,9 @@ class Help extends Component {
     if (this.props.user === null) {
       return null;
     }
-    if (this.state.user.role === 'hacker') {
+    console.log(this.props.user);
+    // TODO change so that companies can do this too
+    if (this.props.user && this.props.user.role === 'hacker') {
       return (
         <div className="companyprofile" >
           <div className="row">
@@ -173,8 +175,8 @@ class Help extends Component {
 const mapStateToProps = (state, action) => (
   {
     all: state.help.all,
-    user: state.users.user,
+    user: state.auth.user,
   }
 );
 
-export default connect(mapStateToProps, { createHelp, fetchHelp, fetchUser })(Help);
+export default connect(mapStateToProps, { createHelp, fetchHelp })(Help);
