@@ -18,7 +18,7 @@ class Job extends Component {
   // render announcement
   render() {
     let deleteButton = '';
-    if (this.props.user && this.props.user.role === 'recruiter') {
+    if (this.props.role === 'organizer' || this.props.role === 'recruiter') {
       deleteButton = (
         <i className="fa fa-times" aria-hidden="true" onClick={this.onDeleteClick}></i>
       );
@@ -46,6 +46,7 @@ const mapStateToProps = (state, action) => (
   {
     all: state.companies.all,
     user: state.auth.user,
+    role: state.auth.role,
   }
 );
 

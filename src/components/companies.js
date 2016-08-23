@@ -42,11 +42,10 @@ class Companies extends Component {
 
 
   render() {
-    if (this.props.user && this.props.user.role === 'hacker') {
+    if (this.props.role === 'hacker') {
       return (
         <div>
-          <div className="col-md-2 col-md-offset-9 mainpage">
-          </div>
+          <div className="col-md-2 col-md-offset-9 mainpage"></div>
           <div>
             {this.renderCompany()}
           </div>
@@ -71,6 +70,7 @@ const mapStateToProps = (state, action) => (
   {
     all: state.companies.all,
     user: state.auth.user,
+    role: state.auth.role,
   }
 );
 
