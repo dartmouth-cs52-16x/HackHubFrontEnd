@@ -15,12 +15,14 @@ class Signup extends Component {
       email: '',
       password: '',
       role: '',
+      organization: '',
     };
 
     this.changeFullName = this.changeFullName.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.changeRole = this.changeRole.bind(this);
+    this.changeOrganization = this.changeOrganization.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
 
@@ -48,12 +50,19 @@ class Signup extends Component {
     });
   }
 
+  changeOrganization(event) {
+    this.setState({
+      organization: event.target.value,
+    });
+  }
+
   submitForm() {
     const user = {
       fullname: this.state.fullname,
       email: this.state.email,
       password: this.state.password,
       role: this.state.role,
+      organization: this.state.organization,
     };
     this.props.signupUser(user);
   }
@@ -67,6 +76,9 @@ class Signup extends Component {
         </h1>
         <div className="fullnamerow">
           Full Name: <input value={this.state.fullname} onChange={this.changeFullName} />
+        </div>
+        <div className="organizationrow">
+          Organization: <input value={this.state.organization} onChange={this.changeOrganization} />
         </div>
         <div className="emailrow">
           Email: <input value={this.state.email} onChange={this.changeEmail} />
