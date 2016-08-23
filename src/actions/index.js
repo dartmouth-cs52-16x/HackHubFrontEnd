@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -20,6 +20,8 @@ export const ActionTypes = {
   AUTH_USER: 'AUTH_USER',
   DEAUTH_USER: 'DEAUTH_USER',
   AUTH_ERROR: 'AUTH_ERROR',
+  CREATE_HELP: 'CREATE_HELP',
+  FETCH_HELP: 'FETCH_HELP',
 };
 
 // fetch all announcements
@@ -127,7 +129,7 @@ export function fetchCompany(id) {
 export function updateCompany(comp) {
   return (dispatch) => {
     const fields = { name: comp.name, image: comp.image, website: comp.website, recruiter: comp.recruiter,
-      jobs: comp.jobs };
+      jobs: comp.jobs, about: comp.about };
     axios.put(`${ROOT_URL}/company/${comp.id}`, fields).then(response => {
       dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
     }).catch(error => {
@@ -137,10 +139,42 @@ export function updateCompany(comp) {
   };
 }
 
+// create a new post
+export function createHelp(help) {
+  return (dispatch) => {
+    const fields = { message: help.message, category: help.category, email: help.email, id: help.id };
+    axios.post(`${ROOT_URL}/help`, fields).then(() => {
+      axios.get(`${ROOT_URL}/help`).then(response => {
+        dispatch({ type: ActionTypes.CREATE_HELP, payload: { all: response.data } });
+        browserHistory.push('helpdone');
+      }).catch(error => {
+        console.log('Error getting help');
+      });
+    }).catch(error => {
+      console.log('Error creating help');
+    });
+  };
+}
+
+// fetch all posts
+export function fetchHelp() {
+  return (dispatch) => {
+    axios.get(`${ROOT_URL}/help`).then(response => {
+      console.log('help data');
+      console.log(response.data);
+      dispatch({ type: ActionTypes.FETCH_HELP, payload: { all: response.data } });
+    }).catch(error => {
+      console.log('Error getting help');
+    });
+  };
+}
+
 export function fetchUser(id) {
   console.log('fetch user');
   return (dispatch) => {
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
+      console.log('data');
+      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
       console.log(error);
@@ -204,7 +238,9 @@ export function signinUser(email, password) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signin`, { email, password })
     .then(response => {
+      console.log('user is here');
       console.log(response.data.user);
+      console.log(response.data.role);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.user);

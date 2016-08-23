@@ -16,8 +16,16 @@ class CompanyShow extends Component {
       website: '',
       recruiter: '',
       jobs: [],
+      about: '',
+      editing: false,
+      error: 0,
     };
 
+    this.onWebsiteChange = this.onWebsiteChange.bind(this);
+    this.onRecruiterChange = this.onRecruiterChange.bind(this);
+    this.onAboutChange = this.onAboutChange.bind(this);
+    this.editInfo = this.editInfo.bind(this);
+    this.submitInfo = this.submitInfo.bind(this);
     this.submitJob = this.submitJob.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
     this.renderJobs = this.renderJobs.bind(this);
@@ -25,6 +33,21 @@ class CompanyShow extends Component {
 
   componentWillMount() {
     this.props.fetchCompany(this.props.params.id);
+  }
+
+  // update website input
+  onWebsiteChange(event) {
+    this.setState({ website: event.target.value });
+  }
+
+  // update recruiter input
+  onRecruiterChange(event) {
+    this.setState({ recruiter: event.target.value });
+  }
+
+  // update about input
+  onAboutChange(event) {
+    this.setState({ about: event.target.value });
   }
 
   submitJob() {
@@ -45,6 +68,7 @@ class CompanyShow extends Component {
       website: this.props.thisCompany.website,
       recruiter: this.props.thisCompany.recruiter,
       jobs: currJobs,
+      about: this.props.thisCompany.about,
     };
     this.props.updateCompany(fields);
   }
@@ -62,8 +86,46 @@ class CompanyShow extends Component {
       website: this.props.thisCompany.website,
       recruiter: this.props.thisCompany.recruiter,
       jobs: currJobs,
+      about: this.props.thisCompany.about,
     };
     this.props.updateCompany(fields);
+  }
+
+  editInfo() {
+    this.setState({
+      name: this.props.thisCompany.name,
+      image: this.props.thisCompany.image,
+      website: this.props.thisCompany.website,
+      recruiter: this.props.thisCompany.recruiter,
+      jobs: this.props.thisCompany.jobs,
+      about: this.props.thisCompany.about,
+      editing: true,
+      initialize: true,
+    });
+  }
+
+  submitInfo() {
+    // submit only if no field is empty (or just spaces)
+    if (this.state.website.trim().length > 0 && this.state.recruiter.trim().length > 0) {
+      this.setState({
+        editing: false,
+        error: 0,
+      });
+      const fields = { id: this.props.thisCompany.id,
+        name: this.state.name,
+        image: this.state.image,
+        website: this.state.website,
+        recruiter: this.state.recruiter,
+        jobs: this.state.jobs,
+        about: this.state.about,
+      };
+      this.props.updateCompany(fields);
+    } else {
+      // if empty field, display error message
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
   renderJobs() {
@@ -88,10 +150,13 @@ class CompanyShow extends Component {
         <div>Loading...</div>
       );
     }
-    console.log(this.props.thisCompany);
-    // state not initialized, use this.props.currentPost
-    return (
-      <div className="companyprofile" >
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please fill out all fields!';
+    }
+    let companyInfo = '';
+    if (this.state.editing === false) {
+      companyInfo = (
         <div className="row">
           <div className="col-lg-6 col-md-6 col-xs-12 thumb companyinfo">
             <div className="compname">
@@ -103,6 +168,10 @@ class CompanyShow extends Component {
             <div className="comprecruiter">
               <b>Recruiter:</b> {this.props.thisCompany.recruiter}
             </div>
+            <div className="compabout">
+              <b>About:</b> {this.props.thisCompany.about}
+            </div>
+            <button className="editinfo" onClick={this.editInfo}>Edit</button>
           </div>
           <div className="col-lg-6 col-md-6 col-xs-12 thumb">
             <div className="imagerow">
@@ -110,6 +179,39 @@ class CompanyShow extends Component {
             </div>
           </div>
         </div>
+      );
+    } else {
+      companyInfo = (
+        <div className="row">
+          <div className="col-lg-6 col-md-6 col-xs-12 thumb companyinfo">
+            <div className="compname">
+              <b>{this.state.name}</b>
+            </div>
+            <div className="compsite">
+              <b>Website:</b> <input value={this.state.website} onChange={this.onWebsiteChange} />
+            </div>
+            <div className="comprecruiter">
+              <b>Recruiter:</b> <input value={this.state.recruiter} onChange={this.onRecruiterChange} />
+            </div>
+            <div className="compabout">
+              <b>About:</b> <textarea value={this.state.about} onChange={this.onAboutChange} />
+            </div>
+            <button className="editinfo" onClick={this.submitInfo}>Done</button>
+          </div>
+          <div>
+            {errorText}
+          </div>
+          <div className="col-lg-6 col-md-6 col-xs-12 thumb">
+            <div className="imagerow">
+              <img className="compimg" src={this.props.thisCompany.image} alt="Invalid link" />
+            </div>
+          </div>
+        </div>
+      );
+    }
+    return (
+      <div className="companyprofile" >
+        {companyInfo}
         {this.renderJobs()}
         <div className="input-group col-md-10 col-md-offset-1 addjob">
           <b>Add a job/internship listing:</b>

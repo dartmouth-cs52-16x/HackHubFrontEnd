@@ -18,13 +18,13 @@ class NewAnnouncement extends Component {
   render() {
     return (
       <div className="input-group">
-          <input type="text" className="form-control" id="submit-bar" placeholder="Announcement"
-            onChange={this.onInputChange} value={this.state.titleterm}
-          ></input>
-          <span className="input-group-btn">
-            <button className="btn btn-primary" type="submit" onClick={this.onButtonClick} >New</button>
-          </span>
-        </div>
+        <input type="text" className="form-control" id="submit-bar" placeholder="Announcement"
+          onChange={this.onInputChange} value={this.state.titleterm}
+        ></input>
+        <span className="input-group-btn">
+          <button className="btn btn-primary" type="submit" onClick={this.onButtonClick} >New</button>
+        </span>
+      </div>
     );
   }
 }
