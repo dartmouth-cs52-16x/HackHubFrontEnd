@@ -15,14 +15,14 @@ class Signup extends Component {
       email: '',
       password: '',
       role: '',
-      organization: '',
+      company: '',
     };
 
     this.changeFullName = this.changeFullName.bind(this);
     this.changeEmail = this.changeEmail.bind(this);
     this.changePassword = this.changePassword.bind(this);
     this.changeRole = this.changeRole.bind(this);
-    this.changeOrganization = this.changeOrganization.bind(this);
+    this.changeCompany = this.changeCompany.bind(this);
     this.submitForm = this.submitForm.bind(this);
   }
 
@@ -50,9 +50,9 @@ class Signup extends Component {
     });
   }
 
-  changeOrganization(event) {
+  changeCompany(event) {
     this.setState({
-      organization: event.target.value,
+      company: event.target.value,
     });
   }
 
@@ -62,7 +62,7 @@ class Signup extends Component {
       email: this.state.email,
       password: this.state.password,
       role: this.state.role,
-      organization: this.state.organization,
+      company: this.state.company,
     };
     this.props.signupUser(user);
   }
@@ -77,9 +77,6 @@ class Signup extends Component {
         <div className="fullnamerow">
           Full Name: <input value={this.state.fullname} onChange={this.changeFullName} />
         </div>
-        <div className="organizationrow">
-          Organization: <input value={this.state.organization} onChange={this.changeOrganization} />
-        </div>
         <div className="emailrow">
           Email: <input value={this.state.email} onChange={this.changeEmail} />
         </div>
@@ -89,7 +86,9 @@ class Signup extends Component {
         <div className="organizerrow">
           <input type="radio" name="organizer" value="organizer" onChange={this.changeRole} /> Organizer <br />
           <input type="radio" name="organizer" value="hacker" onChange={this.changeRole} /> Hacker <br />
-          <input type="radio" name="organizer" value="recruiter" onChange={this.changeRole} /> Recruiter <br />
+          <input type="radio" name="organizer" value="recruiter" onChange={this.changeRole} /> Recruiter /
+            Company: <input value={this.state.company} onChange={this.changeCompany} />
+          <br />
         </div>
         <br />
         <div>
