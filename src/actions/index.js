@@ -230,7 +230,6 @@ export function updateUser(user) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/users/${user.id}`, user).then(response => {
       console.log(response.data);
-      dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
       browserHistory.push(`users/${user.id}`);
     }).catch(error => {
       console.log('Error updating user');
