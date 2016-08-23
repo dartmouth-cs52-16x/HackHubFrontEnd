@@ -32,7 +32,7 @@ class Company extends Component {
           <Link to={`companies/${this.props.id}`} key={this.props.id}>
             <div className="companyname">{this.props.name}</div>
           </Link>
-          <i className="fa fa-trash-o fa-2x" aria-hidden="true" onClick={this.onDeleteClick}></i>
+          <p onClick={this.onDeleteClick}>x</p>
         </div>
       );
     }
