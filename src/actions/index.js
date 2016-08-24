@@ -397,7 +397,7 @@ export function updateSchedule(input) {
     };
     axios.put(`${ROOT_URL}/schedule/${fields.id}`, fields).then(response => {
       console.log(response.data);
-      dispatch({ type: ActionTypes.UPDATE_SCHED, payload: { all: response.data } });
+      // dispatch({ type: ActionTypes.UPDATE_SCHED, payload: { all: response.data } });
     }).catch(error => {
       console.log(error);
       browserHistory.push('/error');
