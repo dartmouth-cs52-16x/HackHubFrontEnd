@@ -15,6 +15,7 @@ import MyProfile from './components/my-profile';
 import CompanyShow from './components/company_show';
 import Directory from './components/user-directory';
 import UpdateDates from './components/update-dates';
+import NewEvent from './components/new-event';
 import Home from './components/home';
 import Error from './components/error';
 import RequireAuth from './components/require-auth';
@@ -34,6 +35,7 @@ export default(
     <Route path="/signup" component={SignUp} />
     <Route path="/signout" component={SignOut} />
     <Route path="/update_schedule" component={UpdateDates} />
+    <Route path="/new_event" component={NewEvent} />
     <Route path="/users/:id" component={RequireAuth(UserProfile)} />
     <Route path="/my_profile" component={RequireAuth(MyProfile)} />
     <Route path="/error" component={Error} />

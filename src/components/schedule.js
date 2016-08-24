@@ -14,8 +14,14 @@ class Schedule extends Component {
     this.state = {
     };
 
+
+    this.createEvent = this.createEvent.bind(this);
     this.updateSchedule = this.updateSchedule.bind(this);
     this.createSchedule = this.createSchedule.bind(this);
+  }
+
+  createEvent() {
+    browserHistory.push('/new_event');
   }
 
   updateSchedule() {
@@ -102,6 +108,9 @@ class Schedule extends Component {
     return (
       <div>
         <div id="schedbtn" className="">
+        <div>
+          <button onClick={this.createEvent} className="btn btn-default">New Event</button>
+        </div>
           <div>
             <button onClick={this.updateSchedule} className="btn btn-default">Update Schedule</button>
           </div>
