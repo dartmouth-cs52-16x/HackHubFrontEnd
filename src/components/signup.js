@@ -73,7 +73,8 @@ class Signup extends Component {
     }
     return (
       <div className="companyrow">
-        Company: <input value={this.state.company} onChange={this.changeCompany} />
+        <div>Company</div>
+        <input value={this.state.company} onChange={this.changeCompany} />
       </div>
     );
   }
