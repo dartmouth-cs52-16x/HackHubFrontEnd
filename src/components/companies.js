@@ -32,7 +32,7 @@ class Companies extends Component {
     }
     const renderList = this.props.all.map((comp) => {
       return (
-        <div key={comp.id} className="">
+        <div key={comp.id} className="col-md-10 col-md-offset-1">
           <Company name={comp.name} id={comp.id} delete={this.deleteCompany} />
         </div>
       );
@@ -44,8 +44,10 @@ class Companies extends Component {
   render() {
     if (this.props.role === 'hacker') {
       return (
-        <div>
-          <div className="col-md-2 col-md-offset-9 mainpage"></div>
+        <div className="companies">
+          <div className="compname">
+            <b>Companies</b>
+          </div>
           <div>
             {this.renderCompany()}
           </div>
@@ -53,7 +55,10 @@ class Companies extends Component {
       );
     } else {
       return (
-        <div>
+        <div className="mainpage">
+          <div className="compname">
+            <b>Companies</b>
+          </div>
           <div className="col-md-2 col-md-offset-9 mainpage">
             <Link id="link" to="new_company">Add Company</Link>
           </div>

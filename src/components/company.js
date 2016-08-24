@@ -29,10 +29,14 @@ class Company extends Component {
     } else {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
-          <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
-            <div className="companyname">{this.props.name}</div>
-          </Link>
-          <p onClick={this.onDeleteClick}>x</p>
+          <div>
+            <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
+              <div className="companyname">{this.props.name}</div>
+            </Link>
+          </div>
+          <div>
+            <p onClick={this.onDeleteClick}>x</p>
+          </div>
         </div>
       );
     }

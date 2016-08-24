@@ -24,7 +24,7 @@ class HelpSingle extends Component {
         <div>
           <div className="announcetext">Message: {this.props.message}</div>
           <div className="announcetext">Category: {this.props.category}</div>
-          <Link to={link} className="announcetext">Go to user&rsquo;s profile to address this message.</Link>
+          <Link id="link" to={link} className="announcetext">Go to user&rsquo;s profile to address this message.</Link>
         </div>
         <p onClick={this.onDeleteClick}>x</p>
       </div>
