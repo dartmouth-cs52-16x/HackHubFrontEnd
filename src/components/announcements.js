@@ -52,12 +52,21 @@ class Announcements extends Component {
 
   renderAnnouncementBar() {
     if (this.props.role === 'organizer') {
-      return (<div className="col-md-10 col-md-offset-1 mainpage">
-        <NewAnnouncement createAnnouncement={this.createAnnouncement} />
-      </div>
+      return (
+        <div className="col-md-10 col-md-offset-1 mainpage">
+          <div className="compname">
+            <b>Announcements</b>
+          </div>
+          <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+        </div>
+      );
+    } else {
+      return (
+        <div className="compname">
+          <b>Announcements</b>
+        </div>
       );
     }
-    return null;
   }
 
 
