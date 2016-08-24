@@ -158,12 +158,12 @@ class MyProfile extends Component {
               {this.renderPhone()}
               {this.renderAbout()}
             </div>
-            <div className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-3">
+            <div className="input-group">
               <b>Add a skill:</b>
               <div className="input-group">
                 <input type="text" className="form-control" id="skill" placeholder="javascript"></input>
                 <span className="input-group-btn">
-                  <button className="btn btn-primary" type="submit" onClick={this.addSkill} >New</button>
+                  <button className="btn btn-default" type="submit" onClick={this.addSkill} >New</button>
                 </span>
               </div>
             </div>
