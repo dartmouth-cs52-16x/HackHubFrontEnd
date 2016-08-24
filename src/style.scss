@@ -278,10 +278,10 @@ p {
 }
 
 .skillsingle {
-  display: inline;
-  border: solid grey 1px;
+  display: inline-block;
+  border: solid 2px;
+  border-color: rgb(48, 110, 182);
   border-radius: 5px;
-  background-color: rgb(250, 250, 250);
   margin: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -293,7 +293,28 @@ p {
 }
 
 .skilllist {
+  margin-top: 10px;
+}
+
+.userfullname {
+  font-size: 40px;
+}
+
+.userlinks {
+  font-size: 40px;
+}
+
+.userabout {
+  border: solid grey 1px;
+  border-radius: 5px;
+  text-align: left;
+  padding: 5px;
   margin: 10px;
+}
+
+.userskills {
+  text-align: center;
+  margin-top: 30px;
 }
 
 .editinfo {
