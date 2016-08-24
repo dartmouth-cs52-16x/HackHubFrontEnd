@@ -45,7 +45,7 @@ export function createAnnouncement(ann) {
   const date = new Date;
 
   const dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}
-  ${date.getHours()}:${date.getMinutes()}:${date.getSeconds()}`;
+  ${date.toString().split(' ')[4]}`;
   return (dispatch) => {
     const fields = { text: ann.text, date: dateString };
     axios.post(`${ROOT_URL}/announcements`, fields).then(() => {
