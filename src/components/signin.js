@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import { signinUser } from '../actions/index';
 
@@ -13,6 +13,7 @@ class Signin extends Component {
     this.state = {
       email: '',
       password: '',
+      error: 0,
     };
 
     this.changeEmail = this.changeEmail.bind(this);
@@ -33,26 +34,44 @@ class Signin extends Component {
   }
 
   submitForm() {
-    this.props.signinUser(this.state.email, this.state.password);
+    // submit only if no field is empty (or just spaces)
+    if (this.state.email.trim().length > 0 && this.state.password.trim().length > 0) {
+      this.props.signinUser(this.state.email, this.state.password);
+    } else {
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
 
   render() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please fill out all fields';
+    }
     return (
       <div className="signupbox col-md-6 col-md-offset-3">
-        <h1>
-          Login
-        </h1>
+        <div className="compname">
+          <b>Login</b>
+        </div>
         <div className="usernamerow">
-          Email: <input value={this.state.email} onChange={this.changeEmail} />
+          <div>Email</div>
+          <input value={this.state.email} onChange={this.changeEmail} />
         </div>
         <div className="passwordrow">
-          Password: <input value={this.state.password} onChange={this.changePassword} />
+          <div>Password</div>
+          <input value={this.state.password} onChange={this.changePassword} />
+        </div>
+        <div className="loginbutton">
+          <button className="submitjob" onClick={this.submitForm}>Login</button>
         </div>
         <div>
-          <button onClick={this.submitForm}>Login</button>
+          <Link id="link" to="/signup">Sign Up</Link>
         </div>
-        <Link to="/signup">Sign Up</Link>
+        <div>
+          <b><font color="red">{errorText}</font></b>
+        </div>
       </div>
     );
   }

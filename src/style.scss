@@ -7,16 +7,39 @@ body {
 }
 
 .mainpage {
-  margin-top: 50px;
+  margin-top: 25px;
+  padding: 5px;
+  margin: auto;
 }
 
 .home {
-  margin: 100px;
   text-align: center;
   animation-name: homeanimate;
   animation-duration: 2s;
   animation-timing-function: ease-in;
   animation-iteration-count: 1;
+}
+
+.welcome-image {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: auto;
+  z-index: -1;
+}
+
+.welcome-header {
+  font-size: 7vh;
+  font-weight: bold;
+  color: #1d8b8e;
+  margin-top: 15vh;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @keyframes homeanimate {
@@ -33,7 +56,7 @@ p {
 }
 
 .navbar {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
   color: white !important;
 }
 
@@ -46,7 +69,7 @@ p {
 }
 
 .dropdown-menu {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
 }
 
 .dropdown-menu > li > a {
@@ -106,6 +129,22 @@ p {
   align-content: center;
 }
 
+.announcements {
+  margin: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  align-content: center;
+}
+
+.companies {
+  margin: auto;
+  padding: 50px;
+  display: flex;
+  flex-direction: column;
+}
+
 .allannouncements {
   border: solid black 1px;
   width: 85%;
@@ -115,12 +154,12 @@ p {
 .announcementsingle {
   display: flex;
   justify-content: space-between;
-  border: solid grey 1px;
+  border: solid rgb(240, 240, 240) 1px;
   border-radius: 5px;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(255, 255, 255);
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 10px;
   height: auto;
 
   p:hover {
@@ -155,16 +194,15 @@ p {
 }
 
 .companysingle {
-  border: solid grey 1px;
-  border-radius: 5px;
-  background-color: rgb(250, 250, 250);
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  border-radius: 1px;
+  background-color: rgb(255, 255, 255);
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 20px;
   height: auto;
-
-  display: flex;
-  justify-content: space-between;
 
   p:hover {
     cursor: pointer;
@@ -183,8 +221,8 @@ p {
 .companyprofile, .userprofile {
   margin: 50px;
   margin-top: 100px;
-  border: solid black 1px;
   text-align: center;
+  background-color: rgb(255, 255, 255);
   border-radius: 5px;
   padding: 25px;
 }
@@ -195,17 +233,31 @@ p {
 
 .compname {
   font-size: 40px;
+  text-align: center;
+}
+
+.addcompanybutton {
+  background-color: rgb(48, 110, 182);
+  border-radius: 5px;
+  padding: 5px;
+  color: white;
+}
+
+.helplist {
+  text-align: left;
 }
 
 .jobsingle {
-  border: solid grey 1px;
+  text-align: left;
+  display: flex;
+  flex-direction: column;
+  border: solid rgb(240, 240, 240) 1px;
   border-radius: 5px;
-  background-color: rgb(250, 250, 250);
+  background-color: rgb(255, 255, 255);
   margin-top: 5px;
   margin-bottom: 5px;
-  padding: 5px;
+  padding: 10px;
   height: auto;
-  text-align: left;
 }
 
 
@@ -216,7 +268,7 @@ p {
 }
 
 .submitjob, .editinfo {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
   border: none;
   color: white;
   padding: 15px 32px;
@@ -228,11 +280,15 @@ p {
   border-radius: 5px;
 }
 
+.submitjob:hover, .editinfo:hover {
+  opacity: 0.75;
+}
+
 .skillsingle {
-  display: inline;
-  border: solid grey 1px;
+  display: inline-block;
+  border: solid 2px;
+  border-color: rgb(48, 110, 182);
   border-radius: 5px;
-  background-color: rgb(250, 250, 250);
   margin: 5px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -244,7 +300,28 @@ p {
 }
 
 .skilllist {
+  margin-top: 10px;
+}
+
+.userfullname {
+  font-size: 40px;
+}
+
+.userlinks {
+  font-size: 40px;
+}
+
+.userabout {
+  border: solid grey 1px;
+  border-radius: 5px;
+  text-align: left;
+  padding: 5px;
   margin: 10px;
+}
+
+.userskills {
+  text-align: center;
+  margin-top: 30px;
 }
 
 .editinfo {
@@ -277,16 +354,18 @@ p {
   text-align: center;
   border-radius: 5px;
   margin-top: 50px;
-  background-color: rgba(75%, 75%, 75%, .5);
   padding: 25px;
 }
 
+.usernamerow, .passwordrow, .loginbutton, .fullnamerow, .emailrow, .organizerrow, .companyrow {
+  padding: 5px;
+  margin: auto;
+}
 
 .signupbox {
   text-align: center;
   border-radius: 5px;
   margin-top: 50px;
-  background-color: rgba(75%, 75%, 75%, .5);
   padding: 25px;
 }
 
@@ -309,9 +388,9 @@ textarea {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: rgb(60, 175, 135);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgb(60, 175, 135);
 }
 
 .dropdown-content a {
@@ -322,21 +401,34 @@ textarea {
     cursor: pointer;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: rgb(60, 175, 135)}
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3EB489;
+    background-color: rgb(60, 175, 135);
 }
 
 .profimg {
-  height: auto;
+  height: 300px;
   width: auto;
 }
 
 #error {
   display: none;
+}
+
+#link {
+  color: gray;
+}
+
+.directorysection {
+  display: flex;
+  flex-direction: column;
+}
+
+#users {
+  text-align: center;
 }

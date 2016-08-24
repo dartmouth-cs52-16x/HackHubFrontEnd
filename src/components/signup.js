@@ -16,6 +16,7 @@ class Signup extends Component {
       password: '',
       role: '',
       company: '',
+      error: 0,
     };
 
     this.changeFullName = this.changeFullName.bind(this);
@@ -57,14 +58,26 @@ class Signup extends Component {
   }
 
   submitForm() {
-    const user = {
-      fullname: this.state.fullname,
-      email: this.state.email,
-      password: this.state.password,
-      role: this.state.role,
-      company: this.state.company,
-    };
-    this.props.signupUser(user);
+    if (this.state.fullname.trim().length > 0 && this.state.email.trim().length > 0 &&
+    this.state.password.trim().length > 0 && this.state.role.trim().length > 0 &&
+    (!(this.state.role === 'recruiter') || this.state.company.trim().length > 0)) {
+      let companyText = '';
+      if (this.state.role === 'recruiter') {
+        companyText = this.state.company;
+      }
+      const user = {
+        fullname: this.state.fullname,
+        email: this.state.email,
+        password: this.state.password,
+        role: this.state.role,
+        company: companyText,
+      };
+      this.props.signupUser(user);
+    } else {
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
   renderCompany() {
@@ -73,25 +86,33 @@ class Signup extends Component {
     }
     return (
       <div className="companyrow">
-        Company: <input value={this.state.company} onChange={this.changeCompany} />
+        <div>Company</div>
+        <input value={this.state.company} onChange={this.changeCompany} />
       </div>
     );
   }
 
   render() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please fill out all fields';
+    }
     return (
       <div className="signupbox col-md-6 col-md-offset-3">
-        <h1>
-          Sign Up:
-        </h1>
+        <div className="compname">
+          <b>Sign Up</b>
+        </div>
         <div className="fullnamerow">
-          Full Name: <input value={this.state.fullname} onChange={this.changeFullName} />
+          <div>Full Name</div>
+          <input value={this.state.fullname} onChange={this.changeFullName} />
         </div>
         <div className="emailrow">
-          Email: <input value={this.state.email} onChange={this.changeEmail} />
+          <div>Email</div>
+          <input value={this.state.email} onChange={this.changeEmail} />
         </div>
         <div className="passwordrow">
-          Password: <input value={this.state.password} onChange={this.changePassword} />
+          <div>Password</div>
+          <input value={this.state.password} onChange={this.changePassword} />
         </div>
         {this.renderCompany()}
         <div className="organizerrow">
@@ -101,10 +122,15 @@ class Signup extends Component {
           <br />
         </div>
         <br />
-        <div>
-          <button onClick={this.submitForm}>Submit</button>
+        <div className="loginbutton">
+          <button className="submitjob" onClick={this.submitForm}>Submit</button>
         </div>
-        <Link to="/signin">Sign In</Link>
+        <div>
+          <Link id="link" to="/signin">Sign In</Link>
+        </div>
+        <div>
+          <b><font color="red">{errorText}</font></b>
+        </div>
       </div>
     );
   }

@@ -18,10 +18,10 @@ class Company extends Component {
 
   // render announcement
   render() {
-    if (this.props.role === 'hacker') {
+    if (this.props.role !== 'organizer') {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
-          <Link to={`companies/${this.props.id}`} key={this.props.id}>
+          <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
             <div className="companyname">{this.props.name}</div>
           </Link>
         </div>
@@ -29,10 +29,14 @@ class Company extends Component {
     } else {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
-          <Link to={`companies/${this.props.id}`} key={this.props.id}>
-            <div className="companyname">{this.props.name}</div>
-          </Link>
-          <p onClick={this.onDeleteClick}>x</p>
+          <div>
+            <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
+              <div className="companyname">{this.props.name}</div>
+            </Link>
+          </div>
+          <div>
+            <p onClick={this.onDeleteClick}>x</p>
+          </div>
         </div>
       );
     }

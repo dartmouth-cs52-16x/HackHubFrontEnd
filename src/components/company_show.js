@@ -134,7 +134,7 @@ class CompanyShow extends Component {
     }
     const renderList = this.props.thisCompany.jobs.map((job) => {
       return (
-        <div key={job.name} className="">
+        <div key={job.id} className="">
           <Job id={job.id} name={job.name} desc={job.desc} link={job.link} delete={this.deleteJob} />
         </div>
       );
@@ -158,10 +158,16 @@ class CompanyShow extends Component {
 
 
     let buttons = '';
-    if (this.props.user && this.props.user.role === 'recruiter') {
-      buttons = (
-        <button className="editinfo" onClick={this.editInfo}>Edit</button>
-      );
+    if (this.props.company === this.props.thisCompany.name || this.props.role === 'organizer') {
+      if (this.state.editing === true) {
+        buttons = (
+          <button className="editinfo" onClick={this.submitInfo}>Submit</button>
+        );
+      } else {
+        buttons = (
+          <button className="editinfo" onClick={this.editInfo}>Edit</button>
+        );
+      }
     }
 
     if (this.state.editing === false) {

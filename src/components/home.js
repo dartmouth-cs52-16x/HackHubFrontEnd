@@ -4,8 +4,8 @@ import React from 'react';
 export default function Home(props) {
   return (
     <div className="home">
-      <img src="../../img/logo.png" alt="Invalid link" />
-      <h1>Welcome to HackHub!</h1>
+      <h1 className="welcome-header">Welcome to HackHub!</h1>
+      <img className="welcome-image" src="../img/header.png" alt="Invalid link" />
     </div>
   );
 }
