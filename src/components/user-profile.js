@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser } from '../actions';
+import { Link } from 'react-router';
 
 // example class based component (smart component)
 class UserProfile extends Component {
@@ -45,13 +46,13 @@ class UserProfile extends Component {
               </div>
             </div>
             <div className="compsite">
-              <b>Website:</b> {this.state.user.website}
+              <a id="link" href={`${this.state.user.website}`}>Website</a>
             </div>
             <div className="comprecruiter">
-              <b>LinkedIn:</b> {this.state.user.linkedin}
+              <a id="link" href={`${this.state.user.linkedin}`}>LinkedIn</a>
             </div>
             <div className="comprecruiter">
-              <b>Facebook:</b> {this.state.user.facebook}
+              <a id="link" href={`${this.state.user.facebook}`}>Facebook</a>
             </div>
             <br />
             <div className="compabout">
