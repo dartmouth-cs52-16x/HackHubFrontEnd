@@ -167,9 +167,7 @@ class Help extends Component {
                   </select>
                 </div>
                 <div className="form-group">
-                  <b>Note: a response will be sent to the email address on your profile. If necessary, indicate a separate address where you would like to be contacted in response to this message.</b>
-                  <br></br>
-                  <input type="text" className="form-control" id="emailhelp"></input>
+                  <b>Note: a response will be sent to the email address on your profile.</b>
                 </div>
                 <button className="submitjob" onClick={this.onButtonClick}>Submit</button>
               </form>

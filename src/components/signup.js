@@ -82,9 +82,9 @@ class Signup extends Component {
   render() {
     return (
       <div className="signupbox col-md-6 col-md-offset-3">
-        <h1>
-          Sign Up:
-        </h1>
+        <div className="compname">
+          <b>Sign Up</b>
+        </div>
         <div className="fullnamerow">
           <div>Full Name</div>
           <input value={this.state.fullname} onChange={this.changeFullName} />
