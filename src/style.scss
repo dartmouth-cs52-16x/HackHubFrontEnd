@@ -13,19 +13,6 @@ body {
 }
 
 .home {
-  img{
-    position: fixed;
-    top: 0;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    width: 100%;
-    height: 100%;
-    margin: auto;
-    overflow: auto;
-    opacity: .75;
-  }
-
   text-align: center;
   animation-name: homeanimate;
   animation-duration: 2s;
@@ -33,19 +20,26 @@ body {
   animation-iteration-count: 1;
 }
 
-#homeimg{
-  z-index:1;
+.welcome-image {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  margin: auto;
+  overflow: auto;
+  z-index: -1;
 }
 
 .welcome-header {
-    font-size: 7vh;
-    font-weight: bold;
-    color: #1d8b8e;
-    margin-top: 15vh;
-    max-width: 100%;
-    max-height: 100%;
-    z-index: 5;
-
+  font-size: 7vh;
+  font-weight: bold;
+  color: #1d8b8e;
+  margin-top: 15vh;
+  max-width: 100%;
+  max-height: 100%;
 }
 
 @keyframes homeanimate {
