@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { browserHistory, Link } from 'react-router';
+import { Link } from 'react-router';
 
 import { signinUser } from '../actions/index';
 
@@ -44,15 +44,17 @@ class Signin extends Component {
           Login
         </h1>
         <div className="usernamerow">
-          Email: <input value={this.state.email} onChange={this.changeEmail} />
+          <div>Email</div>
+          <input value={this.state.email} onChange={this.changeEmail} />
         </div>
         <div className="passwordrow">
-          Password: <input value={this.state.password} onChange={this.changePassword} />
+          <div>Password</div>
+          <input value={this.state.password} onChange={this.changePassword} />
         </div>
-        <div>
-          <button onClick={this.submitForm}>Login</button>
+        <div className="loginbutton">
+          <button className="submitjob" onClick={this.submitForm}>Login</button>
         </div>
-        <Link to="/signup">Sign Up</Link>
+        <Link id="link" to="/signup">Sign Up</Link>
       </div>
     );
   }
