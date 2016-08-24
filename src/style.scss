@@ -236,6 +236,10 @@ p {
   text-align: center;
 }
 
+.aboutbox {
+  width: 100%;
+}
+
 .addcompanybutton {
   background-color: rgb(48, 110, 182);
   border-radius: 5px;
@@ -311,7 +315,7 @@ p {
   font-size: 40px;
 }
 
-.userabout {
+.userabout, .compabout {
   border: solid grey 1px;
   border-radius: 5px;
   text-align: left;

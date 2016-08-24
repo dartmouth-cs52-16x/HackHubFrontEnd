@@ -372,6 +372,7 @@ export function createSchedule(input) {
 export function updateSchedule(input) {
   return (dispatch) => {
     const fields = {
+
       id: input.id,
       day1: {
         day_of_week: input.day1.day_of_week,

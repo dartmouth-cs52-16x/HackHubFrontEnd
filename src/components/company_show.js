@@ -209,7 +209,7 @@ class CompanyShow extends Component {
               <b>Recruiter:</b> <input value={this.state.recruiter} onChange={this.onRecruiterChange} />
             </div>
             <div className="compabout">
-              <b>About:</b> <textarea value={this.state.about} onChange={this.onAboutChange} />
+              <b>About:</b> <textarea className="aboutbox" value={this.state.about} onChange={this.onAboutChange} />
             </div>
             {buttons}
           </div>

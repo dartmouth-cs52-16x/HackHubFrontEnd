@@ -108,7 +108,6 @@ class ScheduleDisplay extends Component {
     this.setUpSchedule(nextProps.schedule.day2);
   }
 
-
   // refactored code courtesy of Daniel Chen - danielchen.com
   // GitHub : github.com/cheniel/pine-schedule.js
   setUpSchedule(data) {

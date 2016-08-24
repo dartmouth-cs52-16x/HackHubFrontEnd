@@ -22,7 +22,6 @@ class UpdateDates extends Component {
     this.changeMonth1 = this.changeMonth1.bind(this);
     this.changeStart1 = this.changeStart1.bind(this);
     this.changeEnd1 = this.changeEnd1.bind(this);
-
     this.renderDayofWeek2 = this.renderDayofWeek2.bind(this);
     this.renderDay2 = this.renderDay2.bind(this);
     this.renderMonth2 = this.renderMonth2.bind(this);
