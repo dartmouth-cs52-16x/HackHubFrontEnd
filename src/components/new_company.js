@@ -21,7 +21,9 @@ class NewCompanyProfile extends Component {
       <div className="companyprofile">
         <div className="row">
           <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
-            <h1>New Company Profile</h1>
+            <div className="compname">
+              <b>New Company Profile</b>
+            </div>
           </div>
           <div className="input-group col-md-10 col-md-offset-1 company-profile">
             <input type="text" className="form-control" id="compname" placeholder="Company Name"></input>
@@ -29,7 +31,7 @@ class NewCompanyProfile extends Component {
             <input type="text" className="form-control" id="compsite" placeholder="www.companywebsite.com"></input>
             <input type="text" className="form-control" id="comprecruiter" placeholder="recruiter@company.com"></input>
           </div>
-          <button className="btn btn-primary col-md-2 col-md-offset-9" onClick={this.onButtonClick}>Create Profile</button>
+          <button className="submitjob" onClick={this.onButtonClick}>Create Profile</button>
         </div>
       </div>
     );
