@@ -126,10 +126,16 @@ class Help extends Component {
         );
       }); // need to change key???
       return (
-        <div>
-          <h1>Help Messages:</h1>
-          <div>
-            {renderList}
+        <div className="companyprofile">
+          <div className="row">
+            <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
+              <div className="compname">
+                <b>Help Messages:</b>
+              </div>
+              <div className="helplist">
+                {renderList}
+              </div>
+            </div>
           </div>
         </div>
       );
