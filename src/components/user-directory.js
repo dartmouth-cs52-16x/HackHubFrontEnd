@@ -25,21 +25,35 @@ class UserDirectory extends Component {
     this.props.deleteUser(id);
   }
 
-  renderUsers() {
+  renderUsers(role) {
     if (this.props.all == null) {
       return null;
     }
+    let roleText = '';
+    if (role === 'organizer') {
+      roleText = 'ORGANIZER';
+    } else if (role === 'recruiter') {
+      roleText = 'RECRUITER';
+    } else {
+      roleText = 'HACKER';
+    }
     const renderList = this.props.all.map((user) => {
-      console.log(user);
-      return (
-        <div key={user.id} className="">
-          <User name={user.name} id={user.id} fullname={user.fullname} delete={this.deleteUser} />
-        </div>
-      );
+      if (user.role === role) {
+        return (
+          <div key={user.id} className="">
+            <User name={user.name} id={user.id} fullname={user.fullname} delete={this.deleteUser} />
+          </div>
+        );
+      }
+      return null;
     });
-    return renderList;
+    return (
+      <div className="directorysection">
+        <b>{roleText}</b>
+        {renderList}
+      </div>
+    );
   }
-
 
   render() {
     return (
@@ -47,7 +61,11 @@ class UserDirectory extends Component {
         <div className="col-md-2 col-md-offset-9 mainpage">
         </div>
         <div>
-          {this.renderUsers()}
+          {this.renderUsers('hacker')}
+          <br />
+          {this.renderUsers('recruiter')}
+          <br />
+          {this.renderUsers('organizer')}
         </div>
       </div>
     );
