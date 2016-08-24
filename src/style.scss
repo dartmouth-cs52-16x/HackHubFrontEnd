@@ -80,6 +80,12 @@ p {
   margin-top: 50px;
 }
 
+#schedbtn {
+    margin: 100px;
+    display: flex;
+    flex-direction: row;
+    justify-content:flex-end;
+}
 .eventPage {
   display: flex;
   flex-direction: column;

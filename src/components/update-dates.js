@@ -113,6 +113,7 @@ class UpdateDates extends Component {
 
   updateSchedule(e) {
     e.preventDefault();
+    console.log(this.state);
     this.props.updateSchedule(this.state);
   }
 
