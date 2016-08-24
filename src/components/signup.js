@@ -16,6 +16,7 @@ class Signup extends Component {
       password: '',
       role: '',
       company: '',
+      error: 0,
     };
 
     this.changeFullName = this.changeFullName.bind(this);
@@ -57,14 +58,22 @@ class Signup extends Component {
   }
 
   submitForm() {
-    const user = {
-      fullname: this.state.fullname,
-      email: this.state.email,
-      password: this.state.password,
-      role: this.state.role,
-      company: this.state.company,
-    };
-    this.props.signupUser(user);
+    if (this.state.fullname.trim().length > 0 && this.state.email.trim().length > 0 &&
+    this.state.password.trim().length > 0 && this.state.role.trim().length > 0 &&
+    (!(this.state.role === 'recruiter') || this.state.company.trim().length > 0)) {
+      const user = {
+        fullname: this.state.fullname,
+        email: this.state.email,
+        password: this.state.password,
+        role: this.state.role,
+        company: this.state.company,
+      };
+      this.props.signupUser(user);
+    } else {
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
   renderCompany() {
@@ -80,6 +89,10 @@ class Signup extends Component {
   }
 
   render() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please fill out all fields';
+    }
     return (
       <div className="signupbox col-md-6 col-md-offset-3">
         <h1>
@@ -108,7 +121,12 @@ class Signup extends Component {
         <div className="loginbutton">
           <button className="submitjob" onClick={this.submitForm}>Submit</button>
         </div>
-        <Link id="link" to="/signin">Sign In</Link>
+        <div>
+          <Link id="link" to="/signin">Sign In</Link>
+        </div>
+        <div>
+          <b><font color="red">{errorText}</font></b>
+        </div>
       </div>
     );
   }
