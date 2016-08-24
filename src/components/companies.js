@@ -42,7 +42,7 @@ class Companies extends Component {
 
 
   render() {
-    if (this.props.role === 'hacker') {
+    if (this.props.role !== 'organizer') {
       return (
         <div className="companies">
           <div className="compname">
