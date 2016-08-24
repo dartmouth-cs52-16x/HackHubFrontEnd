@@ -134,7 +134,7 @@ class CompanyShow extends Component {
     }
     const renderList = this.props.thisCompany.jobs.map((job) => {
       return (
-        <div key={job.name} className="">
+        <div key={job.id} className="">
           <Job id={job.id} name={job.name} desc={job.desc} link={job.link} delete={this.deleteJob} />
         </div>
       );

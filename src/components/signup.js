@@ -61,12 +61,16 @@ class Signup extends Component {
     if (this.state.fullname.trim().length > 0 && this.state.email.trim().length > 0 &&
     this.state.password.trim().length > 0 && this.state.role.trim().length > 0 &&
     (!(this.state.role === 'recruiter') || this.state.company.trim().length > 0)) {
+      let companyText = '';
+      if (this.state.role === 'recruiter') {
+        companyText = this.state.company;
+      }
       const user = {
         fullname: this.state.fullname,
         email: this.state.email,
         password: this.state.password,
         role: this.state.role,
-        company: this.state.company,
+        company: companyText,
       };
       this.props.signupUser(user);
     } else {
