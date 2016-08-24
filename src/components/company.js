@@ -21,7 +21,7 @@ class Company extends Component {
     if (this.props.role === 'hacker') {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
-          <Link to={`companies/${this.props.id}`} key={this.props.id}>
+          <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
             <div className="companyname">{this.props.name}</div>
           </Link>
         </div>
@@ -29,7 +29,7 @@ class Company extends Component {
     } else {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
-          <Link to={`companies/${this.props.id}`} key={this.props.id}>
+          <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
             <div className="companyname">{this.props.name}</div>
           </Link>
           <p onClick={this.onDeleteClick}>x</p>

@@ -55,7 +55,7 @@ class Companies extends Component {
       return (
         <div>
           <div className="col-md-2 col-md-offset-9 mainpage">
-            <Link to="new_company">Add Company</Link>
+            <Link id="link" to="new_company">Add Company</Link>
           </div>
           <div>
             {this.renderCompany()}
