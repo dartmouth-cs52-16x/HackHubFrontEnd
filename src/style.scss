@@ -138,6 +138,13 @@ p {
   align-content: center;
 }
 
+.companies {
+  margin: auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
 .allannouncements {
   border: solid black 1px;
   width: 85%;
@@ -187,14 +194,15 @@ p {
 }
 
 .companysingle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   border-radius: 1px;
   background-color: rgb(255, 255, 255);
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 20px;
   height: auto;
-  display: flex;
-  justify-content: space-between;
 
   p:hover {
     cursor: pointer;
@@ -250,7 +258,7 @@ p {
 }
 
 .submitjob, .editinfo {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
   border: none;
   color: white;
   padding: 15px 32px;
@@ -383,4 +391,9 @@ textarea {
 
 #link {
   color: gray;
+}
+
+.directorysection {
+  display: flex;
+  flex-direction: column;
 }
