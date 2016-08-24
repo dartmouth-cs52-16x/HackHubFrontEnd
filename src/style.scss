@@ -56,7 +56,7 @@ p {
 }
 
 .navbar {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
   color: white !important;
 }
 
@@ -69,7 +69,7 @@ p {
 }
 
 .dropdown-menu {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
 }
 
 .dropdown-menu > li > a {
@@ -138,6 +138,13 @@ p {
   align-content: center;
 }
 
+.companies {
+  margin: auto;
+  padding: 5px;
+  display: flex;
+  flex-direction: column;
+}
+
 .allannouncements {
   border: solid black 1px;
   width: 85%;
@@ -187,14 +194,15 @@ p {
 }
 
 .companysingle {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
   border-radius: 1px;
   background-color: rgb(255, 255, 255);
   margin-top: 5px;
   margin-bottom: 5px;
   padding: 20px;
   height: auto;
-  display: flex;
-  justify-content: space-between;
 
   p:hover {
     cursor: pointer;
@@ -250,7 +258,7 @@ p {
 }
 
 .submitjob, .editinfo {
-  background-color: #3EB489;
+  background-color: rgb(43, 132, 101);
   border: none;
   color: white;
   padding: 15px 32px;
@@ -370,9 +378,9 @@ textarea {
 .dropdown-content {
     display: none;
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: rgb(60, 175, 135);
     min-width: 160px;
-    box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+    box-shadow: 0px 8px 16px 0px rgb(60, 175, 135);
 }
 
 .dropdown-content a {
@@ -383,14 +391,14 @@ textarea {
     cursor: pointer;
 }
 
-.dropdown-content a:hover {background-color: #f1f1f1}
+.dropdown-content a:hover {background-color: rgb(60, 175, 135)}
 
 .dropdown:hover .dropdown-content {
     display: block;
 }
 
 .dropdown:hover .dropbtn {
-    background-color: #3EB489;
+    background-color: rgb(60, 175, 135);
 }
 
 .profimg {
@@ -404,4 +412,9 @@ textarea {
 
 #link {
   color: gray;
+}
+
+.directorysection {
+  display: flex;
+  flex-direction: column;
 }

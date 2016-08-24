@@ -52,9 +52,9 @@ class Signin extends Component {
     }
     return (
       <div className="signupbox col-md-6 col-md-offset-3">
-        <h1>
-          Login
-        </h1>
+        <div className="compname">
+          <b>Login</b>
+        </div>
         <div className="usernamerow">
           <div>Email</div>
           <input value={this.state.email} onChange={this.changeEmail} />
