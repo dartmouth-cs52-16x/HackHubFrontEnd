@@ -242,7 +242,7 @@ export function updateUser(user) {
 }
 
 
-// trigger to deauth if there is error
+// trigger to deauth if there is major error
 // can also use in your error reducer if you have one to display an error message
 export function authError(error) {
   return {
