@@ -13,6 +13,7 @@ class Signin extends Component {
     this.state = {
       email: '',
       password: '',
+      error: 0,
     };
 
     this.changeEmail = this.changeEmail.bind(this);
@@ -33,11 +34,22 @@ class Signin extends Component {
   }
 
   submitForm() {
-    this.props.signinUser(this.state.email, this.state.password);
+    // submit only if no field is empty (or just spaces)
+    if (this.state.email.trim().length > 0 && this.state.password.trim().length > 0) {
+      this.props.signinUser(this.state.email, this.state.password);
+    } else {
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
 
   render() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please fill out all fields';
+    }
     return (
       <div className="signupbox col-md-6 col-md-offset-3">
         <h1>
@@ -54,7 +66,12 @@ class Signin extends Component {
         <div className="loginbutton">
           <button className="submitjob" onClick={this.submitForm}>Login</button>
         </div>
-        <Link id="link" to="/signup">Sign Up</Link>
+        <div>
+          <Link id="link" to="/signup">Sign Up</Link>
+        </div>
+        <div>
+          <b><font color="red">{errorText}</font></b>
+        </div>
       </div>
     );
   }

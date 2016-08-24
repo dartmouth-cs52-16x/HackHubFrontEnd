@@ -33,7 +33,7 @@ class UserProfile extends Component {
     }
     const renderList = this.props.user.user.skills.map((skill) => {
       return (
-        <div key={skill.id} className="">
+        <div key={skill.id} className="skillsingle">
           {skill.name}
         </div>
       );
@@ -67,11 +67,14 @@ class UserProfile extends Component {
             <div className="usersite">
               <b>Website:</b> {this.props.user.user.website}
             </div>
-            <div className="userlinkedin">
-              <b>LinkedIn:</b> {this.props.user.user.linkedin}
-            </div>
-            <div className="userfacebook">
-              <b>Facebook:</b> {this.props.user.user.facebook}
+            <div className="userlinks">
+              <a href={this.props.user.user.linkedin}>
+                <i className="fa fa-linkedin-square" aria-hidden="true"></i>
+              </a>
+              &nbsp;
+              <a href={this.props.user.user.facebook}>
+                <i className="fa fa-facebook-square" aria-hidden="true"></i>
+              </a>
             </div>
           </div>
         </div>
