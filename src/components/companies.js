@@ -59,10 +59,10 @@ class Companies extends Component {
           <div className="compname">
             <b>Companies</b>
           </div>
-          <div className="col-md-2 col-md-offset-9 mainpage">
-            <Link id="link" to="new_company">
-              <div className="addcompanybutton">
-                  Add Company
+          <div className="col-md-2 col-md-offset-9 comppage">
+            <Link to="new_company">
+              <div className="btn btn-default">
+                  Add Company +
               </div>
             </Link>
           </div>

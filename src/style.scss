@@ -12,6 +12,23 @@ body {
   margin: auto;
 }
 
+.btn-default {
+    background-color: rgb(102, 153, 153) !important;
+    color: white;
+}
+
+.btn-default:hover, .btn-default:active, .btn-default:visited {
+    color: white;
+    background-color: rgb(255, 255, 255);
+}
+
+.comppage {
+  margin-top: 25px;
+  padding: 5px;
+  margin: auto;
+  text-align: center;
+}
+
 .home {
   text-align: center;
   animation-name: homeanimate;
@@ -241,10 +258,12 @@ p {
 }
 
 .addcompanybutton {
-  background-color: rgb(48, 110, 182);
+  background-color: rgb(255, 255, 255);
+  border: solid rgb(240, 240, 240) 1px;
   border-radius: 5px;
   padding: 5px;
-  color: white;
+  color: gray;
+  text-align: center;
 }
 
 .helplist {
@@ -269,6 +288,11 @@ p {
   font-size: 20px;
   text-align: left;
   margin-top: 10px;
+}
+
+#jobname, #jobdesc, #joblink {
+  margin: 5px;
+  border-radius: 5px;
 }
 
 .submitjob, .editinfo {
@@ -304,7 +328,9 @@ p {
 }
 
 .skilllist {
-  margin-top: 10px;
+  margin: 10px;
+  padding: 5px;
+  text-align: center;
 }
 
 .userfullname {
@@ -316,11 +342,18 @@ p {
 }
 
 .userabout, .compabout {
-  border: solid grey 1px;
+  border: solid rgb(240, 240, 240) 1px;
   border-radius: 5px;
   text-align: left;
   padding: 5px;
   margin: 10px;
+  width: 80%;
+}
+
+.companyinfo {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .userskills {
@@ -425,7 +458,7 @@ textarea {
 }
 
 #link {
-  color: gray;
+  color: rgb(102, 153, 153);
 }
 
 .directorysection {
