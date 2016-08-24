@@ -55,7 +55,7 @@ class Companies extends Component {
       );
     } else {
       return (
-        <div className="mainpage">
+        <div className="companies">
           <div className="compname">
             <b>Companies</b>
           </div>
