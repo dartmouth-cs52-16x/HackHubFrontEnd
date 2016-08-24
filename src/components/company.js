@@ -18,7 +18,7 @@ class Company extends Component {
 
   // render announcement
   render() {
-    if (this.props.role === 'hacker') {
+    if (this.props.role !== 'organizer') {
       return (
         <div className="col-md-10 col-md-offset-1 companysingle">
           <Link id="link" to={`companies/${this.props.id}`} key={this.props.id}>
