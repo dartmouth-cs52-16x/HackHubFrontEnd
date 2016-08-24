@@ -22,7 +22,7 @@ class NewAnnouncement extends Component {
           onChange={this.onInputChange} value={this.state.titleterm}
         ></input>
         <span className="input-group-btn">
-          <button className="btn btn-primary" type="submit" onClick={this.onButtonClick} >New</button>
+          <button className="btn btn-default" type="submit" onClick={this.onButtonClick} >New</button>
         </span>
       </div>
     );

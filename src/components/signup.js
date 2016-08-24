@@ -85,13 +85,16 @@ class Signup extends Component {
           Sign Up:
         </h1>
         <div className="fullnamerow">
-          Full Name: <input value={this.state.fullname} onChange={this.changeFullName} />
+          <div>Full Name</div>
+          <input value={this.state.fullname} onChange={this.changeFullName} />
         </div>
         <div className="emailrow">
-          Email: <input value={this.state.email} onChange={this.changeEmail} />
+          <div>Email</div>
+          <input value={this.state.email} onChange={this.changeEmail} />
         </div>
         <div className="passwordrow">
-          Password: <input value={this.state.password} onChange={this.changePassword} />
+          <div>Password</div>
+          <input value={this.state.password} onChange={this.changePassword} />
         </div>
         {this.renderCompany()}
         <div className="organizerrow">
@@ -101,10 +104,10 @@ class Signup extends Component {
           <br />
         </div>
         <br />
-        <div>
-          <button onClick={this.submitForm}>Submit</button>
+        <div className="loginbutton">
+          <button className="submitjob" onClick={this.submitForm}>Submit</button>
         </div>
-        <Link to="/signin">Sign In</Link>
+        <Link id="link" to="/signin">Sign In</Link>
       </div>
     );
   }

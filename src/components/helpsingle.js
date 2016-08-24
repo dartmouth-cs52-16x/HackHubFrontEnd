@@ -20,11 +20,11 @@ class HelpSingle extends Component {
   render() {
     const link = `/users/${this.props.id}`;
     return (
-      <div className="col-md-10 col-md-offset-1 announcementsingle">
+      <div className="announcementsingle">
         <div>
           <div className="announcetext">Message: {this.props.message}</div>
-          <div className="category">Category: {this.props.category}</div>
-          <Link to={link} className="userid">Go to user profile to address this message.</Link>
+          <div className="announcetext">Category: {this.props.category}</div>
+          <Link to={link} className="announcetext">Go to user&rsquo;s profile to address this message.</Link>
         </div>
         <p onClick={this.onDeleteClick}>x</p>
       </div>
