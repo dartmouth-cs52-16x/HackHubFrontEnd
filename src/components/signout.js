@@ -12,9 +12,15 @@ class SignOut extends Component {
 
   render() {
     return (
-      <div className="signoutbox">
-        <h1>You have now signed out!</h1>
-        <p>Please sign in again if you wish to post.</p>
+      <div className="companyprofile">
+        <div className="row">
+          <div className="col-lg-12 col-md-12 col-xs-12 thumb companyinfo">
+            <div className="compname">
+              <b>You have now signed out!</b>
+              <p>Please sign in again if you wish to post.</p>
+            </div>
+          </div>
+        </div>
       </div>
     );
   }
