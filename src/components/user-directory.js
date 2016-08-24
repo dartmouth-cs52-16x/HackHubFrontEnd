@@ -61,13 +61,15 @@ class UserDirectory extends Component {
 
   render() {
     return (
-      <div className="col-lg-12 col-md-12 mainpage">
+      <div className="companies">
         <div className="compname">
           <b>Directory</b>
         </div>
-        {this.renderUsers('hacker')}
-        {this.renderUsers('recruiter')}
-        {this.renderUsers('organizer')}
+        <div id="users">
+          {this.renderUsers('hacker')}
+          {this.renderUsers('recruiter')}
+          {this.renderUsers('organizer')}
+        </div>
       </div>
     );
   }
