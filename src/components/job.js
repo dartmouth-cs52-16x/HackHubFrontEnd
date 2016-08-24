@@ -34,7 +34,7 @@ class Job extends Component {
           <b>Description:</b> {this.props.desc}
         </div>
         <div>
-          <b>Link:</b> {this.props.link}
+          <a href={this.props.link}>Click here for more info!</a>
         </div>
         {deleteButton}
       </div>

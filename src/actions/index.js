@@ -331,10 +331,9 @@ export function fetchSchedule() {
 }
 
 // create a new post
-export function createEvent(input) {
+export function createSchedule(input) {
   return (dispatch) => {
     const fields = {
-      id: input._id,
       day1: {
         day_of_week: input.day1.day_of_week,
         month: input.day1.month,
@@ -358,7 +357,7 @@ export function createEvent(input) {
     };
     axios.post(`${ROOT_URL}/schedule`, fields).then(() => {
       axios.get(`${ROOT_URL}/schedule`).then(response => {
-        dispatch({ type: ActionTypes.CREATE_EVENT, payload: { all: response.data } });
+        dispatch({ type: ActionTypes.CREATE_SCHED, payload: { all: response.data } });
         browserHistory.push('schedule');
       }).catch(error => {
         console.log('Error getting schedule');
@@ -373,7 +372,8 @@ export function createEvent(input) {
 export function updateSchedule(input) {
   return (dispatch) => {
     const fields = {
-      id: input._id,
+
+      id: input.id,
       day1: {
         day_of_week: input.day1.day_of_week,
         month: input.day1.month,
@@ -395,10 +395,11 @@ export function updateSchedule(input) {
         events: input.day2.events,
       },
     };
-    axios.put(`${ROOT_URL}/schedule/${input.id}`, fields).then(response => {
-      dispatch({ type: ActionTypes.UPDATE_COMP, payload: { schedule: response.data } });
+    axios.put(`${ROOT_URL}/schedule/${fields.id}`, fields).then(response => {
+      console.log(response.data);
+      dispatch({ type: ActionTypes.UPDATE_SCHED, payload: { all: response.data } });
     }).catch(error => {
-      console.log('Error updating schedule');
+      console.log(error);
       browserHistory.push('/error');
     });
   };

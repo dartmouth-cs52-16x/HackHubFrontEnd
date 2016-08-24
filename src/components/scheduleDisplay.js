@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
+import { fetchSchedule, updateSchedule, createSchedule } from '../actions/index';
 var d3 = require('d3');
 
 class ScheduleDisplay extends Component {
@@ -18,72 +20,92 @@ class ScheduleDisplay extends Component {
     };
   }
 
-  componentDidMount() {
-    this.setUpSchedule({ day_of_week: 'Saturday', month: 'September', day: '24',
-    range: {
-      start: 10,
-      end: 20,
-    },
-    events: [
-      {
-        time_range: '10-11am',
-        name: 'Sample Event 1',
-        location: 'A Place',
-        color: '#8BB9B6',
-        start: 10.0,
-        end: 11.0,
-      },
-      {
-        time_range: '1pm-3pm',
-        name: 'Sample Event 2',
-        location: 'Another Place',
-        color: '#E0CC5C',
-        start: 13.0,
-        end: 15.0,
-      },
-      {
-        time_range: '7pm-8pm',
-        name: 'Sample Event 2',
-        location: 'Another Place',
-        color: '#8BB9B6',
-        start: 19.0,
-        end: 20.0,
-      },
-    ],
-   });
+  componentWillMount() {
+    // this.props.createSchedule({
+    //   day1: {
+    //     day_of_week: 'Sunday',
+    //     month: 'September',
+    //     day: '25',
+    //     range: {
+    //       start: 10,
+    //       end: 20,
+    //     },
+    //     events: [
+    //       {
+    //         time_range: '10-11am',
+    //         name: 'Sample Event 1',
+    //         location: 'A Place',
+    //         color: '#8BB9B6',
+    //         start: 10.0,
+    //         end: 11.0,
+    //       },
+    //       {
+    //         time_range: '1pm-3pm',
+    //         name: 'Sample Event 2',
+    //         location: 'Another Place',
+    //         color: '#E0CC5C',
+    //         start: 13.0,
+    //         end: 15.0,
+    //       },
+    //       {
+    //         time_range: '7pm-8pm',
+    //         name: 'Sample Event 2',
+    //         location: 'Another Place',
+    //         color: '#8BB9B6',
+    //         start: 19.0,
+    //         end: 20.0,
+    //       },
+    //     ],
+    //   },
+    //   day2: {
+    //     day_of_week: 'Monday',
+    //     month: 'September',
+    //     day: '26',
+    //     range: {
+    //       start: 10,
+    //       end: 20,
+    //     },
+    //     events: [
+    //       {
+    //         time_range: '10-11am',
+    //         name: 'Sample Event 1',
+    //         location: 'A Place',
+    //         color: '#8BB9B6',
+    //         start: 10.0,
+    //         end: 11.0,
+    //       },
+    //       {
+    //         time_range: '1pm-3pm',
+    //         name: 'Sample Event 2',
+    //         location: 'Another Place',
+    //         color: '#E0CC5C',
+    //         start: 13.0,
+    //         end: 15.0,
+    //       },
+    //       {
+    //         time_range: '7pm-8pm',
+    //         name: 'Sample Event 2',
+    //         location: 'Another Place',
+    //         color: '#8BB9B6',
+    //         start: 19.0,
+    //         end: 20.0,
+    //       },
+    //     ],
+    //   },
+    // });
+    this.props.fetchSchedule();
+  }
 
-    this.setUpSchedule({ day_of_week: 'Sunday', month: 'September', day: '25',
-   range: {
-     start: 10,
-     end: 20,
-   },
-   events: [
-     {
-       time_range: '10-11am',
-       name: 'Sample Event 1',
-       location: 'A Place',
-       color: '#8BB9B6',
-       start: 10.0,
-       end: 11.0,
-     },
-     {
-       time_range: '1pm-3pm',
-       name: 'Sample Event 2',
-       location: 'Another Place',
-       color: '#E0CC5C',
-       start: 13.0,
-       end: 15.0,
-     },
-     {
-       time_range: '7pm-8pm',
-       name: 'Sample Event 2',
-       location: 'Another Place',
-       color: '#8BB9B6',
-       start: 19.0,
-       end: 20.0,
-     },
-   ],
-  });
+  componentWillReceiveProps(nextProps) {
+    this.setState({
+      id: nextProps.schedule.id,
+      day1: nextProps.schedule.day1,
+      day2: nextProps.schedule.day2,
+    });
+
+    d3.select('#schedule').selectAll('#schedule > div').remove();
+    this.setUpSchedule(nextProps.schedule.day1);
+    this.setUpSchedule(nextProps.schedule.day2);
   }
 
   // refactored code courtesy of Daniel Chen - danielchen.com
@@ -220,4 +242,11 @@ class ScheduleDisplay extends Component {
   }
 }
 
-export default ScheduleDisplay;
+const mapDispatchToProps = (state) => (
+  {
+    schedule: state.schedule.all[0],
+
+  }
+);
+
+export default connect(mapDispatchToProps, { fetchSchedule, updateSchedule, createSchedule })(ScheduleDisplay);
