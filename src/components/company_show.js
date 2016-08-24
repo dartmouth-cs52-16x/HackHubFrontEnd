@@ -158,10 +158,16 @@ class CompanyShow extends Component {
 
 
     let buttons = '';
-    if (this.props.user && this.props.user.role === 'recruiter') {
-      buttons = (
-        <button className="editinfo" onClick={this.editInfo}>Edit</button>
-      );
+    if (this.props.company === this.props.thisCompany.name || this.props.role === 'organizer') {
+      if (this.state.editing === true) {
+        buttons = (
+          <button className="editinfo" onClick={this.submitInfo}>Submit</button>
+        );
+      } else {
+        buttons = (
+          <button className="editinfo" onClick={this.editInfo}>Edit</button>
+        );
+      }
     }
 
     if (this.state.editing === false) {
