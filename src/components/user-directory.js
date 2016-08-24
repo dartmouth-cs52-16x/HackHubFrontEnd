@@ -49,24 +49,22 @@ class UserDirectory extends Component {
     });
     return (
       <div className="directorysection">
-        <b>{roleText}</b>
-        {renderList}
+        <div>
+          <b>{roleText}</b>
+        </div>
+        <div>
+          {renderList}
+        </div>
       </div>
     );
   }
 
   render() {
     return (
-      <div>
-        <div className="col-md-2 col-md-offset-9 mainpage">
-        </div>
-        <div>
-          {this.renderUsers('hacker')}
-          <br />
-          {this.renderUsers('recruiter')}
-          <br />
-          {this.renderUsers('organizer')}
-        </div>
+      <div className="col-lg-12 col-md-12 mainpage">
+        {this.renderUsers('hacker')}
+        {this.renderUsers('recruiter')}
+        {this.renderUsers('organizer')}
       </div>
     );
   }
