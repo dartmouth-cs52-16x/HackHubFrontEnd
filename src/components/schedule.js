@@ -115,7 +115,7 @@ class Schedule extends Component {
             <button onClick={this.updateSchedule} className="btn btn-default">Update Schedule</button>
           </div>
           <div>
-            <button onClick={this.createSchedule} className="btn btn-default">New Schedule</button>
+            <button onClick={this.createSchedule} className="btn btn-default">Reset Schedule</button>
           </div>
         </div>
         <div id="schedule">
