@@ -358,7 +358,7 @@ export function createSchedule(input) {
     axios.post(`${ROOT_URL}/schedule`, fields).then(() => {
       axios.get(`${ROOT_URL}/schedule`).then(response => {
         dispatch({ type: ActionTypes.CREATE_SCHED, payload: { all: response.data } });
-        browserHistory.push('schedule');
+        browserHistory.push('update_schedule');
       }).catch(error => {
         console.log('Error getting schedule');
       });

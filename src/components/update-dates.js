@@ -34,7 +34,13 @@ class UpdateDates extends Component {
     this.changeStart2 = this.changeStart2.bind(this);
     this.changeEnd2 = this.changeEnd2.bind(this);
 
+    this.renderDay1Events = this.renderDay1Events.bind(this);
+    this.renderDay2Events = this.renderDay2Events.bind(this);
+    this.deleteEvent1 = this.deleteEvent1.bind(this);
+    this.deleteEvent2 = this.deleteEvent2.bind(this);
+
     this.updateSchedule = this.updateSchedule.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   componentWillMount() {
@@ -51,6 +57,7 @@ class UpdateDates extends Component {
       });
     }
   }
+
 
   changeDayofWeek1(event) {
     this.setState({
@@ -116,6 +123,33 @@ class UpdateDates extends Component {
     e.preventDefault();
     console.log(this.state);
     this.props.updateSchedule(this.state);
+  }
+
+  reset(e) {
+    e.preventDefault();
+    console.log(this.state);
+    this.props.createSchedule({
+      day1: {
+        day_of_week: 'Day of Week',
+        month: 'Month',
+        day: 'Day',
+        range: {
+          start: 10,
+          end: 20,
+        },
+        events: [],
+      },
+      day2: {
+        day_of_week: 'Day of Week',
+        month: 'Month',
+        day: 'Day',
+        range: {
+          start: 10,
+          end: 20,
+        },
+        events: [],
+      },
+    });
   }
 
   renderDayofWeek1() {
@@ -188,6 +222,56 @@ class UpdateDates extends Component {
     return (<input type="text" className="form-control" id="day2end" placeholder="End"></input>);
   }
 
+  deleteEvent1(event) {
+    console.log(event.currentTarget.dataset.id);
+    this.state.day1.events.splice(event.currentTarget.dataset.id, 1);
+    this.setState({
+      day1: { ...this.state.day1, events: this.state.day1.events },
+    });
+  }
+
+  deleteEvent2(event) {
+    console.log(event.currentTarget.dataset.id);
+    this.state.day2.events.splice(event.currentTarget.dataset.id, 1);
+    this.setState({
+      day2: { ...this.state.day2, events: this.state.day2.events },
+    });
+  }
+
+  renderDay1Events() {
+    let id = -1;
+    if (this.state.day1 == null) {
+      return null;
+    }
+    const renderList = this.state.day1.events.map((e) => {
+      console.log(e);
+      return (
+        <div key={++id} className="col-md-12 announcementsingle">
+          <p><b>Name:</b> {e.name} <b>Location:</b> {e.location} <b>Time:</b> {e.time_range}</p>
+          <p onClick={this.deleteEvent1} data-id={id}>x</p>
+        </div>
+      );
+    });
+    return renderList;
+  }
+
+  renderDay2Events() {
+    let id = -1;
+    if (this.state.day2 == null) {
+      return null;
+    }
+    const renderList = this.state.day2.events.map((e) => {
+      console.log(e);
+      return (
+        <div key={++id} className="col-md-12 announcementsingle">
+          <p><b>Name:</b> {e.name} <b>Location:</b> {e.location} <b>Time:</b> {e.time_range}</p>
+          <p onClick={this.deleteEvent2} data-id={id}>x</p>
+        </div>
+      );
+    });
+    return renderList;
+  }
+
   render() {
     return (
       <div>
@@ -198,15 +282,20 @@ class UpdateDates extends Component {
             {this.renderMonth1()}
             {this.renderStart1()}
             {this.renderEnd1()}
+          <h3>Events:</h3>
+            {this.renderDay1Events()}
           <h1>Day 2</h1>
             {this.renderDayofWeek2()}
             {this.renderDay2()}
             {this.renderMonth2()}
             {this.renderStart2()}
             {this.renderEnd2()}
+          <h3>Events:</h3>
+            {this.renderDay2Events()}
         </div>
         <div>
           <button className="submitjob" onClick={this.updateSchedule}>Update</button>
+          <button className="submitjob" onClick={this.reset}>Reset</button>
         </div>
       </div>
       );
