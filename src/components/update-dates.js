@@ -35,6 +35,7 @@ class UpdateDates extends Component {
     this.changeEnd2 = this.changeEnd2.bind(this);
 
     this.updateSchedule = this.updateSchedule.bind(this);
+    this.reset = this.reset.bind(this);
   }
 
   componentWillMount() {
@@ -116,6 +117,33 @@ class UpdateDates extends Component {
     e.preventDefault();
     console.log(this.state);
     this.props.updateSchedule(this.state);
+  }
+
+  reset(e) {
+    e.preventDefault();
+    console.log(this.state);
+    this.props.createSchedule({
+      day1: {
+        day_of_week: 'Day of Week',
+        month: 'Month',
+        day: 'Day',
+        range: {
+          start: 10,
+          end: 20,
+        },
+        events: [],
+      },
+      day2: {
+        day_of_week: 'Day of Week',
+        month: 'Month',
+        day: 'Day',
+        range: {
+          start: 10,
+          end: 20,
+        },
+        events: [],
+      },
+    });
   }
 
   renderDayofWeek1() {
@@ -207,6 +235,9 @@ class UpdateDates extends Component {
         </div>
         <div>
           <button className="submitjob" onClick={this.updateSchedule}>Update</button>
+        </div>
+        <div>
+          <button className="submitjob" onClick={this.reset}>Reset</button>
         </div>
       </div>
       );

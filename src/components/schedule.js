@@ -17,7 +17,6 @@ class Schedule extends Component {
 
     this.createEvent = this.createEvent.bind(this);
     this.updateSchedule = this.updateSchedule.bind(this);
-    this.createSchedule = this.createSchedule.bind(this);
   }
 
   createEvent() {
@@ -26,31 +25,6 @@ class Schedule extends Component {
 
   updateSchedule() {
     browserHistory.push('/update_schedule');
-  }
-
-  createSchedule() {
-    this.props.createSchedule({
-      day1: {
-        day_of_week: 'Day of Week',
-        month: 'Month',
-        day: 'Day',
-        range: {
-          start: 10,
-          end: 20,
-        },
-        events: [],
-      },
-      day2: {
-        day_of_week: 'Day of Week',
-        month: 'Month',
-        day: 'Day',
-        range: {
-          start: 10,
-          end: 20,
-        },
-        events: [],
-      },
-    });
   }
 
 
@@ -63,9 +37,6 @@ class Schedule extends Component {
         </div>
           <div>
             <button onClick={this.updateSchedule} className="btn btn-default">Update Schedule</button>
-          </div>
-          <div>
-            <button onClick={this.createSchedule} className="btn btn-default">Reset Schedule</button>
           </div>
         </div>
         <div id="schedule">
