@@ -42,6 +42,7 @@ class UpdateDates extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    console.log(nextProps);
     if (nextProps.schedule) {
       this.setState({
         id: nextProps.schedule.id,
@@ -119,7 +120,7 @@ class UpdateDates extends Component {
 
   renderDayofWeek1() {
     if (this.state.day1) {
-      return (<input type="text" className="form-control" id="day1dayofweek" value={this.state.day1.day_of_week} onChange={this.changeDayofWeek1}></input>);
+      return (<input type="text" className="form-control" id="day1dayofweek" placeholder="Day of Week" value={this.state.day1.day_of_week} onChange={this.changeDayofWeek1}></input>);
     }
     return (<input type="text" className="form-control" id="day1dayofweek" placeholder="Day of Week"></input>);
   }
@@ -139,14 +140,14 @@ class UpdateDates extends Component {
   }
 
   renderStart1() {
-    if (this.state.day1 && this.state.day1.range.start) {
+    if (this.state.day1 && (this.state.day1.range.start || this.state.day1.range.start === 0)) {
       return (<input type="text" className="form-control" id="day1start" value={this.state.day1.range.start} onChange={this.changeStart1}></input>);
     }
     return (<input type="text" className="form-control" id="day1start" placeholder="Start"></input>);
   }
 
   renderEnd1() {
-    if (this.state.day1 && this.state.day1.range.start) {
+    if (this.state.day1 && this.state.day1.range.end) {
       return (<input type="text" className="form-control" id="day1end" value={this.state.day1.range.end} onChange={this.changeEnd1}></input>);
     }
     return (<input type="text" className="form-control" id="day1end" placeholder="End"></input>);
@@ -174,14 +175,14 @@ class UpdateDates extends Component {
   }
 
   renderStart2() {
-    if (this.state.day2 && this.state.day2.range.start) {
+    if (this.state.day2 && (this.state.day2.range.start || this.state.day2.range.start === 0)) {
       return (<input type="text" className="form-control" id="day2start" value={this.state.day2.range.start} onChange={this.changeStart2}></input>);
     }
     return (<input type="text" className="form-control" id="day2start" placeholder="Start"></input>);
   }
 
   renderEnd2() {
-    if (this.state.day2 && this.state.day2.range.start) {
+    if (this.state.day2 && this.state.day2.range.end) {
       return (<input type="text" className="form-control" id="day2end" value={this.state.day2.range.end} onChange={this.changeEnd2}></input>);
     }
     return (<input type="text" className="form-control" id="day2end" placeholder="End"></input>);
