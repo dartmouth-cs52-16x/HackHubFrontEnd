@@ -244,9 +244,10 @@ class UpdateDates extends Component {
       return null;
     }
     const renderList = this.state.day1.events.map((e) => {
+      console.log(e);
       return (
-        <div key={++id} className="eventDisplay">
-          <p>{e.name}, id: {id}</p>
+        <div key={++id} className="col-md-12 announcementsingle">
+          <p><b>Name:</b> {e.name} <b>Location:</b> {e.location} <b>Time:</b> {e.time_range}</p>
           <p onClick={this.deleteEvent1} data-id={id}>x</p>
         </div>
       );
@@ -260,9 +261,10 @@ class UpdateDates extends Component {
       return null;
     }
     const renderList = this.state.day2.events.map((e) => {
+      console.log(e);
       return (
-        <div key={++id} className="eventDisplay">
-          <p>{e.name}, id: {id}</p>
+        <div key={++id} className="col-md-12 announcementsingle">
+          <p><b>Name:</b> {e.name} <b>Location:</b> {e.location} <b>Time:</b> {e.time_range}</p>
           <p onClick={this.deleteEvent2} data-id={id}>x</p>
         </div>
       );
