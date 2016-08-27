@@ -34,6 +34,11 @@ class UpdateDates extends Component {
     this.changeStart2 = this.changeStart2.bind(this);
     this.changeEnd2 = this.changeEnd2.bind(this);
 
+    this.renderDay1Events = this.renderDay1Events.bind(this);
+    this.renderDay2Events = this.renderDay2Events.bind(this);
+    this.deleteEvent1 = this.deleteEvent1.bind(this);
+    this.deleteEvent2 = this.deleteEvent2.bind(this);
+
     this.updateSchedule = this.updateSchedule.bind(this);
     this.reset = this.reset.bind(this);
   }
@@ -52,6 +57,7 @@ class UpdateDates extends Component {
       });
     }
   }
+
 
   changeDayofWeek1(event) {
     this.setState({
@@ -216,6 +222,54 @@ class UpdateDates extends Component {
     return (<input type="text" className="form-control" id="day2end" placeholder="End"></input>);
   }
 
+  deleteEvent1(event) {
+    console.log(event.currentTarget.dataset.id);
+    this.state.day1.events.splice(event.currentTarget.dataset.id, 1);
+    this.setState({
+      day1: { ...this.state.day1, events: this.state.day1.events },
+    });
+  }
+
+  deleteEvent2(event) {
+    console.log(event.currentTarget.dataset.id);
+    this.state.day2.events.splice(event.currentTarget.dataset.id, 1);
+    this.setState({
+      day2: { ...this.state.day2, events: this.state.day2.events },
+    });
+  }
+
+  renderDay1Events() {
+    let id = -1;
+    if (this.state.day1 == null) {
+      return null;
+    }
+    const renderList = this.state.day1.events.map((e) => {
+      return (
+        <div key={++id} className="eventDisplay">
+          <p>{e.name}, id: {id}</p>
+          <p onClick={this.deleteEvent1} data-id={id}>x</p>
+        </div>
+      );
+    });
+    return renderList;
+  }
+
+  renderDay2Events() {
+    let id = -1;
+    if (this.state.day2 == null) {
+      return null;
+    }
+    const renderList = this.state.day2.events.map((e) => {
+      return (
+        <div key={++id} className="eventDisplay">
+          <p>{e.name}, id: {id}</p>
+          <p onClick={this.deleteEvent2} data-id={id}>x</p>
+        </div>
+      );
+    });
+    return renderList;
+  }
+
   render() {
     return (
       <div>
@@ -226,17 +280,19 @@ class UpdateDates extends Component {
             {this.renderMonth1()}
             {this.renderStart1()}
             {this.renderEnd1()}
+          <h3>Events:</h3>
+            {this.renderDay1Events()}
           <h1>Day 2</h1>
             {this.renderDayofWeek2()}
             {this.renderDay2()}
             {this.renderMonth2()}
             {this.renderStart2()}
             {this.renderEnd2()}
+          <h3>Events:</h3>
+            {this.renderDay2Events()}
         </div>
         <div>
           <button className="submitjob" onClick={this.updateSchedule}>Update</button>
-        </div>
-        <div>
           <button className="submitjob" onClick={this.reset}>Reset</button>
         </div>
       </div>
