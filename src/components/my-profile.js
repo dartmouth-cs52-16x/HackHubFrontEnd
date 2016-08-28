@@ -11,6 +11,7 @@ class MyProfile extends Component {
     // init component state here
     this.state = {
       refresh: 0,
+      error: 0,
     };
 
     this.addSkill = this.addSkill.bind(this);
@@ -66,19 +67,26 @@ class MyProfile extends Component {
   }
 
   updateUser(e) {
-    e.preventDefault();
-    const user = {
-      id: this.state.user.id,
-      email: this.state.user.email,
-      skills: this.state.user.skills,
-      image: document.getElementById('userlink').value,
-      website: document.getElementById('usersite').value,
-      facebook: document.getElementById('userfb').value,
-      linkedin: document.getElementById('userli').value,
-      phone: Number(document.getElementById('userphone').value),
-      about: document.getElementById('userabout').value,
-    };
-    this.props.updateUser(user);
+    const phoneinput = document.getElementById('userphone').value;
+    if (phoneinput.match(/^\d{10}$/)) {
+      e.preventDefault();
+      const user = {
+        id: this.state.user.id,
+        email: this.state.user.email,
+        skills: this.state.user.skills,
+        image: document.getElementById('userlink').value,
+        website: document.getElementById('usersite').value,
+        facebook: document.getElementById('userfb').value,
+        linkedin: document.getElementById('userli').value,
+        phone: document.getElementById('userphone').value,
+        about: document.getElementById('userabout').value,
+      };
+      this.props.updateUser(user);
+    } else {
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
   renderImage() {
@@ -110,10 +118,24 @@ class MyProfile extends Component {
   }
 
   renderPhone() {
-    if (this.state.user.phone) {
-      return (<input type="text" className="form-control" id="userphone" defaultValue={this.state.user.phone}></input>);
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please enter a valid phone number (##########)';
     }
-    return (<input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>);
+    if (this.state.user.phone) {
+      return (
+        <div>
+          <input type="text" className="form-control" id="userphone" defaultValue={this.state.user.phone}></input>
+          <b><font color="red">{errorText}</font></b>
+        </div>
+      );
+    }
+    return (
+      <div>
+        <input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>
+        <b><font color="red">{errorText}</font></b>
+      </div>
+    );
   }
 
   renderAbout() {

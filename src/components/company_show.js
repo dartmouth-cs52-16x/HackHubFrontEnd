@@ -20,6 +20,7 @@ class CompanyShow extends Component {
       editing: false,
       error: 0,
     };
+    this.first = true;
 
     this.onWebsiteChange = this.onWebsiteChange.bind(this);
     this.onRecruiterChange = this.onRecruiterChange.bind(this);
@@ -32,7 +33,10 @@ class CompanyShow extends Component {
   }
 
   componentWillMount() {
+    console.log(this.props);
     this.props.fetchCompany(this.props.params.id);
+    this.first = false;
+    console.log(this.first);
   }
 
   // update website input
@@ -144,6 +148,15 @@ class CompanyShow extends Component {
 
   // render function
   render() {
+    console.log(this.props);
+    console.log(this.first);
+    if (this.first === true) {
+      return (
+        <div>
+          Loading...
+        </div>
+      );
+    }
     if (this.props.thisCompany == null) {
       // if company not yet fetched
       return (

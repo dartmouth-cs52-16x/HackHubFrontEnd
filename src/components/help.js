@@ -31,7 +31,9 @@ class Help extends Component {
   }
 
   componentWillMount() {
-    this.props.fetchHelp();
+    if (this.props.role === 'organizer') {
+      this.props.fetchHelp();
+    }
     // this.props.fetchUser(localStorage.getItem('id'));
   }
 

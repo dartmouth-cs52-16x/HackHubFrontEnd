@@ -27,13 +27,24 @@ class Announcement extends Component {
 
   // render announcement
   render() {
+    let role = 'both';
+    if (!this.props.hacker) {
+      role = 'recruiter';
+    } else if (!this.props.recruiter) {
+      role = 'hacker';
+    }
     return (
       <div className="col-md-10 col-md-offset-1 announcementsingle">
         <div>
           <div className="announcetext">{this.props.text}</div>
           <div className="announcedate">{this.props.date}</div>
         </div>
-        {this.renderDelete()}
+        <div>
+          <div className="announcegroup">
+            {this.renderDelete()}
+            Group: {role}
+          </div>
+        </div>
       </div>
     );
   }
