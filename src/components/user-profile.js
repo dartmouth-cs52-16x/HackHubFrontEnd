@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchUser, updateUser } from '../actions';
+import { fetchUser, updateUser, clearUser } from '../actions';
 // import Skill from './skill';
 
 // example class based component (smart component)
@@ -18,6 +18,10 @@ class UserProfile extends Component {
 
   componentWillMount() {
     this.props.fetchUser(this.props.params.id);
+  }
+
+  componentWillUnmount() {
+    this.props.clearUser();
   }
 
   /* componentWillReceiveProps(nextProps) {
@@ -43,9 +47,9 @@ class UserProfile extends Component {
 
   render() {
     if (this.props.user == null) {
-      // if company not yet fetched
+      // if user not yet fetched
       return (
-        <div>Loading...</div>
+        <div></div>
       );
     }
     console.log(this.props);
@@ -99,4 +103,4 @@ const mapDispatchToProps = (state, action) => (
   }
 );
 
-export default connect(mapDispatchToProps, { fetchUser, updateUser })(UserProfile);
+export default connect(mapDispatchToProps, { fetchUser, updateUser, clearUser })(UserProfile);

@@ -130,6 +130,13 @@ export function fetchCompany(id) {
   };
 }
 
+// clear company
+export function clearCompany() {
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: null } });
+  };
+}
+
 // update a company
 export function updateCompany(comp) {
   return (dispatch) => {
@@ -194,6 +201,12 @@ export function fetchUser(id) {
     }).catch(error => {
       console.log(error);
     });
+  };
+}
+
+export function clearUser() {
+  return (dispatch) => {
+    dispatch({ type: ActionTypes.FETCH_USER, payload: { user: null } });
   };
 }
 
