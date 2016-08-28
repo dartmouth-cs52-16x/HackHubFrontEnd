@@ -36,22 +36,33 @@ class NewEvent extends Component {
       start: document.getElementById('eventstart').value,
       end: document.getElementById('eventend').value,
     };
-    const newSched = this.state;
-    if (document.getElementById('day2').checked) {
-      newSched.day2.events.push(event);
-    } else {
-      newSched.day1.events.push(event);
-    }
 
-    console.log(newSched);
-    this.props.updateSchedule(newSched);
+    if ((event.time_range === '') || (event.name === '') ||
+      (event.location === '') || (event.color === '') || (event.start === '')
+      || (event.end === '')) {
+      this.setState({ error: 1 });
+    } else {
+      const newSched = this.state;
+      if (document.getElementById('day2').checked) {
+        newSched.day2.events.push(event);
+      } else {
+        newSched.day1.events.push(event);
+      }
+
+      console.log(newSched);
+      this.props.updateSchedule(newSched);
+    }
   }
 
   render() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please enter all fields for the event.';
+    }
     return (
       <div>
       <form action="">
-        <input type="radio" name="gender" value="day1" id="day1"></input> Day 1<br />
+        <input type="radio" name="gender" value="day1" id="day1" defaultChecked></input> Day 1<br />
         <input type="radio" name="gender" value="day2" id="day2"></input> Day 2<br />
       </form>
         <div className="" >
@@ -65,6 +76,7 @@ class NewEvent extends Component {
         <div>
           <button className="submitjob" onClick={this.createEvent}>Create</button>
         </div>
+        <b><font color="red">{errorText}</font></b>
       </div>
       );
   }

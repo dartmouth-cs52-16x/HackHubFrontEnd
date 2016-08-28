@@ -6,6 +6,8 @@ import { createCompany } from '../actions/index';
 class NewCompanyProfile extends Component {
   constructor(props) {
     super(props);
+
+    this.state = {};
     this.onButtonClick = this.onButtonClick.bind(this);
   }
   onButtonClick(event) {
@@ -14,9 +16,18 @@ class NewCompanyProfile extends Component {
       website: document.getElementById('compsite').value,
       recruiter: document.getElementById('comprecruiter').value,
     };
-    this.props.createCompany(fields);
+    if ((fields.name === '') || (fields.image === '') ||
+    (fields.website === '') || (fields.recruiter === '')) {
+      this.setState({ error: 1 });
+    } else {
+      this.props.createCompany(fields);
+    }
   }
   render() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please enter all fields for the company.';
+    }
     return (
       <div className="companyprofile">
         <div className="row">
@@ -33,6 +44,7 @@ class NewCompanyProfile extends Component {
           </div>
           <button className="submitjob" onClick={this.onButtonClick}>Create Profile</button>
         </div>
+        <b><font color="red">{errorText}</font></b>
       </div>
     );
   }

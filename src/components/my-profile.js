@@ -161,7 +161,7 @@ class MyProfile extends Component {
     if (this.state.user == null) {
       // if company not yet fetched
       return (
-        <div>Loading...</div>
+        <div></div>
       );
     }
 
