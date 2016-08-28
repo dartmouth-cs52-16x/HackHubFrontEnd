@@ -16,7 +16,6 @@ class Announcements extends Component {
     this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
     this.renderAnnouncementBar = this.renderAnnouncementBar.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
-    this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
   }
 
   componentWillMount() {
@@ -28,6 +27,8 @@ class Announcements extends Component {
 
   // create a new note
   createAnnouncement(input) {
+    const roleList = document.getElementById('role').checked;
+    console.log(roleList);
     const newAnn = { text: input, date: 'DATE' };
     this.props.createAnnouncement(newAnn);
   }
@@ -58,6 +59,10 @@ class Announcements extends Component {
             <b>Announcements</b>
           </div>
           <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+          <form action="">
+            <input type="checkbox" id="role" value="hacker"></input> Hacker &nbsp;
+            <input type="checkbox" id="role" value="recruiter"></input> Recruiter
+          </form>
         </div>
       );
     } else {
