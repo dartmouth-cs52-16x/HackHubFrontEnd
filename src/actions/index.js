@@ -48,8 +48,8 @@ export function createAnnouncement(ann) {
   ${date.toString().split(' ')[4]}`;
   return (dispatch) => {
     const fields = { text: ann.text, date: dateString };
-    axios.post(`${ROOT_URL}/announcements`, fields).then(() => {
-      axios.get(`${ROOT_URL}/announcements`).then(response => {
+    axios.post(`${ROOT_URL}/announcements`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
+      axios.get(`${ROOT_URL}/announcements`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.CREATE_ANNS, payload: { all: response.data } });
       }).catch(error => {
         console.log('Error getting announcements');
@@ -63,8 +63,8 @@ export function createAnnouncement(ann) {
 // delete announcements
 export function deleteAnnouncement(id) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/announcements/${id}`).then(() => {
-      axios.get(`${ROOT_URL}/announcements`).then(response => {
+    axios.delete(`${ROOT_URL}/announcements/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
+      axios.get(`${ROOT_URL}/announcements`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.DELETE_ANNS, payload: { all: response.data } });
       }).catch(error => {
         console.log('Error getting announcements');
@@ -78,7 +78,7 @@ export function deleteAnnouncement(id) {
 // fetch all posts
 export function fetchCompanies() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/company`).then(response => {
+    axios.get(`${ROOT_URL}/company`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({ type: ActionTypes.FETCH_COMPS, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting posts');
@@ -90,8 +90,8 @@ export function fetchCompanies() {
 export function createCompany(comp) {
   return (dispatch) => {
     const fields = { name: comp.name, image: comp.image, website: comp.website, recruiter: comp.recruiter };
-    axios.post(`${ROOT_URL}/company`, fields).then(() => {
-      axios.get(`${ROOT_URL}/company`).then(response => {
+    axios.post(`${ROOT_URL}/company`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
+      axios.get(`${ROOT_URL}/company`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.CREATE_COMP, payload: { all: response.data } });
         browserHistory.push('companies');
       }).catch(error => {
@@ -106,8 +106,8 @@ export function createCompany(comp) {
 // delete post
 export function deleteCompany(id) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/company/${id}`).then(() => {
-      axios.get(`${ROOT_URL}/company`).then(response => {
+    axios.delete(`${ROOT_URL}/company/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
+      axios.get(`${ROOT_URL}/company`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.DELETE_COMP, payload: { all: response.data } });
       }).catch(error => {
         console.log('Error getting companies');
@@ -121,7 +121,7 @@ export function deleteCompany(id) {
 // fetch a single company
 export function fetchCompany(id) {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/company/${id}`).then(response => {
+    axios.get(`${ROOT_URL}/company/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
     }).catch(error => {
       console.log('Error getting posts');
@@ -135,7 +135,7 @@ export function updateCompany(comp) {
   return (dispatch) => {
     const fields = { name: comp.name, image: comp.image, website: comp.website, recruiter: comp.recruiter,
       jobs: comp.jobs, about: comp.about };
-    axios.put(`${ROOT_URL}/company/${comp.id}`, fields).then(response => {
+    axios.put(`${ROOT_URL}/company/${comp.id}`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({ type: ActionTypes.FETCH_COMP, payload: { comp: response.data } });
     }).catch(error => {
       console.log('Error updating company');
@@ -148,8 +148,8 @@ export function updateCompany(comp) {
 export function createHelp(help) {
   return (dispatch) => {
     const fields = { message: help.message, category: help.category, id: help.id };
-    axios.post(`${ROOT_URL}/help`, fields).then(() => {
-      axios.get(`${ROOT_URL}/help`).then(response => {
+    axios.post(`${ROOT_URL}/help`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
+      axios.get(`${ROOT_URL}/help`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.CREATE_HELP, payload: { all: response.data } });
         browserHistory.push('helpdone');
       }).catch(error => {
@@ -164,7 +164,7 @@ export function createHelp(help) {
 // fetch all posts
 export function fetchHelp() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/help`).then(response => {
+    axios.get(`${ROOT_URL}/help`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       console.log('help data');
       console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_HELP, payload: { all: response.data } });
@@ -177,8 +177,8 @@ export function fetchHelp() {
 // delete help
 export function deleteHelp(id) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/help/${id}`).then(() => {
-      axios.get(`${ROOT_URL}/help`).then(response => {
+    axios.delete(`${ROOT_URL}/help/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
+      axios.get(`${ROOT_URL}/help`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.DELETE_HELP, payload: { all: response.data } });
       }).catch(error => {
         console.log('Error getting help');
@@ -192,7 +192,7 @@ export function deleteHelp(id) {
 export function fetchUser(id) {
   console.log(`fetch user ${id}`);
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/users/${id}`).then(response => {
+    axios.get(`${ROOT_URL}/users/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       console.log('data');
       console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
@@ -216,7 +216,7 @@ export function fetchUsers() {
 // delete post
 export function deleteUser(id) {
   return (dispatch) => {
-    axios.delete(`${ROOT_URL}/users/${id}`).then(() => {
+    axios.delete(`${ROOT_URL}/users/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
       axios.get(`${ROOT_URL}/users`).then(response => {
         dispatch({ type: ActionTypes.DELETE_USER, payload: { all: response.data } });
       }).catch(error => {
@@ -231,7 +231,7 @@ export function deleteUser(id) {
 // update a company
 export function updateUser(user) {
   return (dispatch) => {
-    axios.put(`${ROOT_URL}/users/${user.id}`, user).then(response => {
+    axios.put(`${ROOT_URL}/users/${user.id}`, user, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       console.log(response.data);
       browserHistory.push(`users/${user.id}`);
     }).catch(error => {
@@ -355,7 +355,7 @@ export function createSchedule(input) {
         events: input.day2.events,
       },
     };
-    axios.post(`${ROOT_URL}/schedule`, fields).then(() => {
+    axios.post(`${ROOT_URL}/schedule`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
       axios.get(`${ROOT_URL}/schedule`).then(response => {
         dispatch({ type: ActionTypes.CREATE_SCHED, payload: { all: response.data } });
         browserHistory.push('update_schedule');
@@ -395,7 +395,7 @@ export function updateSchedule(input) {
         events: input.day2.events,
       },
     };
-    axios.put(`${ROOT_URL}/schedule/${fields.id}`, fields).then(response => {
+    axios.put(`${ROOT_URL}/schedule/${fields.id}`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       console.log(response.data);
       browserHistory.push('/schedule');
     }).catch(error => {
