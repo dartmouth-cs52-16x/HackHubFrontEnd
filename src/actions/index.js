@@ -1,8 +1,8 @@
 import axios from 'axios';
 import { browserHistory } from 'react-router';
 
-const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
-// const ROOT_URL = 'http://localhost:9090/api';
+// const ROOT_URL = 'https://hackhub-server.herokuapp.com/api';
+const ROOT_URL = 'http://localhost:9090/api';
 
 // keys for actiontypes
 export const ActionTypes = {
@@ -149,12 +149,7 @@ export function createHelp(help) {
   return (dispatch) => {
     const fields = { message: help.message, category: help.category, id: help.id };
     axios.post(`${ROOT_URL}/help`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
-      axios.get(`${ROOT_URL}/help`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-        dispatch({ type: ActionTypes.CREATE_HELP, payload: { all: response.data } });
-        browserHistory.push('helpdone');
-      }).catch(error => {
-        console.log('Error getting help');
-      });
+      browserHistory.push('helpdone');
     }).catch(error => {
       console.log('Error creating help');
     });
