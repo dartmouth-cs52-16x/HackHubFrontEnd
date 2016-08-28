@@ -3,7 +3,10 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Announcement from './announcement';
 import NewAnnouncement from './new_announcement';
-import { createAnnouncement, deleteAnnouncement, fetchAnnouncements } from '../actions/index';
+import { createAnnouncement, deleteAnnouncement, fetchAnnouncements, fetchUsers } from '../actions/index';
+
+// const client = require('twilio')('AC8c99b5a46595bddff7a994e986079da1', 'fdd9ceec592ea9aa42c35d79894f80bc');
+// const testPhones = ['5083140743', '5083140743'];
 
 class Announcements extends Component {
   constructor(props) {
@@ -21,6 +24,7 @@ class Announcements extends Component {
 
   componentWillMount() {
     this.props.fetchAnnouncements();
+    this.props.fetchUsers();
   }
 
   componentWillReceiveProps(nextProps) {
@@ -30,15 +34,33 @@ class Announcements extends Component {
   createAnnouncement(input) {
     const hackerBool = document.getElementById('hacker').checked;
     const recruitBool = document.getElementById('recruiter').checked;
+    const currPhoneList = [];
+    for (let i = 0; i < this.props.users.length; i++) {
+      if (this.props.users[i].phone !== undefined) {
+        const thisRole = this.props.users[i].role;
+        if ((thisRole === 'hacker' && hackerBool) || (thisRole === 'recruiter' && recruitBool)) {
+          const currPhone = this.props.users[i].phone.toString();
+          if (currPhone.match(/^\d{10}$/)) {
+            currPhoneList.push(this.props.users[i].phone);
+          }
+        }
+      }
+    }
+    console.log(currPhoneList);
     if (hackerBool || recruitBool) {
-      const newAnn = { text: input, date: 'DATE', hacker: hackerBool, recruiter: recruitBool };
+      const newAnn = { text: input, date: 'DATE', hacker: hackerBool, recruiter: recruitBool,
+    phoneList: currPhoneList };
       this.props.createAnnouncement(newAnn);
+      this.setState({
+        error: 0,
+      });
     } else {
       this.setState({
         error: 1,
       });
     }
   }
+
 
   deleteAnnouncement(id) {
     this.props.deleteAnnouncement(id);
@@ -86,7 +108,6 @@ class Announcements extends Component {
     }
   }
 
-
   render() {
     return (
       <div className="announcements">
@@ -103,8 +124,9 @@ const mapStateToProps = (state, action) => (
   {
     all: state.announcements.all,
     role: state.auth.role,
+    users: state.users.all,
   }
 );
 
 
-export default connect(mapStateToProps, { createAnnouncement, deleteAnnouncement, fetchAnnouncements })(Announcements);
+export default connect(mapStateToProps, { createAnnouncement, deleteAnnouncement, fetchAnnouncements, fetchUsers })(Announcements);

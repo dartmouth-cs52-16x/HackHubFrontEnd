@@ -19,7 +19,7 @@ class NewAnnouncement extends Component {
     return (
       <div className="input-group">
         <input type="text" className="form-control" id="submit-bar" placeholder="Announcement"
-          onChange={this.onInputChange} value={this.state.titleterm}
+          onChange={this.onInputChange} value={this.state.titleterm} maxLength="122"
         ></input>
         <span className="input-group-btn">
           <button className="btn btn-default" type="submit" onClick={this.onButtonClick} >New</button>
