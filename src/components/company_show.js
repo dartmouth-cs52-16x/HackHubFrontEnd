@@ -2,7 +2,7 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCompany, updateCompany } from '../actions/index';
+import { fetchCompany, updateCompany, clearCompany } from '../actions/index';
 import Job from './job';
 
 
@@ -37,6 +37,10 @@ class CompanyShow extends Component {
     this.props.fetchCompany(this.props.params.id);
     this.first = false;
     console.log(this.first);
+  }
+
+  componentWillUnmount() {
+    this.props.clearCompany();
   }
 
   // update website input
@@ -150,17 +154,10 @@ class CompanyShow extends Component {
   render() {
     console.log(this.props);
     console.log(this.first);
-    if (this.first === true) {
-      return (
-        <div>
-          Loading...
-        </div>
-      );
-    }
     if (this.props.thisCompany == null) {
       // if company not yet fetched
       return (
-        <div>Loading...</div>
+        <div></div>
       );
     }
     let errorText = '';
@@ -273,4 +270,4 @@ const mapDispatchToProps = (state, action) => (
   }
 );
 
-export default connect(mapDispatchToProps, { fetchCompany, updateCompany })(CompanyShow);
+export default connect(mapDispatchToProps, { fetchCompany, updateCompany, clearCompany })(CompanyShow);
