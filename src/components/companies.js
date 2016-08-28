@@ -10,7 +10,6 @@ class Companies extends Component {
     // set state
     this.state = {
     };
-
     this.deleteCompany = this.deleteCompany.bind(this);
     this.renderCompany = this.renderCompany.bind(this);
   }

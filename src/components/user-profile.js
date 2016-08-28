@@ -64,6 +64,9 @@ class UserProfile extends Component {
             <div className="useremail">
               <b>Email:</b> {this.props.user.user.email}
             </div>
+            <div className="usernumber">
+              <b>Phone:</b> {this.props.user.user.phone}
+            </div>
             <div className="usersite">
               <b>Website:</b> {this.props.user.user.website}
             </div>
