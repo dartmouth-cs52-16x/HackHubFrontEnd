@@ -149,12 +149,7 @@ export function createHelp(help) {
   return (dispatch) => {
     const fields = { message: help.message, category: help.category, id: help.id };
     axios.post(`${ROOT_URL}/help`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
-      axios.get(`${ROOT_URL}/help`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-        dispatch({ type: ActionTypes.CREATE_HELP, payload: { all: response.data } });
-        browserHistory.push('helpdone');
-      }).catch(error => {
-        console.log('Error getting help');
-      });
+      browserHistory.push('helpdone');
     }).catch(error => {
       console.log('Error creating help');
     });
