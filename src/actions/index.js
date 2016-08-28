@@ -32,7 +32,7 @@ export const ActionTypes = {
 // fetch all announcements
 export function fetchAnnouncements() {
   return (dispatch) => {
-    axios.get(`${ROOT_URL}/announcements`).then(response => {
+    axios.get(`${ROOT_URL}/announcements`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
       dispatch({ type: ActionTypes.FETCH_ANNS, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting announcements');
