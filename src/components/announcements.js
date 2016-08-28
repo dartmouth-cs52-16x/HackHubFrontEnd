@@ -10,13 +10,13 @@ class Announcements extends Component {
     super(props);
 
     this.state = {
+      error: 0,
     };
 
     this.createAnnouncement = this.createAnnouncement.bind(this);
     this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
     this.renderAnnouncementBar = this.renderAnnouncementBar.bind(this);
     this.renderAnnouncements = this.renderAnnouncements.bind(this);
-    this.deleteAnnouncement = this.deleteAnnouncement.bind(this);
   }
 
   componentWillMount() {
@@ -28,8 +28,16 @@ class Announcements extends Component {
 
   // create a new note
   createAnnouncement(input) {
-    const newAnn = { text: input, date: 'DATE' };
-    this.props.createAnnouncement(newAnn);
+    const hackerBool = document.getElementById('hacker').checked;
+    const recruitBool = document.getElementById('recruiter').checked;
+    if (hackerBool || recruitBool) {
+      const newAnn = { text: input, date: 'DATE', hacker: hackerBool, recruiter: recruitBool };
+      this.props.createAnnouncement(newAnn);
+    } else {
+      this.setState({
+        error: 1,
+      });
+    }
   }
 
   deleteAnnouncement(id) {
@@ -43,7 +51,7 @@ class Announcements extends Component {
     const renderList = this.props.all.map((ann) => {
       return (
         <div key={ann.id} className="">
-          <Announcement text={ann.text} date={ann.date} id={ann.id} delete={this.deleteAnnouncement} />
+          <Announcement text={ann.text} date={ann.date} id={ann.id} hacker={ann.hacker} recruiter={ann.recruiter} delete={this.deleteAnnouncement} />
         </div>
       );
     });
@@ -51,6 +59,10 @@ class Announcements extends Component {
   }
 
   renderAnnouncementBar() {
+    let errorText = '';
+    if (this.state.error === 1) {
+      errorText = 'Please select at least one group for the anonuncement.';
+    }
     if (this.props.role === 'organizer') {
       return (
         <div className="col-md-10 col-md-offset-1 mainpage">
@@ -58,6 +70,11 @@ class Announcements extends Component {
             <b>Announcements</b>
           </div>
           <NewAnnouncement createAnnouncement={this.createAnnouncement} />
+          <form action="">
+            <input type="checkbox" id="hacker" defaultChecked="true"></input> Hacker &nbsp;
+            <input type="checkbox" id="recruiter" defaultChecked="true"></input> Recruiter &nbsp; &nbsp;
+            <b><font color="red">{errorText}</font></b>
+          </form>
         </div>
       );
     } else {

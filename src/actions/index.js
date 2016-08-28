@@ -47,7 +47,7 @@ export function createAnnouncement(ann) {
   const dateString = `${date.getMonth() + 1}/${date.getDate()}/${date.getFullYear()}
   ${date.toString().split(' ')[4]}`;
   return (dispatch) => {
-    const fields = { text: ann.text, date: dateString };
+    const fields = { text: ann.text, date: dateString, hacker: ann.hacker, recruiter: ann.recruiter };
     axios.post(`${ROOT_URL}/announcements`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(() => {
       axios.get(`${ROOT_URL}/announcements`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
         dispatch({ type: ActionTypes.CREATE_ANNS, payload: { all: response.data } });
