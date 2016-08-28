@@ -14,7 +14,7 @@ class Schedule extends Component {
     this.state = {
     };
 
-
+    this.renderButtons = this.renderButtons.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.updateSchedule = this.updateSchedule.bind(this);
   }
@@ -27,18 +27,27 @@ class Schedule extends Component {
     browserHistory.push('/update_schedule');
   }
 
-
-  render() {
-    return (
-      <div>
+  renderButtons() {
+    if (this.props.role === 'organizer') {
+      return (
         <div id="schedbtn" className="">
-        <div>
-          <button onClick={this.createEvent} className="btn btn-default">New Event</button>
-        </div>
+          <div>
+            <button onClick={this.createEvent} className="btn btn-default">New Event</button>
+          </div>
           <div>
             <button onClick={this.updateSchedule} className="btn btn-default">Update Schedule</button>
           </div>
         </div>
+      );
+    }
+    return (<div></div>);
+  }
+
+
+  render() {
+    return (
+      <div>
+        {this.renderButtons()}
         <div id="schedule">
           <ScheduleDisplay />
         </div>
@@ -46,4 +55,11 @@ class Schedule extends Component {
     );
   }
 }
-export default connect(null, { fetchSchedule, updateSchedule, createSchedule })(Schedule);
+
+const mapStateToProps = (state, action) => (
+  {
+    role: state.auth.role,
+  }
+);
+
+export default connect(mapStateToProps, { fetchSchedule, updateSchedule, createSchedule })(Schedule);
