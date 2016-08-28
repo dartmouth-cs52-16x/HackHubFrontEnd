@@ -7,7 +7,7 @@ HackHub is a platform for organizing communication at a hackathon event. Hackers
 
 HackHub allows each user to sign up as an organizer, a recruiter, or a hacker. Each user will be added to user directory. User can view and update their personal profile at any time. Each role has different authorities.
 
-###### Organizer
+##### Organizer
 Organizer has the authority over everything. It can accomplish the followings:
 - Create / Update an event, which will display on the calendar.
 - Create / Delete an announcement.
@@ -15,7 +15,7 @@ Organizer has the authority over everything. It can accomplish the followings:
 - Access to user directory.
 - Review Help messages from hackers and contact them in person through email.
 
-###### Recruiter
+##### Recruiter
 Recruiter  can accomplish the followings:
 - View all announcements.
 - View all company profiles.
@@ -23,7 +23,7 @@ Recruiter  can accomplish the followings:
 - Access to user directory.
 - Send Help messages to organizers.
 
-###### Hacker
+##### Hacker
 Hacker can accomplish the followings:
 - View all announcements.
 - View all company profiles.
