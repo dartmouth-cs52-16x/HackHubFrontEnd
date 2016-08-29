@@ -1,3 +1,5 @@
+// component for schedule
+
 import ScheduleDisplay from './scheduleDisplay';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';

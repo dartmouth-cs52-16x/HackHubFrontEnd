@@ -1,3 +1,5 @@
+// component for the new event creation page
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSchedule, updateSchedule, createSchedule } from '../actions/index';

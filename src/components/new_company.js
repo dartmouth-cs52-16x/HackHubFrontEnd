@@ -1,4 +1,5 @@
-// the entry bar to create a new note with a title
+// component for the new company creation page
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { createCompany } from '../actions/index';

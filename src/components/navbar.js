@@ -1,4 +1,4 @@
-// navbar component -- home and new post buttons
+// component for navbar
 
 import React, { Component } from 'react';
 import { Link } from 'react-router';
@@ -14,10 +14,12 @@ class NavBar extends Component {
     this.renderSign = this.renderSign.bind(this);
   }
 
+  // signout user
   submitSignout() {
     this.props.signoutUser();
   }
 
+  // render signin vs signout display
   renderSign() {
     if (this.props.authenticated) {
       return (
@@ -32,6 +34,7 @@ class NavBar extends Component {
     }
   }
 
+  // render all
   render() {
     return (
       <div className="myNav">

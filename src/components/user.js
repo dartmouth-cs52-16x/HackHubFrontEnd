@@ -1,3 +1,5 @@
+// component for a single user displayed in the directory
+
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -12,11 +14,12 @@ class User extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  // calllback to app
+  // delete this user
   onDeleteClick(event) {
     this.props.delete(this.props.id);
   }
 
+  // render delete button, only organizer can delete
   renderDelete() {
     if (this.props.role !== 'organizer') {
       return null;
@@ -26,7 +29,7 @@ class User extends Component {
     );
   }
 
-  // render announcement
+  // render all
   render() {
     return (
       <div className="col-md-10 col-md-offset-1 companysingle">

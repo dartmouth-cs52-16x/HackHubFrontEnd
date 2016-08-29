@@ -56,5 +56,3 @@ const mapStateToProps = (state, action) => (
 );
 
 export default connect(mapStateToProps, {})(Job);
-
-// export default Job;

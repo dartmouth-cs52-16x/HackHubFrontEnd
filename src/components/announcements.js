@@ -44,7 +44,6 @@ class Announcements extends Component {
         }
       }
     }
-    console.log(currPhoneList);
     if (hackerBool || recruitBool) {
       const newAnn = { text: input, date: 'DATE', hacker: hackerBool, recruiter: recruitBool,
     phoneList: currPhoneList };

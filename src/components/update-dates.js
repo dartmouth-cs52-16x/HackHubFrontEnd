@@ -1,3 +1,5 @@
+// component for updating dates of schedule
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSchedule, updateSchedule, createSchedule } from '../actions/index';

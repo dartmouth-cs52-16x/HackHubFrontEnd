@@ -1,3 +1,5 @@
+// component for directory of all users
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import User from './user';
@@ -25,6 +27,7 @@ class UserDirectory extends Component {
     this.props.deleteUser(id);
   }
 
+  // render a list of users, sorted by group
   renderUsers(role) {
     if (this.props.all == null) {
       return null;
@@ -64,6 +67,7 @@ class UserDirectory extends Component {
     );
   }
 
+  // render all
   render() {
     return (
       <div className="companies">
