@@ -36,11 +36,9 @@ class CompanyShow extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     this.props.fetchCompany(this.props.params.id);
     this.props.fetchUsers();
     this.first = false;
-    console.log(this.first);
   }
 
   componentWillUnmount() {
@@ -173,7 +171,6 @@ class CompanyShow extends Component {
 
   // render list of recruiters + link to their pages
   renderRecruiter() {
-    console.log(this.props);
     let count = 0;
     const allRecruiters = this.props.allusers.map((user) => {
       if (user.company === this.props.thisCompany.name) {
@@ -194,7 +191,6 @@ class CompanyShow extends Component {
       }
       return null;
     });
-    console.log(allRecruiters);
     if (count === 0) {
       return null;
     }
@@ -232,8 +228,6 @@ class CompanyShow extends Component {
 
   // render all
   render() {
-    console.log(this.props);
-    console.log(this.first);
     if (this.props.thisCompany == null) {
       // if company not yet fetched
       return (

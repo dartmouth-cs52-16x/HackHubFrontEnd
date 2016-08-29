@@ -28,12 +28,10 @@ class MyProfile extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.userToFetch);
     this.props.fetchUser(this.props.userToFetch);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({
       user: nextProps.user.user,
     });
@@ -58,7 +56,6 @@ class MyProfile extends Component {
     this.setState({
       refresh: this.state.refresh + 1,
     });
-    console.log(this.state.user.skills);
   }
 
   // delete a skill

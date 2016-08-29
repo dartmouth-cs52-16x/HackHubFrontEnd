@@ -96,7 +96,6 @@ class UserProfile extends Component {
         <div></div>
       );
     }
-    console.log(this.props);
     return (
       <div className="userprofile" >
         <div className="row">

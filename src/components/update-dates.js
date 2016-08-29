@@ -50,7 +50,6 @@ class UpdateDates extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     if (nextProps.schedule) {
       this.setState({
         id: nextProps.schedule.id,
@@ -123,13 +122,11 @@ class UpdateDates extends Component {
 
   updateSchedule(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.updateSchedule(this.state);
   }
 
   reset(e) {
     e.preventDefault();
-    console.log(this.state);
     this.props.createSchedule({
       day1: {
         day_of_week: 'Day of Week',
@@ -225,7 +222,6 @@ class UpdateDates extends Component {
   }
 
   deleteEvent1(event) {
-    console.log(event.currentTarget.dataset.id);
     this.state.day1.events.splice(event.currentTarget.dataset.id, 1);
     this.setState({
       day1: { ...this.state.day1, events: this.state.day1.events },
@@ -233,7 +229,6 @@ class UpdateDates extends Component {
   }
 
   deleteEvent2(event) {
-    console.log(event.currentTarget.dataset.id);
     this.state.day2.events.splice(event.currentTarget.dataset.id, 1);
     this.setState({
       day2: { ...this.state.day2, events: this.state.day2.events },
@@ -246,7 +241,6 @@ class UpdateDates extends Component {
       return null;
     }
     const renderList = this.state.day1.events.map((e) => {
-      console.log(e);
       return (
         <div key={++id} className="col-md-12 announcementsingle">
           <p><b>Name:</b> {e.name} <b>Location:</b> {e.location} <b>Time:</b> {e.time_range}</p>
@@ -263,7 +257,6 @@ class UpdateDates extends Component {
       return null;
     }
     const renderList = this.state.day2.events.map((e) => {
-      console.log(e);
       return (
         <div key={++id} className="col-md-12 announcementsingle">
           <p><b>Name:</b> {e.name} <b>Location:</b> {e.location} <b>Time:</b> {e.time_range}</p>

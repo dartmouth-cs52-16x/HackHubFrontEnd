@@ -1,3 +1,5 @@
+// reducer for help messages
+
 import { ActionTypes } from '../actions';
 
 const HelpReducer = (state = { all: [], id: null }, action) => {

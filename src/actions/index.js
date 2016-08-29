@@ -169,8 +169,6 @@ export function createHelp(help) {
 export function fetchHelp() {
   return (dispatch) => {
     axios.get(`${ROOT_URL}/help`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      console.log('help data');
-      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_HELP, payload: { all: response.data } });
     }).catch(error => {
       console.log('Error getting help');
@@ -195,11 +193,8 @@ export function deleteHelp(id) {
 
 // fetch a single user
 export function fetchUser(id) {
-  console.log(`fetch user ${id}`);
   return (dispatch) => {
     axios.get(`${ROOT_URL}/users/${id}`, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      console.log('data');
-      console.log(response.data);
       dispatch({ type: ActionTypes.FETCH_USER, payload: { user: response.data } });
     }).catch(error => {
       console.log(error);
@@ -244,7 +239,6 @@ export function deleteUser(id) {
 export function updateUser(user) {
   return (dispatch) => {
     axios.put(`${ROOT_URL}/users/${user.id}`, user, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      console.log(response.data);
       browserHistory.push(`users/${user.id}`);
     }).catch(error => {
       console.log('Error updating user');
@@ -269,9 +263,6 @@ export function signinUser(email, password) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signin`, { email, password })
     .then(response => {
-      console.log('user is here');
-      console.log(response.data.user);
-      console.log(response.data.role);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.user.id);
@@ -292,14 +283,12 @@ export function signupUser(user) {
   return (dispatch) => {
     axios.post(`${ROOT_URL}/signup/`, user).
     then(response => {
-      console.log(response.data);
       dispatch({ type: ActionTypes.AUTH_USER, payload: response.data.user });
       localStorage.setItem('token', response.data.token);
       localStorage.setItem('id', response.data.user.id);
       localStorage.setItem('role', response.data.user.role);
       localStorage.setItem('company', response.data.user.company);
       browserHistory.push('/');
-      console.log(response);
     }).catch(error => {
       localStorage.removeItem('token');
       dispatch(authError(`Sign Up Failed: ${error.response.data}`));
@@ -309,11 +298,8 @@ export function signupUser(user) {
 
 // fetch a user auth
 export function fetchAuthUser(id) {
-  console.log(id);
   return (dispatch) => {
     axios.get(`${ROOT_URL}/users/${id}`).then(response => {
-      console.log('data');
-      console.log(response.data);
       dispatch({ type: ActionTypes.AUTH_USER_UPDATE, payload: response.data });
     }).catch(error => {
       console.log(error);
@@ -408,7 +394,6 @@ export function updateSchedule(input) {
       },
     };
     axios.put(`${ROOT_URL}/schedule/${fields.id}`, fields, { headers: { authorization: localStorage.getItem('token') } }).then(response => {
-      console.log(response.data);
       browserHistory.push('/schedule');
     }).catch(error => {
       console.log(error);

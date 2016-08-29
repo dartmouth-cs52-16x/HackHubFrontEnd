@@ -33,8 +33,6 @@ class ScheduleDisplay extends Component {
       day2: nextProps.schedule.day2,
     });
 
-    console.log(nextProps);
-
     d3.select('#schedule').selectAll('#schedule > div').remove();
     this.setUpSchedule(nextProps.schedule.day1);
     this.setUpSchedule(nextProps.schedule.day2);

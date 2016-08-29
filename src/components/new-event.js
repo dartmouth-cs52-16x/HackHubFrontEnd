@@ -51,7 +51,6 @@ class NewEvent extends Component {
         newSched.day1.events.push(event);
       }
 
-      console.log(newSched);
       this.props.updateSchedule(newSched);
     }
   }
