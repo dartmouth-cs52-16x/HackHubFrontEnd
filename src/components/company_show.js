@@ -2,8 +2,9 @@
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
-import { fetchCompany, updateCompany, clearCompany } from '../actions/index';
+import { fetchCompany, updateCompany, clearCompany, fetchUsers } from '../actions/index';
 import Job from './job';
+import { Link } from 'react-router';
 
 
 class CompanyShow extends Component {
@@ -30,11 +31,15 @@ class CompanyShow extends Component {
     this.submitJob = this.submitJob.bind(this);
     this.deleteJob = this.deleteJob.bind(this);
     this.renderJobs = this.renderJobs.bind(this);
+    this.renderRecruiter = this.renderRecruiter.bind(this);
+    this.renderAbout = this.renderAbout.bind(this);
+    this.renderSite = this.renderSite.bind(this);
   }
 
   componentWillMount() {
     console.log(this.props);
     this.props.fetchCompany(this.props.params.id);
+    this.props.fetchUsers();
     this.first = false;
     console.log(this.first);
   }
@@ -162,6 +167,62 @@ class CompanyShow extends Component {
     );
   }
 
+  renderRecruiter() {
+    console.log(this.props);
+    let count = 0;
+    const allRecruiters = this.props.allusers.map((user) => {
+      if (user.company === this.props.thisCompany.name) {
+        count++;
+        const link = `/users/${user.id}`;
+        let comma = '';
+        if (count > 1) {
+          comma = ', ';
+        }
+        return (
+          <span key={user.id} >
+            <span>
+              {comma}
+            </span>
+            <Link to={link}>{user.fullname}</Link>
+          </span>
+        );
+      }
+      return null;
+    });
+    console.log(allRecruiters);
+    if (count === 0) {
+      return null;
+    }
+    return (
+      <div>
+        <b>Recruiters: </b>
+        {allRecruiters}
+      </div>
+    );
+  }
+
+  renderAbout() {
+    if (this.props.thisCompany.about != null && this.props.thisCompany.about !== '') {
+      return (
+        <div className="compabout">
+          <b>About:</b> {this.props.thisCompany.about}
+        </div>
+      );
+    }
+    return null;
+  }
+
+  renderSite() {
+    if (this.props.thisCompany.website != null && this.props.thisCompany.website !== '') {
+      return (
+        <div className="compsite">
+          <b>Website:</b> {this.props.thisCompany.website}
+        </div>
+      );
+    }
+    return null;
+  }
+
   // render function
   render() {
     console.log(this.props);
@@ -199,15 +260,9 @@ class CompanyShow extends Component {
             <div className="compname">
               <b>{this.props.thisCompany.name}</b>
             </div>
-            <div className="compsite">
-              <b>Website:</b> {this.props.thisCompany.website}
-            </div>
-            <div className="comprecruiter">
-              <b>Recruiter:</b> {this.props.thisCompany.recruiter}
-            </div>
-            <div className="compabout">
-              <b>About:</b> {this.props.thisCompany.about}
-            </div>
+            {this.renderSite()}
+            {this.renderRecruiter()}
+            {this.renderAbout()}
             {buttons}
           </div>
           <div className="col-lg-6 col-md-6 col-xs-12 thumb">
@@ -226,9 +281,6 @@ class CompanyShow extends Component {
             </div>
             <div className="compsite">
               <b>Website:</b> <input value={this.state.website} onChange={this.onWebsiteChange} />
-            </div>
-            <div className="comprecruiter">
-              <b>Recruiter:</b> <input value={this.state.recruiter} onChange={this.onRecruiterChange} />
             </div>
             <div className="compabout">
               <b>About:</b> <textarea className="aboutbox" value={this.state.about} onChange={this.onAboutChange} />
@@ -279,7 +331,8 @@ const mapDispatchToProps = (state, action) => (
     user: state.auth.user,
     role: state.auth.role,
     company: state.auth.company,
+    allusers: state.users.all,
   }
 );
 
-export default connect(mapDispatchToProps, { fetchCompany, updateCompany, clearCompany })(CompanyShow);
+export default connect(mapDispatchToProps, { fetchCompany, updateCompany, clearCompany, fetchUsers })(CompanyShow);

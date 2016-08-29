@@ -72,7 +72,7 @@ class MyProfile extends Component {
 
   updateUser(e) {
     const phoneinput = document.getElementById('userphone').value;
-    if (phoneinput.match(/^\d{10}$/)) {
+    if (phoneinput === '' || phoneinput.match(/^\d{10}$/)) {
       e.preventDefault();
       const user = {
         id: this.state.user.id,
