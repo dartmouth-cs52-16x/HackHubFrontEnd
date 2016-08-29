@@ -237,6 +237,12 @@ p {
   }
 }
 
+.new-company {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 .companytext {
   font-size: 15px;
   word-wrap: break-word;
@@ -491,9 +497,8 @@ textarea {
 }
 
 #dropzone {
-  padding: 10px;
+  padding: 20px;
   margin: 5px;
-  text-align: center;
 }
 
 .imgpreview {
