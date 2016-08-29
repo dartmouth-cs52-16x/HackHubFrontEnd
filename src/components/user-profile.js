@@ -16,6 +16,7 @@ class UserProfile extends Component {
     this.renderSkills = this.renderSkills.bind(this);
     this.renderSite = this.renderSite.bind(this);
     this.renderAbout = this.renderAbout.bind(this);
+    this.renderCompany = this.renderCompany.bind(this);
   }
 
   componentWillMount() {
