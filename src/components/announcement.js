@@ -8,6 +8,7 @@ class Announcement extends Component {
 
     this.render = this.render.bind(this);
     this.renderDelete = this.renderDelete.bind(this);
+    this.renderGroup = this.renderGroup.bind(this);
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
@@ -25,14 +26,26 @@ class Announcement extends Component {
     );
   }
 
-  // render announcement
-  render() {
+  renderGroup() {
     let role = 'both';
     if (!this.props.hacker) {
       role = 'recruiter';
     } else if (!this.props.recruiter) {
       role = 'hacker';
     }
+    if (this.props.role !== 'organizer') {
+      return null;
+    }
+    return (
+      <div className="announcegroup">
+        {this.renderDelete()}
+        Group: {role}
+      </div>
+    );
+  }
+
+  // render announcement
+  render() {
     return (
       <div className="col-md-10 col-md-offset-1 announcementsingle">
         <div>
@@ -40,10 +53,7 @@ class Announcement extends Component {
           <div className="announcedate">{this.props.date}</div>
         </div>
         <div>
-          <div className="announcegroup">
-            {this.renderDelete()}
-            Group: {role}
-          </div>
+          {this.renderGroup()}
         </div>
       </div>
     );
