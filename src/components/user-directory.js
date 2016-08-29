@@ -37,8 +37,10 @@ class UserDirectory extends Component {
     } else {
       roleText = 'HACKER';
     }
-    const renderList = this.props.all.map((user) => {
+    let count = 0;
+    let renderList = this.props.all.map((user) => {
       if (user.role === role) {
+        count++;
         return (
           <div key={user.id} className="">
             <User name={user.name} id={user.id} fullname={user.fullname} delete={this.deleteUser} />
@@ -47,6 +49,9 @@ class UserDirectory extends Component {
       }
       return null;
     });
+    if (count === 0) {
+      renderList = `No ${role}s!`;
+    }
     return (
       <div className="directorysection">
         <div>
