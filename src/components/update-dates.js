@@ -274,7 +274,7 @@ class UpdateDates extends Component {
 
   render() {
     return (
-      <div>
+      <div className="update_schedule">
         <div className="" >
           <h1>Day 1</h1>
             {this.renderDayofWeek1()}
