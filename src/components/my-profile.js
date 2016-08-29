@@ -2,6 +2,11 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, updateUser } from '../actions';
 import Skill from './skill';
+import DropZone from 'react-dropzone';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'iqn44tug';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dyvb3lskk/image/upload';
 
 // example class based component (smart component)
 class MyProfile extends Component {
@@ -12,6 +17,8 @@ class MyProfile extends Component {
     this.state = {
       refresh: 0,
       error: 0,
+      files: [],
+      uploadedFileCloudinaryUrl: '',
     };
 
     this.addSkill = this.addSkill.bind(this);
@@ -23,6 +30,9 @@ class MyProfile extends Component {
     this.renderLI = this.renderLI.bind(this);
     this.renderPhone = this.renderPhone.bind(this);
     this.renderAbout = this.renderAbout.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.onOpenClick = this.onOpenClick.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   componentWillMount() {
@@ -34,6 +44,41 @@ class MyProfile extends Component {
     console.log(nextProps);
     this.setState({
       user: nextProps.user.user,
+    });
+  }
+
+  onDrop(files) {
+    if (files.length <= 0) {
+      this.setState({
+        files,
+      });
+    } else {
+      this.setState({
+        files,
+        uploadedFile: files[0],
+      });
+      this.handleImageUpload(files[0]);
+    }
+  }
+
+  onOpenClick() {
+    this.refs.dropzone.open();
+  }
+
+  handleImageUpload(file) {
+    const upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+        });
+      }
     });
   }
 
@@ -74,7 +119,7 @@ class MyProfile extends Component {
         id: this.state.user.id,
         email: this.state.user.email,
         skills: this.state.user.skills,
-        image: document.getElementById('userlink').value,
+        image: this.state.uploadedFileCloudinaryUrl,
         website: document.getElementById('usersite').value,
         facebook: document.getElementById('userfb').value,
         linkedin: document.getElementById('userli').value,
@@ -164,7 +209,6 @@ class MyProfile extends Component {
         <div></div>
       );
     }
-
     return (
       <div className="companyprofile" >
         <div className="row">
@@ -172,8 +216,14 @@ class MyProfile extends Component {
             <div className="compname">
               <b>{this.state.user.fullname}</b>
             </div>
+            <DropZone accept="image/*" multiple={false} ref="dropzone" id="dropzone" onDrop={this.onDrop}>
+              <div>Click here to upload your profile image, or simply drag a file into this box.</div>
+            </DropZone>
+            {this.state.files.length > 0 ? <div className="imgpreview">
+              <h2>Uploading {this.state.files.length} files...</h2>
+              <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
+            </div> : null}
             <div className="input-group col-md-10 col-md-offset-1 company-profile">
-              {this.renderImage()}
               {this.renderWebsite()}
               {this.renderFB()}
               {this.renderLI()}
