@@ -288,6 +288,7 @@ p {
 }
 
 .jobsingle {
+  font-size: 15px;
   text-align: left;
   display: flex;
   flex-direction: column;
@@ -358,13 +359,17 @@ p {
   font-size: 40px;
 }
 
+.useraboutbox {
+  margin-left: 50px;
+  margin-right: 50px;
+}
+
 .userabout, .compabout {
   border: solid rgb(240, 240, 240) 1px;
   border-radius: 5px;
   text-align: left;
   padding: 5px;
   margin: 10px;
-  width: 80%;
 }
 
 .compsite, .comprecruiter {
@@ -375,6 +380,11 @@ p {
   display: flex;
   flex-direction: column;
   align-items: center;
+}
+
+.jobsection {
+  margin-top: 20px;
+  font-size: 20px;
 }
 
 .userskills {
