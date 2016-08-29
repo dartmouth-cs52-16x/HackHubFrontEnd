@@ -52,7 +52,7 @@ class UserProfile extends Component {
   }
 
   renderSite() {
-    if (this.props.user.user.website != null) {
+    if (this.props.user.user.website != null && this.props.user.user.website !== '') {
       return (
         <div className="usersite">
           <b>Website:</b> {this.props.user.user.website}
@@ -64,7 +64,7 @@ class UserProfile extends Component {
   }
 
   renderAbout() {
-    if (this.props.user.user.about != null) {
+    if (this.props.user.user.about != null && this.props.user.user.about !== '') {
       return (
         <div className="useraboutbox">
           <div className="userabout">
@@ -75,6 +75,17 @@ class UserProfile extends Component {
     } else {
       return null;
     }
+  }
+
+  renderCompany() {
+    if (this.props.user.user.company !== null && this.props.user.user.company !== '') {
+      return (
+        <div className="usercompany">
+          <b>Company:</b> {this.props.user.user.company}
+        </div>
+      );
+    }
+    return null;
   }
 
   render() {
@@ -100,6 +111,7 @@ class UserProfile extends Component {
             <div className="useremail">
               <b>Email:</b> {this.props.user.user.email}
             </div>
+            {this.renderCompany()}
             {this.renderSite()}
             <div className="userlinks">
               <a href={this.props.user.user.linkedin}>

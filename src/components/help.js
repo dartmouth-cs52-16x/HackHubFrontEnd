@@ -150,7 +150,7 @@ class Help extends Component {
                 <b>Questions? Comments? Need Help?</b>
                 <p>Contact your Hackathon organizers through the form below.</p>
               </div>
-              <form className="input-group col-md-4 col-md-offset-4 col-xs-6 col-xs-offset-1 help">
+              <form className="input-group help">
                 <div className="form-group">
                   <b id="error"><font color="red">Please enter a message.</font></b>
                   <br></br>

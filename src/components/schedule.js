@@ -15,6 +15,7 @@ class Schedule extends Component {
     };
 
     this.renderButtons = this.renderButtons.bind(this);
+    this.renderFooter = this.renderFooter.bind(this);
     this.createEvent = this.createEvent.bind(this);
     this.updateSchedule = this.updateSchedule.bind(this);
   }
@@ -43,6 +44,16 @@ class Schedule extends Component {
     return (<div></div>);
   }
 
+  renderFooter() {
+    if (this.props.role !== 'organizer') {
+      return (
+        <div className="schedule_footer">
+          *If you have any questions, please contact an organizer through our Help page!
+        </div>
+      );
+    }
+    return null;
+  }
 
   render() {
     return (
@@ -51,9 +62,7 @@ class Schedule extends Component {
         <div id="schedule">
           <ScheduleDisplay />
         </div>
-        <div className="schedule_footer">
-          <p>*If you have any question, please contact organizer.</p>
-        </div>
+        {this.renderFooter()}
       </div>
     );
   }
