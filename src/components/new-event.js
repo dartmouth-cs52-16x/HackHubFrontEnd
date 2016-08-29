@@ -60,11 +60,11 @@ class NewEvent extends Component {
       errorText = 'Please enter all fields for the event.';
     }
     return (
-      <div>
-      <form action="">
-        <input type="radio" name="gender" value="day1" id="day1" defaultChecked></input> Day 1<br />
-        <input type="radio" name="gender" value="day2" id="day2"></input> Day 2<br />
-      </form>
+      <div className="new_event">
+        <form action="">
+          <input type="radio" name="gender" value="day1" id="day1" defaultChecked></input> Day 1<br />
+          <input type="radio" name="gender" value="day2" id="day2"></input> Day 2<br />
+        </form>
         <div className="" >
           <input type="text" className="form-control" id="eventname" placeholder="Name"></input>
           <input type="text" className="form-control" id="eventlocation" placeholder="Location"></input>

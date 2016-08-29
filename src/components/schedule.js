@@ -51,6 +51,9 @@ class Schedule extends Component {
         <div id="schedule">
           <ScheduleDisplay />
         </div>
+        <div className="schedule_footer">
+          <p>*If you have any question, please contact organizer.</p>
+        </div>
       </div>
     );
   }
