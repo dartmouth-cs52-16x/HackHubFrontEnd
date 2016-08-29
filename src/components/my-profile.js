@@ -1,3 +1,5 @@
+// component for my profile
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, updateUser, clearUser } from '../actions';

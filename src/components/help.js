@@ -1,9 +1,6 @@
-// form to ask for help!!
-// use an api for scheduling
+// component for help page
 
 import React, { Component } from 'react';
-// import { createCompany } from '../actions/index';
-// import { browserHistory } from 'react-router';
 import { connect } from 'react-redux';
 import { createHelp, fetchHelp, deleteHelp } from '../actions';
 import HelpSingle from './helpsingle';
@@ -34,14 +31,7 @@ class Help extends Component {
     if (this.props.role === 'organizer') {
       this.props.fetchHelp();
     }
-    // this.props.fetchUser(localStorage.getItem('id'));
   }
-
-  // componentWillReceiveProps(nextProps) {
-  //   this.setState({
-  //     user: nextProps.user.user,
-  //   });
-  // }
 
   onTravelChange(event) {
     // change the button text

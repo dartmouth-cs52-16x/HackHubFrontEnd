@@ -1,8 +1,6 @@
-// form to ask for help!!
-// use an api for scheduling
+// component for page on successful help submission
 
 import React, { Component } from 'react';
-// import { createCompany } from '../actions/index';
 
 class HelpDone extends Component {
   constructor(props) {

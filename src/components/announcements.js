@@ -1,12 +1,10 @@
+// the component for all announcements
+
 import React, { Component } from 'react';
-// import { Link } from 'react-router';
 import { connect } from 'react-redux';
 import Announcement from './announcement';
 import NewAnnouncement from './new_announcement';
 import { createAnnouncement, deleteAnnouncement, fetchAnnouncements, fetchUsers } from '../actions/index';
-
-// const client = require('twilio')('AC8c99b5a46595bddff7a994e986079da1', 'fdd9ceec592ea9aa42c35d79894f80bc');
-// const testPhones = ['5083140743', '5083140743'];
 
 class Announcements extends Component {
   constructor(props) {
@@ -30,7 +28,7 @@ class Announcements extends Component {
   componentWillReceiveProps(nextProps) {
   }
 
-  // create a new note
+  // create a new announcement
   createAnnouncement(input) {
     const hackerBool = document.getElementById('hacker').checked;
     const recruitBool = document.getElementById('recruiter').checked;
@@ -61,11 +59,12 @@ class Announcements extends Component {
     }
   }
 
-
+  // delete a single announcement
   deleteAnnouncement(id) {
     this.props.deleteAnnouncement(id);
   }
 
+  // render all announcements
   renderAnnouncements() {
     if (this.props.all == null) {
       return null;
@@ -80,6 +79,7 @@ class Announcements extends Component {
     return renderList;
   }
 
+  // render announcement creation bar
   renderAnnouncementBar() {
     let errorText = '';
     if (this.state.error === 1) {
@@ -108,6 +108,7 @@ class Announcements extends Component {
     }
   }
 
+  // render all
   render() {
     return (
       <div className="announcements">

@@ -1,3 +1,5 @@
+// the component for viewing the list of all companies
+
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -21,10 +23,12 @@ class Companies extends Component {
   componentWillReceiveProps(nextProps) {
   }
 
+  // delete a single company
   deleteCompany(id) {
     this.props.deleteCompany(id);
   }
 
+  // render the list of companies
   renderCompany() {
     if (this.props.all == null) {
       return null;
@@ -39,7 +43,7 @@ class Companies extends Component {
     return renderList;
   }
 
-
+  // render all
   render() {
     if (this.props.role !== 'organizer') {
       return (
