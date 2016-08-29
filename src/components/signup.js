@@ -110,13 +110,19 @@ class Signup extends Component {
       if (this.state.role === 'recruiter') {
         companyText = this.state.company;
       }
+      let url = '';
+      if (this.state.uploadedFileCloudinaryUrl === '') {
+        url = 'https://thebenclark.files.wordpress.com/2014/03/facebook-default-no-profile-pic.jpg';
+      } else {
+        url = this.state.uploadedFileCloudinaryUrl;
+      }
       const user = {
         fullname: this.state.fullname,
         email: this.state.email,
         password: this.state.password,
         role: this.state.role,
         company: companyText,
-        image: this.state.uploadedFileCloudinaryUrl,
+        image: url,
       };
       this.props.signupUser(user);
     } else {
