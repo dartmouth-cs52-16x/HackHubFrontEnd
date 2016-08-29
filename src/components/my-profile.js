@@ -119,7 +119,8 @@ class MyProfile extends Component {
         id: this.state.user.id,
         email: this.state.user.email,
         skills: this.state.user.skills,
-        image: this.state.uploadedFileCloudinaryUrl,
+        image: document.getElementById('userlink').value,
+        // image: this.state.uploadedFileCloudinaryUrl,
         website: document.getElementById('usersite').value,
         facebook: document.getElementById('userfb').value,
         linkedin: document.getElementById('userli').value,
@@ -135,10 +136,11 @@ class MyProfile extends Component {
   }
 
   renderImage() {
-    if (this.state.user.image) {
-      return (<input type="text" className="form-control" id="userlink" defaultValue={this.state.user.image}></input>);
+    if (this.props.user.user.image.length > 0) {
+      return (<input type="text" className="form-control" id="userlink" defaultValue={this.props.user.user.image}></input>);
+    } else {
+      return (<input type="text" className="form-control" id="userlink" placeholder="Please choose a photo" defaultValue={this.state.uploadedFileCloudinaryUrl}></input>);
     }
-    return (<input type="text" className="form-control" id="userlink" placeholder="Image Link"></input>);
   }
 
   renderWebsite() {
@@ -224,6 +226,7 @@ class MyProfile extends Component {
               <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
             </div> : null}
             <div className="input-group col-md-10 col-md-offset-1 company-profile">
+              {this.renderImage()}
               {this.renderWebsite()}
               {this.renderFB()}
               {this.renderLI()}
