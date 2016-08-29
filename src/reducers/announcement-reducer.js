@@ -1,3 +1,5 @@
+// reducer for announcements
+
 import { ActionTypes } from '../actions';
 
 const AnnouncementReducer = (state = { all: [] }, action) => {

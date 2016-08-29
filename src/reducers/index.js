@@ -1,3 +1,5 @@
+// root reducer
+
 import { combineReducers } from 'redux';
 
 import AnnouncementReducer from './announcement-reducer';
@@ -17,4 +19,3 @@ const rootReducer = combineReducers({
 });
 
 export default rootReducer;
-// will need to put this in later

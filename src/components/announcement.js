@@ -1,3 +1,5 @@
+// the component for a single announcement
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -12,11 +14,12 @@ class Announcement extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  // calllback to app
+  // delete the announcement
   onDeleteClick(event) {
     this.props.delete(this.props.id);
   }
 
+  // render delete button (only organizers can see)
   renderDelete() {
     if (this.props.role !== 'organizer') {
       return null;
@@ -26,6 +29,7 @@ class Announcement extends Component {
     );
   }
 
+  // render group display (only organizer can see)
   renderGroup() {
     let role = 'both';
     if (!this.props.hacker) {

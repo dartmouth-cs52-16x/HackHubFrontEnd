@@ -1,3 +1,4 @@
+// component for a single company on the company list
 import React, { Component } from 'react';
 import { Link } from 'react-router';
 import { connect } from 'react-redux';
@@ -11,12 +12,12 @@ class Company extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  // calllback to app
+  // delete the company
   onDeleteClick(event) {
     this.props.delete(this.props.id);
   }
 
-  // render announcement
+  // render all
   render() {
     if (this.props.role !== 'organizer') {
       return (

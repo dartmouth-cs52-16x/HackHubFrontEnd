@@ -1,3 +1,5 @@
+// reducer for schedule
+
 import { ActionTypes } from '../actions';
 
 const ScheduleReducer = (state = { all: [] }, action) => {

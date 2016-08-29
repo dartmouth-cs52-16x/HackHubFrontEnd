@@ -1,3 +1,5 @@
+// component for displaying the schedule
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchSchedule, updateSchedule, createSchedule } from '../actions/index';
@@ -30,8 +32,6 @@ class ScheduleDisplay extends Component {
       day1: nextProps.schedule.day1,
       day2: nextProps.schedule.day2,
     });
-
-    console.log(nextProps);
 
     d3.select('#schedule').selectAll('#schedule > div').remove();
     this.setUpSchedule(nextProps.schedule.day1);
