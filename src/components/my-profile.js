@@ -135,10 +135,11 @@ class MyProfile extends Component {
   }
 
   renderImage() {
-    if (this.state.user.image) {
-      return (<input type="text" className="form-control" id="userlink" defaultValue={this.state.user.image}></input>);
+    if (this.props.user.user.image.length > 0) {
+      return (<input type="text" className="form-control" id="userlink" defaultValue={this.props.user.user.image}></input>);
+    } else {
+      return (<input type="text" className="form-control" id="userlink" placeholder="Please choose a photo" defaultValue={this.state.uploadedFileCloudinaryUrl}></input>);
     }
-    return (<input type="text" className="form-control" id="userlink" placeholder="Image Link"></input>);
   }
 
   renderWebsite() {

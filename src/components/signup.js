@@ -3,6 +3,11 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router';
 
 import { signupUser } from '../actions/index';
+import DropZone from 'react-dropzone';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'iqn44tug';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dyvb3lskk/image/upload';
 
 // example class based component (smart component)
 class Signup extends Component {
@@ -17,6 +22,8 @@ class Signup extends Component {
       role: '',
       company: '',
       error: 0,
+      files: [],
+      uploadedFileCloudinaryUrl: '',
     };
 
     this.changeFullName = this.changeFullName.bind(this);
@@ -25,6 +32,44 @@ class Signup extends Component {
     this.changeRole = this.changeRole.bind(this);
     this.changeCompany = this.changeCompany.bind(this);
     this.submitForm = this.submitForm.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.onOpenClick = this.onOpenClick.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
+  }
+
+  onDrop(files) {
+    if (files.length <= 0) {
+      this.setState({
+        files,
+      });
+    } else {
+      this.setState({
+        files,
+        uploadedFile: files[0],
+      });
+      this.handleImageUpload(files[0]);
+    }
+  }
+
+  onOpenClick() {
+    this.refs.dropzone.open();
+  }
+
+  handleImageUpload(file) {
+    const upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+        });
+      }
+    });
   }
 
   changeFullName(event) {
@@ -71,6 +116,7 @@ class Signup extends Component {
         password: this.state.password,
         role: this.state.role,
         company: companyText,
+        image: this.state.uploadedFileCloudinaryUrl,
       };
       this.props.signupUser(user);
     } else {
@@ -122,6 +168,13 @@ class Signup extends Component {
           <br />
         </div>
         <br />
+        <DropZone accept="image/*" multiple={false} ref="dropzone" id="dropzone" onDrop={this.onDrop}>
+          <div>Click here to upload your profile image, or simply drag a file into this box.</div>
+        </DropZone>
+        {this.state.files.length > 0 ? <div className="imgpreview">
+          <h2>Uploading {this.state.files.length} files...</h2>
+          <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
+        </div> : null}
         <div className="loginbutton">
           <button className="submitjob" onClick={this.submitForm}>Submit</button>
         </div>
