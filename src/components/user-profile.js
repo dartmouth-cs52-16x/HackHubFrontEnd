@@ -14,6 +14,8 @@ class UserProfile extends Component {
     }; */
 
     this.renderSkills = this.renderSkills.bind(this);
+    this.renderSite = this.renderSite.bind(this);
+    this.renderAbout = this.renderAbout.bind(this);
   }
 
   componentWillMount() {
@@ -32,8 +34,12 @@ class UserProfile extends Component {
   } */
 
   renderSkills() {
-    if (this.props.user.user.skills == null) {
-      return null;
+    if (this.props.user.user.skills.length === 0) {
+      return (
+        <div>
+          No skills!
+        </div>
+      );
     }
     const renderList = this.props.user.user.skills.map((skill) => {
       return (
@@ -43,6 +49,32 @@ class UserProfile extends Component {
       );
     });
     return renderList;
+  }
+
+  renderSite() {
+    if (this.props.user.user.website != null) {
+      return (
+        <div className="usersite">
+          <b>Website:</b> {this.props.user.user.website}
+        </div>
+      );
+    } else {
+      return null;
+    }
+  }
+
+  renderAbout() {
+    if (this.props.user.user.about != null) {
+      return (
+        <div className="useraboutbox">
+          <div className="userabout">
+            <b>About:</b> {this.props.user.user.about}
+          </div>
+        </div>
+      );
+    } else {
+      return null;
+    }
   }
 
   render() {
@@ -68,12 +100,7 @@ class UserProfile extends Component {
             <div className="useremail">
               <b>Email:</b> {this.props.user.user.email}
             </div>
-            <div className="usernumber">
-              <b>Phone:</b> {this.props.user.user.phone}
-            </div>
-            <div className="usersite">
-              <b>Website:</b> {this.props.user.user.website}
-            </div>
+            {this.renderSite()}
             <div className="userlinks">
               <a href={this.props.user.user.linkedin}>
                 <i className="fa fa-linkedin-square" aria-hidden="true"></i>
@@ -86,9 +113,7 @@ class UserProfile extends Component {
           </div>
         </div>
         <br />
-        <div className="userabout">
-          <b>About:</b> {this.props.user.user.about}
-        </div>
+        {this.renderAbout()}
         <div className="userskills">
           <b>Skills:</b> {this.renderSkills()}
         </div>

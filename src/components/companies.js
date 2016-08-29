@@ -31,7 +31,7 @@ class Companies extends Component {
     }
     const renderList = this.props.all.map((comp) => {
       return (
-        <div key={comp.id} className="col-md-10 col-md-offset-1">
+        <div key={comp.id} className="">
           <Company name={comp.name} id={comp.id} delete={this.deleteCompany} />
         </div>
       );

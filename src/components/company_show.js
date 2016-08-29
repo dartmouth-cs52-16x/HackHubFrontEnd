@@ -140,6 +140,13 @@ class CompanyShow extends Component {
     if (this.props.thisCompany == null) {
       return null;
     }
+    if (this.props.thisCompany.jobs.length === 0) {
+      return (
+        <div className="jobsection">
+          <b>No current job openings!</b>
+        </div>
+      );
+    }
     const renderList = this.props.thisCompany.jobs.map((job) => {
       return (
         <div key={job.id} className="">
@@ -147,7 +154,12 @@ class CompanyShow extends Component {
         </div>
       );
     });
-    return renderList;
+    return (
+      <div className="jobsection">
+        <b>Current job openings:</b>
+        {renderList}
+      </div>
+    );
   }
 
   // render function
