@@ -395,7 +395,9 @@ p {
 }
 
 #schedule {
-  margin-top: 100px;
+  margin-top: 80px;
+  margin-left: 30px;
+  margin-right: 30px;
 }
 
 #entry-bar {
@@ -511,9 +513,13 @@ textarea {
 }
 
 .new_event {
-  margin: 5%;
+  margin: 8%;
+
+  input {
+    margin-bottom: 5px;
+  }
 }
 
 .update_schedule{
-  margin: 6%;
+  margin: 8%;
 }
