@@ -14,6 +14,7 @@ class MyProfile extends Component {
       refresh: 0,
       error: 0,
       files: [],
+      image: null,
     };
 
     this.addSkill = this.addSkill.bind(this);
@@ -42,9 +43,17 @@ class MyProfile extends Component {
   }
 
   onDrop(files) {
-    this.setState({
-      files,
-    });
+    if (files.length <= 0) {
+      this.setState({
+        files,
+        image: '../../img/logo.png',
+      });
+    } else {
+      this.setState({
+        files,
+        image: files[0].preview,
+      });
+    }
   }
 
   onOpenClick() {
@@ -88,7 +97,7 @@ class MyProfile extends Component {
         id: this.state.user.id,
         email: this.state.user.email,
         skills: this.state.user.skills,
-        image: document.getElementById('userlink').value,
+        image: this.state.image,
         website: document.getElementById('usersite').value,
         facebook: document.getElementById('userfb').value,
         linkedin: document.getElementById('userli').value,
@@ -186,8 +195,14 @@ class MyProfile extends Component {
             <div className="compname">
               <b>{this.state.user.fullname}</b>
             </div>
+            <DropZone ref="dropzone" id="dropzone" onDrop={this.onDrop}>
+              <div>Click here to upload your profile image, or simply drag a file into this box.</div>
+            </DropZone>
+            {this.state.files.length > 0 ? <div className="imgpreview">
+              <h2>Uploading {this.state.files.length} files...</h2>
+              <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
+            </div> : null}
             <div className="input-group col-md-10 col-md-offset-1 company-profile">
-              {this.renderImage()}
               {this.renderWebsite()}
               {this.renderFB()}
               {this.renderLI()}
@@ -211,13 +226,6 @@ class MyProfile extends Component {
         <div>
           <button className="submitjob" onClick={this.updateUser}>Update</button>
         </div>
-        <DropZone ref="dropzone" onDrop={this.onDrop}>
-          <div>Try dropping some files here, or click to select files to upload.</div>
-        </DropZone>
-        {this.state.files.length > 0 ? <div>
-          <h2>Uploading {this.state.files.length} files...</h2>
-          <div>{this.state.files.map((file) => <img alt="" src={file.preview} />)}</div>
-        </div> : null}
       </div>
       );
   }
