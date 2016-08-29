@@ -168,13 +168,15 @@ class Signup extends Component {
           <br />
         </div>
         <br />
-        <DropZone accept="image/*" multiple={false} ref="dropzone" id="dropzone" onDrop={this.onDrop}>
-          <div>Click here to upload your profile image, or simply drag a file into this box.</div>
-        </DropZone>
-        {this.state.files.length > 0 ? <div className="imgpreview">
-          <h2>Uploading {this.state.files.length} files...</h2>
-          <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
-        </div> : null}
+        <div className="organizerrow">
+          <DropZone accept="image/*" multiple={false} ref="dropzone" id="dropzone" onDrop={this.onDrop}>
+            <div>Click here to upload your profile image, or simply drag a file into this box.</div>
+          </DropZone>
+          {this.state.files.length > 0 ? <div className="imgpreview">
+            <h2>Uploading {this.state.files.length} files...</h2>
+            <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
+          </div> : null}
+        </div>
         <div className="loginbutton">
           <button className="submitjob" onClick={this.submitForm}>Submit</button>
         </div>
