@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, updateUser } from '../actions';
 import Skill from './skill';
+import DropZone from 'react-dropzone';
 
 // example class based component (smart component)
 class MyProfile extends Component {
@@ -12,6 +13,7 @@ class MyProfile extends Component {
     this.state = {
       refresh: 0,
       error: 0,
+      files: [],
     };
 
     this.addSkill = this.addSkill.bind(this);
@@ -23,6 +25,8 @@ class MyProfile extends Component {
     this.renderLI = this.renderLI.bind(this);
     this.renderPhone = this.renderPhone.bind(this);
     this.renderAbout = this.renderAbout.bind(this);
+    this.onDrop = this.onDrop.bind(this);
+    this.onOpenClick = this.onOpenClick.bind(this);
   }
 
   componentWillMount() {
@@ -35,6 +39,16 @@ class MyProfile extends Component {
     this.setState({
       user: nextProps.user.user,
     });
+  }
+
+  onDrop(files) {
+    this.setState({
+      files,
+    });
+  }
+
+  onOpenClick() {
+    this.refs.dropzone.open();
   }
 
   addSkill(e) {
@@ -197,6 +211,13 @@ class MyProfile extends Component {
         <div>
           <button className="submitjob" onClick={this.updateUser}>Update</button>
         </div>
+        <DropZone ref="dropzone" onDrop={this.onDrop}>
+          <div>Try dropping some files here, or click to select files to upload.</div>
+        </DropZone>
+        {this.state.files.length > 0 ? <div>
+          <h2>Uploading {this.state.files.length} files...</h2>
+          <div>{this.state.files.map((file) => <img alt="" src={file.preview} />)}</div>
+        </div> : null}
       </div>
       );
   }
