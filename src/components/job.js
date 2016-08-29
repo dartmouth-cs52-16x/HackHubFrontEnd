@@ -1,3 +1,5 @@
+// component for a single job
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -10,13 +12,14 @@ class Job extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  // calllback to app
+  // delete the job
   onDeleteClick(event) {
     this.props.delete(this.props.id);
   }
 
-  // render announcement
+  // render job
   render() {
+    // only recruiters of the company or organizers can view delete button
     let deleteButton = '';
     if (this.props.company === this.props.thisCompany.name || this.props.role === 'organizer') {
       deleteButton = (
@@ -53,5 +56,3 @@ const mapStateToProps = (state, action) => (
 );
 
 export default connect(mapStateToProps, {})(Job);
-
-// export default Job;

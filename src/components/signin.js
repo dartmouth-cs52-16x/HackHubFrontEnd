@@ -1,3 +1,5 @@
+// component for signin page
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router';
@@ -21,18 +23,21 @@ class Signin extends Component {
     this.submitForm = this.submitForm.bind(this);
   }
 
+  // change email input
   changeEmail(event) {
     this.setState({
       email: event.target.value,
     });
   }
 
+  // change password input
   changePassword(event) {
     this.setState({
       password: event.target.value,
     });
   }
 
+  // submit user information
   submitForm() {
     // submit only if no field is empty (or just spaces)
     if (this.state.email.trim().length > 0 && this.state.password.trim().length > 0) {
@@ -44,7 +49,7 @@ class Signin extends Component {
     }
   }
 
-
+  // render all
   render() {
     let errorText = '';
     if (this.state.error === 1) {

@@ -1,4 +1,4 @@
-// the entry bar to create a new note with a title...
+// component for the new announcement creation bar
 
 import React, { Component } from 'react';
 
@@ -9,12 +9,18 @@ class NewAnnouncement extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onButtonClick = this.onButtonClick.bind(this);
   }
+
+  // change text input
   onInputChange(event) {
     this.setState({ titleterm: event.target.value });
   }
+
+  // submit announcement on click
   onButtonClick(event) {
     this.props.createAnnouncement(this.state.titleterm);
   }
+
+  // render all
   render() {
     return (
       <div className="input-group">

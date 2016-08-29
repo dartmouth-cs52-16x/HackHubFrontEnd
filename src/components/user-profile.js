@@ -1,3 +1,5 @@
+// component for a specific user profile
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, updateUser, clearUser } from '../actions';
@@ -27,13 +29,7 @@ class UserProfile extends Component {
     this.props.clearUser();
   }
 
-  /* componentWillReceiveProps(nextProps) {
-    console.log(nextProps.user.user);
-    this.setState({
-      user: nextProps.user.user,
-    });
-  } */
-
+  // render list of skills
   renderSkills() {
     if (this.props.user.user.skills.length === 0) {
       return (
@@ -52,6 +48,7 @@ class UserProfile extends Component {
     return renderList;
   }
 
+  // render website section, empty if no website
   renderSite() {
     if (this.props.user.user.website != null && this.props.user.user.website !== '') {
       return (
@@ -64,6 +61,7 @@ class UserProfile extends Component {
     }
   }
 
+  // render about section, empty if no about info
   renderAbout() {
     if (this.props.user.user.about != null && this.props.user.user.about !== '') {
       return (
@@ -78,6 +76,7 @@ class UserProfile extends Component {
     }
   }
 
+  // render company section, only displays for recruiters
   renderCompany() {
     if (this.props.user.user.company !== null && this.props.user.user.company !== '') {
       return (
@@ -89,6 +88,7 @@ class UserProfile extends Component {
     return null;
   }
 
+  // render all
   render() {
     if (this.props.user == null) {
       // if user not yet fetched
@@ -96,7 +96,6 @@ class UserProfile extends Component {
         <div></div>
       );
     }
-    console.log(this.props);
     return (
       <div className="userprofile" >
         <div className="row">

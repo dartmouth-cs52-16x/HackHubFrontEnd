@@ -1,3 +1,5 @@
+// component for my profile editing page
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchUser, updateUser, clearUser } from '../actions';
@@ -26,12 +28,10 @@ class MyProfile extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props.userToFetch);
     this.props.fetchUser(this.props.userToFetch);
   }
 
   componentWillReceiveProps(nextProps) {
-    console.log(nextProps);
     this.setState({
       user: nextProps.user.user,
     });
@@ -41,6 +41,7 @@ class MyProfile extends Component {
     this.props.clearUser();
   }
 
+  // add a skill to profile
   addSkill(e) {
     e.preventDefault();
     const currSkills = this.state.user.skills;
@@ -55,9 +56,9 @@ class MyProfile extends Component {
     this.setState({
       refresh: this.state.refresh + 1,
     });
-    console.log(this.state.user.skills);
   }
 
+  // delete a skill
   deleteSkill(id) {
     const currSkills = this.state.user.skills;
     for (let i = 0; i < currSkills.length; i++) {
@@ -70,6 +71,7 @@ class MyProfile extends Component {
     });
   }
 
+  // submit input to update user
   updateUser(e) {
     const phoneinput = document.getElementById('userphone').value;
     if (phoneinput === '' || phoneinput.match(/^\d{10}$/)) {
@@ -93,10 +95,12 @@ class MyProfile extends Component {
     }
   }
 
+  // render user image
   renderImage() {
     return (<img className="imgpreview" alt="" src={this.state.user.image} width="100%" />);
   }
 
+  // render website
   renderWebsite() {
     if (this.state.user.website) {
       return (<input type="text" className="form-control" id="usersite" defaultValue={this.state.user.website}></input>);
@@ -104,6 +108,7 @@ class MyProfile extends Component {
     return (<input type="text" className="form-control" id="usersite" placeholder="www.yourwebsite.com"></input>);
   }
 
+  // render facebook
   renderFB() {
     if (this.state.user.facebook) {
       return (<input type="text" className="form-control" id="userfb" defaultValue={this.state.user.facebook}></input>);
@@ -111,6 +116,7 @@ class MyProfile extends Component {
     return (<input type="text" className="form-control" id="userfb" placeholder="facebook profile"></input>);
   }
 
+  // render linkedin
   renderLI() {
     if (this.state.user.linkedin) {
       return (<input type="text" className="form-control" id="userli" defaultValue={this.state.user.linkedin}></input>);
@@ -118,6 +124,7 @@ class MyProfile extends Component {
     return (<input type="text" className="form-control" id="userli" placeholder="linkedin profile"></input>);
   }
 
+  // render phone
   renderPhone() {
     let errorText = '';
     if (this.state.error === 1) {
@@ -139,6 +146,7 @@ class MyProfile extends Component {
     );
   }
 
+  // render about
   renderAbout() {
     if (this.state.user.about) {
       return (<input type="text" className="form-control" id="userabout" defaultValue={this.state.user.about}></input>);
@@ -146,6 +154,7 @@ class MyProfile extends Component {
     return (<input type="text" className="form-control" id="userabout" placeholder="About"></input>);
   }
 
+  // render list of skills
   renderSkills() {
     if (this.state.user.skills == null) {
       return null;
@@ -158,6 +167,7 @@ class MyProfile extends Component {
     return renderList;
   }
 
+  // render all
   render() {
     if (this.state.user == null) {
       // if company not yet fetched

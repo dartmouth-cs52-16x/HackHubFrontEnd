@@ -1,3 +1,5 @@
+// reducer for companies
+
 import { ActionTypes } from '../actions';
 
 const CompanyReducer = (state = { all: [], comp: null }, action) => {

@@ -1,3 +1,5 @@
+// reducer for users
+
 import { ActionTypes } from '../actions';
 
 const UserReducer = (state = { all: [], user: null }, action) => {

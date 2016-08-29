@@ -1,11 +1,10 @@
-// show page -- show a specific post in full
+// the component for showing the profile of a company
 
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { fetchCompany, updateCompany, clearCompany, fetchUsers } from '../actions/index';
 import Job from './job';
 import { Link } from 'react-router';
-
 
 class CompanyShow extends Component {
   constructor(props) {
@@ -37,11 +36,9 @@ class CompanyShow extends Component {
   }
 
   componentWillMount() {
-    console.log(this.props);
     this.props.fetchCompany(this.props.params.id);
     this.props.fetchUsers();
     this.first = false;
-    console.log(this.first);
   }
 
   componentWillUnmount() {
@@ -63,6 +60,7 @@ class CompanyShow extends Component {
     this.setState({ about: event.target.value });
   }
 
+  // create a new job
   submitJob() {
     const currJobs = this.props.thisCompany.jobs;
     let thisId = 1;
@@ -86,6 +84,7 @@ class CompanyShow extends Component {
     this.props.updateCompany(fields);
   }
 
+  // delete a job
   deleteJob(id) {
     const currJobs = this.props.thisCompany.jobs;
     for (let i = 0; i < currJobs.length; i++) {
@@ -104,6 +103,7 @@ class CompanyShow extends Component {
     this.props.updateCompany(fields);
   }
 
+  // edit company info, set state to props for input change
   editInfo() {
     this.setState({
       name: this.props.thisCompany.name,
@@ -117,6 +117,7 @@ class CompanyShow extends Component {
     });
   }
 
+  // submit new company info
   submitInfo() {
     // submit only if no field is empty (or just spaces)
     if (this.state.website.trim().length > 0 && this.state.recruiter.trim().length > 0) {
@@ -141,6 +142,7 @@ class CompanyShow extends Component {
     }
   }
 
+  // render list of jobs
   renderJobs() {
     if (this.props.thisCompany == null) {
       return null;
@@ -167,8 +169,8 @@ class CompanyShow extends Component {
     );
   }
 
+  // render list of recruiters + link to their pages
   renderRecruiter() {
-    console.log(this.props);
     let count = 0;
     const allRecruiters = this.props.allusers.map((user) => {
       if (user.company === this.props.thisCompany.name) {
@@ -189,7 +191,6 @@ class CompanyShow extends Component {
       }
       return null;
     });
-    console.log(allRecruiters);
     if (count === 0) {
       return null;
     }
@@ -201,6 +202,7 @@ class CompanyShow extends Component {
     );
   }
 
+  // render about section, does not show if empty
   renderAbout() {
     if (this.props.thisCompany.about != null && this.props.thisCompany.about !== '') {
       return (
@@ -212,6 +214,7 @@ class CompanyShow extends Component {
     return null;
   }
 
+  // render website section, does not show if empty
   renderSite() {
     if (this.props.thisCompany.website != null && this.props.thisCompany.website !== '') {
       return (
@@ -223,10 +226,8 @@ class CompanyShow extends Component {
     return null;
   }
 
-  // render function
+  // render all
   render() {
-    console.log(this.props);
-    console.log(this.first);
     if (this.props.thisCompany == null) {
       // if company not yet fetched
       return (
@@ -238,8 +239,6 @@ class CompanyShow extends Component {
       errorText = 'Please fill out all fields!';
     }
     let companyInfo = '';
-
-
     let buttons = '';
     if (this.props.company === this.props.thisCompany.name || this.props.role === 'organizer') {
       if (this.state.editing === true) {
@@ -254,6 +253,7 @@ class CompanyShow extends Component {
     }
 
     if (this.state.editing === false) {
+      // general display, not editting
       companyInfo = (
         <div className="row">
           <div className="col-lg-6 col-md-6 col-xs-12 thumb companyinfo">
@@ -273,6 +273,7 @@ class CompanyShow extends Component {
         </div>
       );
     } else {
+      // editing display, input active
       companyInfo = (
         <div className="row">
           <div className="col-lg-6 col-md-6 col-xs-12 thumb companyinfo">
@@ -299,6 +300,7 @@ class CompanyShow extends Component {
       );
     }
 
+    // show edit functions if recruiter for the company or organizer
     if (this.props.company === this.props.thisCompany.name || this.props.role === 'organizer') {
       return (
         <div className="companyprofile" >

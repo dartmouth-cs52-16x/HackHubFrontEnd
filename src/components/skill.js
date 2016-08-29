@@ -1,3 +1,5 @@
+// component for a single skill
+
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 
@@ -10,22 +12,17 @@ class Skill extends Component {
     this.onDeleteClick = this.onDeleteClick.bind(this);
   }
 
-  // calllback to app
+  // delete this skill
   onDeleteClick(event) {
     this.props.delete(this.props.id);
   }
 
-  // render announcement
+  // render all
   render() {
-    // let deleteButton = '';
-    // if (this.props.user && this.props.user.role === 'recruiter') {
     const deleteButton = (
       <i className="fa fa-times" aria-hidden="true" onClick={this.onDeleteClick}></i>
     );
-    // }
-
     return (
-
       <span className="skillsingle">
         {this.props.name} &nbsp;
         {deleteButton}
@@ -42,5 +39,3 @@ const mapStateToProps = (state, action) => (
 );
 
 export default connect(mapStateToProps, {})(Skill);
-
-// export default Job;

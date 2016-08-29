@@ -1,3 +1,5 @@
+// reducer for authentication
+
 import { ActionTypes } from '../actions';
 
 const AuthReducer = (state = { authenticated: false, user: null }, action) => {
