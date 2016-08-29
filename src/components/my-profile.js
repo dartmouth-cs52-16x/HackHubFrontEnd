@@ -3,6 +3,10 @@ import { connect } from 'react-redux';
 import { fetchUser, updateUser } from '../actions';
 import Skill from './skill';
 import DropZone from 'react-dropzone';
+import request from 'superagent';
+
+const CLOUDINARY_UPLOAD_PRESET = 'iqn44tug';
+const CLOUDINARY_UPLOAD_URL = 'https://api.cloudinary.com/v1_1/dyvb3lskk/image/upload';
 
 // example class based component (smart component)
 class MyProfile extends Component {
@@ -14,7 +18,7 @@ class MyProfile extends Component {
       refresh: 0,
       error: 0,
       files: [],
-      image: null,
+      uploadedFileCloudinaryUrl: '',
     };
 
     this.addSkill = this.addSkill.bind(this);
@@ -28,6 +32,7 @@ class MyProfile extends Component {
     this.renderAbout = this.renderAbout.bind(this);
     this.onDrop = this.onDrop.bind(this);
     this.onOpenClick = this.onOpenClick.bind(this);
+    this.handleImageUpload = this.handleImageUpload.bind(this);
   }
 
   componentWillMount() {
@@ -46,18 +51,35 @@ class MyProfile extends Component {
     if (files.length <= 0) {
       this.setState({
         files,
-        image: '../../img/logo.png',
       });
     } else {
       this.setState({
         files,
-        image: files[0].preview,
+        uploadedFile: files[0],
       });
+      this.handleImageUpload(files[0]);
     }
   }
 
   onOpenClick() {
     this.refs.dropzone.open();
+  }
+
+  handleImageUpload(file) {
+    const upload = request.post(CLOUDINARY_UPLOAD_URL)
+                        .field('upload_preset', CLOUDINARY_UPLOAD_PRESET)
+                        .field('file', file);
+
+    upload.end((err, response) => {
+      if (err) {
+        console.error(err);
+      }
+      if (response.body.secure_url !== '') {
+        this.setState({
+          uploadedFileCloudinaryUrl: response.body.secure_url,
+        });
+      }
+    });
   }
 
   addSkill(e) {
@@ -97,7 +119,7 @@ class MyProfile extends Component {
         id: this.state.user.id,
         email: this.state.user.email,
         skills: this.state.user.skills,
-        image: this.state.image,
+        image: this.state.uploadedFileCloudinaryUrl,
         website: document.getElementById('usersite').value,
         facebook: document.getElementById('userfb').value,
         linkedin: document.getElementById('userli').value,
@@ -187,7 +209,6 @@ class MyProfile extends Component {
         <div></div>
       );
     }
-
     return (
       <div className="companyprofile" >
         <div className="row">
@@ -195,7 +216,7 @@ class MyProfile extends Component {
             <div className="compname">
               <b>{this.state.user.fullname}</b>
             </div>
-            <DropZone ref="dropzone" id="dropzone" onDrop={this.onDrop}>
+            <DropZone accept="image/*" multiple={false} ref="dropzone" id="dropzone" onDrop={this.onDrop}>
               <div>Click here to upload your profile image, or simply drag a file into this box.</div>
             </DropZone>
             {this.state.files.length > 0 ? <div className="imgpreview">
