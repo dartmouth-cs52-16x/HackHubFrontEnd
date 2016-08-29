@@ -168,7 +168,7 @@ class MyProfile extends Component {
             <div className="compname">
               <b>{this.state.user.fullname}</b>
             </div>
-            <div className="input-group col-md-10 col-md-offset-1 company-profile">
+            <div className="input-group col-md-10 company-profile">
               {this.renderImage()}
               {this.renderWebsite()}
               {this.renderFB()}

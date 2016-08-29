@@ -41,8 +41,14 @@ class NewCompanyProfile extends Component {
   }
 
   onButtonClick(event) {
+    let url = '';
+    if (this.state.uploadedFileCloudinaryUrl === '') {
+      url = 'https://console.ihotelier.com/opencms/export/system/modules/com.tc.properties/TravelClick/Properties/10245/media/RatePlan/Francis_Gariepy_1386354853367.jpg';
+    } else {
+      url = this.state.uploadedFileCloudinaryUrl;
+    }
     const fields = { name: document.getElementById('compname').value,
-      image: this.state.uploadedFileCloudinaryUrl,
+      image: url,
       website: document.getElementById('compsite').value,
       recruiter: document.getElementById('comprecruiter').value,
     };
