@@ -119,8 +119,7 @@ class MyProfile extends Component {
         id: this.state.user.id,
         email: this.state.user.email,
         skills: this.state.user.skills,
-        image: document.getElementById('userlink').value,
-        // image: this.state.uploadedFileCloudinaryUrl,
+        image: this.state.uploadedFileCloudinaryUrl,
         website: document.getElementById('usersite').value,
         facebook: document.getElementById('userfb').value,
         linkedin: document.getElementById('userli').value,
@@ -226,7 +225,6 @@ class MyProfile extends Component {
               <div>Preview: {this.state.files.map((file) => <img alt="" src={file.preview} width="100%" />)}</div>
             </div> : null}
             <div className="input-group col-md-10 col-md-offset-1 company-profile">
-              {this.renderImage()}
               {this.renderWebsite()}
               {this.renderFB()}
               {this.renderLI()}
