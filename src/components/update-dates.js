@@ -275,7 +275,7 @@ class UpdateDates extends Component {
   render() {
     return (
       <div className="update_schedule">
-        <div className="" >
+        <div className="schedule" >
           <h1>Day 1</h1>
             {this.renderDayofWeek1()}
             {this.renderDay1()}
@@ -284,6 +284,8 @@ class UpdateDates extends Component {
             {this.renderEnd1()}
           <h3>Events:</h3>
             {this.renderDay1Events()}
+        </div>
+        <div className="schedule" >
           <h1>Day 2</h1>
             {this.renderDayofWeek2()}
             {this.renderDay2()}
