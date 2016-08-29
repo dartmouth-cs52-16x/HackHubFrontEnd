@@ -68,6 +68,8 @@ We have routing for the different pages organized in src/routes.js, and we use t
 
 For the back end, we decided to use an express and mongodb CRUD api server to connect to the front end. We use express routes and schema to implement the api for the front end components. To connect to mongo, we had to use a module called mongoose to treat data that we store in mongo as objects.
 
+We use twilio to send text message announcements and S3 to store pictures.
+
 ## Setup
 
 To set up the project development environment, you will need to fork or clone the two repositories needed for this project: HackHubFrontEnd and HackHubAPIServer. 

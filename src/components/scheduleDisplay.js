@@ -32,8 +32,9 @@ class ScheduleDisplay extends Component {
       day1: nextProps.schedule.day1,
       day2: nextProps.schedule.day2,
     });
-
     d3.select('#schedule').selectAll('#schedule > div').remove();
+
+    // make both days
     this.setUpSchedule(nextProps.schedule.day1);
     this.setUpSchedule(nextProps.schedule.day2);
   }
@@ -41,6 +42,7 @@ class ScheduleDisplay extends Component {
   // refactored code courtesy of Daniel Chen - danielchen.com
   // GitHub : github.com/cheniel/pine-schedule.js
   setUpSchedule(data) {
+    // add the schedule div
     const container = d3.select('#schedule');
     const div = container.append('div');
     div.attr('class', 'col-md-6');
@@ -55,6 +57,8 @@ class ScheduleDisplay extends Component {
     headerData.append('span').text(`, ${data.month} ${data.day}`);
 
     const dataAtTime = [];
+
+    // add each event, skip overlapping
     data.events.forEach((e) => {
       const timeBlocksForEvent = (e.end - e.start) / 0.5;
       let timeBlockNumber = 1;
@@ -84,6 +88,7 @@ class ScheduleDisplay extends Component {
     });
 
     const timeBlocks = [];
+    // display the timeblocks
     for (let t = data.range.start; t < data.range.end; t += 0.5) {
       const d = (dataAtTime[t] || {});
       timeBlocks.push(new TimeBlock(t, d.event, d.display_type));
