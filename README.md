@@ -68,17 +68,17 @@ We have routing for the different pages organized in src/routes.js, and we use t
 
 For the back end, we decided to use an express and mongodb CRUD api server to connect to the front end. We use express routes and schema to implement the api for the front end components. To connect to mongo, we had to use a module called mongoose to treat data that we store in mongo as objects.
 
-We use twilio to send text message announcements and S3 to store pictures.
+We use Twilio to send text message announcements and Cloudinary to store pictures.
 
 ## Setup
 
-To set up the project development environment, you will need to fork or clone the two repositories needed for this project: HackHubFrontEnd and HackHubAPIServer. 
+To set up the project development environment, you will need to fork or clone the two repositories needed for this project: HackHubFrontEnd and HackHubAPIServer.
 
 Then, you will need to install the modules and libraries we have used here in the command line.
 
 `npm install`
 
-For completely local testing, you will need to change the server address. In HackHubFrontEnd, go to `src/actions/index.js`. There, change the line `const ROOT_URL = 'https://hackhub-server.herokuapp.com/api'` to `const ROOT_URL = 'localhost:9090/api'`. 
+For completely local testing, you will need to change the server address. In HackHubFrontEnd, go to `src/actions/index.js`. There, change the line `const ROOT_URL = 'https://hackhub-server.herokuapp.com/api'` to `const ROOT_URL = 'localhost:9090/api'`.
 
 Then, in a different command line window, set up mongod for a local database. Then go to the directory for HackHubAPIServer and run (after setting up mongod):
 
@@ -92,11 +92,11 @@ This sets up the site to be viewed on `localhost:8080` while testing.
 
 ## Deployment
 
-Using Travis, both the front end and back end are set up to deploy automatically once the master branch of the github repo is updated. The server will deploy automatically on Heroku, while the frontend will deploy automatically on surge. 
+Using Travis, both the front end and back end are set up to deploy automatically once the master branch of the github repo is updated. The server will deploy automatically on Heroku, while the frontend will deploy automatically on surge.
 
 The link to the server is: `https://hackhub-server.herokuapp.com/api`. To see the site after deployment, visit the following link: `hackhub.surge.sh`
 
-Note: Remember to set go to `src/actions/index.js` in HackHubFrontEnd and make sure the server is set correctly to `const ROOT_URL = 'https://hackhub-server.herokuapp.com/api'` before pushing to github for deployment. 
+Note: Remember to set go to `src/actions/index.js` in HackHubFrontEnd and make sure the server is set correctly to `const ROOT_URL = 'https://hackhub-server.herokuapp.com/api'` before pushing to github for deployment.
 
 ## Authors
 
@@ -104,6 +104,6 @@ Emma Oberstein, Erin Connolly, Jean Zhou, Robert Sayegh, Sophia Jiang
 
 ## Acknowledgments
 
-We use the Twilio for sending announcements by text message and Cloudinary for storing profile images. 
+We use the Twilio for sending announcements by text message and Cloudinary for storing images.
 
 Thanks to Tim for helping us through this project!
