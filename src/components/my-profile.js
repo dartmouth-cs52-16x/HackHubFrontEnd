@@ -134,6 +134,7 @@ class MyProfile extends Component {
       return (
         <div>
           <input type="text" className="form-control" id="userphone" defaultValue={this.state.user.phone}></input>
+          <p className="phonetext">* phone number for receiving HackHub announcements by text (will not be displayed on your profile)</p>
           <b><font color="red">{errorText}</font></b>
         </div>
       );
@@ -141,6 +142,7 @@ class MyProfile extends Component {
     return (
       <div>
         <input type="text" className="form-control" id="userphone" placeholder="Phone (##########)"></input>
+        <p className="phonetext">* phone number for receiving HackHub announcements by text (will not be displayed on your profile)</p>
         <b><font color="red">{errorText}</font></b>
       </div>
     );
